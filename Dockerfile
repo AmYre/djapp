@@ -11,6 +11,8 @@ WORKDIR /app
 COPY requirements.txt /app/
 RUN pip install -r requirements.txt
 
+RUN pip install django-browser-reload
+
 COPY . /app/
 
 EXPOSE 8000

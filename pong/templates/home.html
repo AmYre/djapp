@@ -1,13 +1,25 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
 
-{% block title %}Home{% endblock %}
+<head>
+	<title>Pong</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Press+Start+2P&family=Righteous&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="/static/css/home.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 
-{% block content %}
-<h1>Welcome to Pong!</h1>
-<a id="start" href="/test">Start Test</a>
-<div class="login">
-	<h2>Login</h2>
-	<a href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-430c86d0bc180f3cc2225e562523e9bb9b060d27de7b9125654633f8585ade65&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fuser&response_type=code
-	">with your 42 OAuth account</a>
-</div>
-{% endblock %}
+<body>
+	<h1 class="monoton">Transcendence</h1>
+	<div class="cabinet">
+		<img src="/static/img/cabinet.png" alt="pong">
+		<a class="login" target="_blank" href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-430c86d0bc180f3cc2225e562523e9bb9b060d27de7b9125654633f8585ade65&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fuser&response_type=code
+	">INSERT 42-iD</a>
+	</div>
+
+</body>
+
+</html>
