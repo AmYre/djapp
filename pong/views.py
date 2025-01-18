@@ -1,4 +1,6 @@
 from django.shortcuts import render, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 from .models import User
 import requests
 
@@ -9,8 +11,10 @@ def home(request):
 def test(request):
 	return render(request, 'test.html', {'users': User.objects.all()})
 
-def user(request):
-	code = request.GET.get('code')
+@csrf_exempt
+def get_token(request):
+	code = request.POST.get('code')
+	print(f"Received code: {code}")
 	if code:
 		token_url = "https://api.intra.42.fr/oauth/token"
 		token_data = {
@@ -18,7 +22,7 @@ def user(request):
 			'client_id': 'u-s4t2ud-430c86d0bc180f3cc2225e562523e9bb9b060d27de7b9125654633f8585ade65',
 			'client_secret': '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',
 			'code': code,
-			'redirect_uri': 'http://localhost:8000/user'
+			'redirect_uri': 'http://localhost:8000/'
 		}
 		token_response = requests.post(token_url, data=token_data)
 		token_json = token_response.json()
@@ -36,4 +40,4 @@ def user(request):
 	else:
 		user_info = {'error': 'No code provided'}
 
-	return render(request, 'user.html', {'user_info': user_info})
+	return JsonResponse(user_info)

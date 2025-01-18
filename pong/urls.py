@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.urls import path, include
 from . import views
+from pong import api
 
 urlpatterns = [
     path('', views.home, name='home'),
 	path('test/', views.test, name='test'),
-	path('user/', views.user, name='user'),
+	path('api/token/', api.get_token, name='get_token'),
+	path('api/test/', api.test, name='test'),
 	path("__reload__/", include("django_browser_reload.urls")),
 ]
