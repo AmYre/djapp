@@ -1,3 +1,14 @@
+@font-face {
+    font-family: "Pong Score";
+    src: url('../fonts/ataris-pong-score.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.score {
+    font-family: "Pong Score", serif;
+}
+
 .monoton {
 	font-family: "Monoton", serif;
 	font-weight: 400;
