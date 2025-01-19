@@ -21,11 +21,25 @@
 	font-style: normal;
 }
 
+
+
 body {
-	background-color: #f6db53;
+	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background: linear-gradient(-45deg, #2C2E8B, #55769D, #88181D, #A23927);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+.wallpaper{
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 h1 {
@@ -56,4 +70,18 @@ h1 {
 	text-decoration: none;
 	border-radius: 15px;
 	box-shadow: 0px 0px 5px 5px white;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
 }

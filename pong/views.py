@@ -8,8 +8,8 @@ import requests
 def home(request):
 	return render(request, 'home.html')
 
-def test(request):
-	return render(request, 'test.html', {'users': User.objects.all()})
+# def test(request):
+# 	return render(request, 'test.html', {'users': User.objects.all()})
 
 @csrf_exempt
 def get_token(request):

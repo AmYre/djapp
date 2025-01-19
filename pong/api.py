@@ -4,7 +4,7 @@ from rest_framework.response import Response
 import requests
 
 @api_view(['POST'])
-def get_token(request):
+def token(request):
     code = request.data.get('code')
     print(f"Received code: {code}")
     token_url = "https://api.intra.42.fr/oauth/token"
