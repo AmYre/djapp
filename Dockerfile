@@ -2,6 +2,7 @@ FROM python:3.9-slim
 
 RUN apt-get update && apt-get install -y \
 	gcc \
+	netcat-openbsd \
 	python3-dev \
 	libpq-dev \
 	&& rm -rf /var/lib/apt/lists/*
@@ -15,6 +16,9 @@ RUN pip install django-browser-reload
 
 COPY . /app/
 
+COPY entrypoint.sh /app/
+RUN chmod +x /app/entrypoint.sh
+
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["sh", "/app/entrypoint.sh"]
