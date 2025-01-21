@@ -6,7 +6,7 @@
 }
 
 .score {
-    font-family: "Pong Score", serif;
+	font-family: "Pong Score", serif;
 }
 
 .monoton {
@@ -21,9 +21,8 @@
 	font-style: normal;
 }
 
-
-
 body {
+	position:relative;
 	height: 100vh;
 	display: flex;
 	justify-content: center;
@@ -56,20 +55,29 @@ h1 {
 	max-width: 35vw;
 }
 
-.login {
+.login img {
 	position: absolute;
-	font-size: 12px;
-	bottom: 18%;
-	left: 50%;
-	background-color: #f6db53;
-	color: black;
-	padding: 10px 20px;
-	font-family: "Righteous", serif;
-	font-weight: 400;
-	font-style: normal;
-	text-decoration: none;
-	border-radius: 15px;
-	box-shadow: 0px 0px 5px 5px white;
+	bottom: 4%;
+	left: 43.5%;
+	width: 240px;
+	height: 240px;
+	z-index: 10;
+	cursor: pointer;
+	transition: transform 0.5s ease;
+	animation: spin 0.8s infinite linear;
+}
+
+/*#loginButton:hover {
+	transform: scale(1.1);
+}*/
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 @keyframes gradient {
