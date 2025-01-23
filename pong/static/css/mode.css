@@ -5,4 +5,27 @@
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+	background-image: linear-gradient(
+		#e69d37,
+		#e69d37 20%,
+		#dd512c 20%,
+		#dd512c 40%,
+		#d6302f 40%,
+		#d6302f 60%,
+		#9c1d34 60%,
+		#9c1d34 80%,
+		#521b45 80%,
+		#521b45
+		);
+	position: relative;
+}
+
+.mode-title {
+	font-family: "Press Start 2P", cursive;
+	font-size: 7vw;
+	color: black;
+	position: absolute;
+	top: 2vh;
+	left: 50%;
+	transform: translateX(-50%);
 }
