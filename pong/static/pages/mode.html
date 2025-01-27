@@ -1,10 +1,30 @@
 <div id="stars"></div>
 <div id="stars2"></div>
 <div id="stars3"></div>
-<div class="mode-container">
-	<h1 class="monoton">Game Mode</h1>
-	<div class="righteous">VS Bot</div>
-	<div class="righteous">VS Player 2</div>
-	<div class="righteous">Tournament</div>
-	<button onclick="nextStep()">Go Game Page</button>
+
+<h1 class="monoton">GAME MODE</h1>
+
+<div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+    <div class="image-container">
+        <img class="image" src="/static/img/pl1.png" draggable="false" />
+        <div class="buttons">
+            <button onclick="nextStep()">1 Player</button>
+        </div>
+    </div>
+    <div class="image-container">
+        <img class="image" src="/static/img/pl2.png" draggable="false" />
+        <div class="buttons">
+            <button onclick="nextStep()">2 Player</button>
+        </div>
+    </div>
+    <div class="image-container">
+        <img class="image" src="/static/img/pl3.png" draggable="false" />
+        <div class="buttons">
+            <button onclick="nextStep()">Tournament</button>
+        </div>
+    </div>
 </div>
+
+	<script>
+		sliderInit();
+	</script>
