@@ -8,18 +8,27 @@
 	<div id="name">${login}</div>
 </div>
 
-<div class="options-container">
-	<div class="righteous">power Up 1</div>
-	<div class="righteous">Power up 2</div>
-	<button onclick="nextStep()">Next</button>
-	<button onclick="logOut()">Log out</button>	
+<div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+    <div class="image-container">
+        <img class="image" src="/static/img/op1.png" draggable="false" />
+        <div class="buttons">
+            <button onclick="nextStep()">Next</button>
+        </div>
+    </div>
+    <div class="image-container">
+        <img class="image" src="/static/img/op2.png" draggable="false" />
+        <div class="buttons">
+            <button onclick="nextStep()">Next</button>
+        </div>
+    </div>
+    <div class="image-container">
+        <img class="image" src="/static/img/op3.png" draggable="false" />
+        <div class="buttons">
+            <button onclick="logOut()">Log out</button>
+        </div>
+    </div>
 </div>
 
-	<div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
-		<img class="image" src="/static/img/op1.png" draggable="false" />
-		<img class="image" src="/static/img/op2.png" draggable="false" />
-		<img class="image" src="/static/img/op3.png" draggable="false" />
-	</div>
 	<script>
 		sliderInit();
 	</script>
