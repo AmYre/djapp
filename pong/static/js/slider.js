@@ -1,4 +1,5 @@
 function sliderInit() {
+	console.log("sliderInit");
     const track = document.getElementById("image-track");
 
     const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
@@ -44,3 +45,5 @@ function sliderInit() {
     window.onmousemove = e => handleOnMove(e);
     window.ontouchmove = e => handleOnMove(e.touches[0]);
 }
+
+window.sliderInit = sliderInit;

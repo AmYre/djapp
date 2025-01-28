@@ -93,10 +93,13 @@ function previousStep() {
 }
 
 async function logOut() {
+	
 	localStorage.clear();
 	window.history.pushState({ step: 0 }, "", "/");
 	const html = await fetchView("/static/pages/notHome.html");
 	document.body.innerHTML = html;
+	execScripts(document.body);
+	sliderInit();
 }
 
 // Handle browser back/forward buttons
