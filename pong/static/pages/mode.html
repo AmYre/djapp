@@ -3,8 +3,51 @@
 <div id="stars3"></div>
 <div class="mode-container">
 	<h1 class="monoton">Game Mode</h1>
-	<div class="righteous">VS Bot</div>
-	<div class="righteous">VS Player 2</div>
-	<div class="righteous">Tournament</div>
-	<button onclick="nextStep()">Go Game Page</button>
+	<div class="mode-container">
+		<form class="row g-3" onsubmit="event.preventDefault(); handleModeForm(this);">
+			<div class="col-auto">
+				<label for="a">Player 1</label>
+				<input type="text" name="p1" class="form-control-plaintext" value="login" readonly>
+				<input type="text" hidden name="p2" value="">
+				<input type="text" hidden name="p3" value="">
+				<input type="text" hidden name="mode" value="bot">
+			</div>
+			<div class="col-auto">
+				<button type="submit" class="btn btn-primary mb-3">Game VS Bot</button>
+			</div>
+		</form>
+		<form class="row g-3" onsubmit="event.preventDefault(); handleModeForm(this);">
+			<div class="col-auto">
+				<label for="a">Player 1</label>
+				<input type="text" class="form-control-plaintext" name="p1" value="login" readonly>
+			</div>
+			<div class="col-auto">
+				<label for="b">Player 2</label>
+				<input type="text" class="form-control" name="p2" placeholder="Player 2 login" required>
+				<input type="text" hidden name="p3" value="">
+				<input type="text" hidden name="mode" value="human">
+			</div>
+			<div class="col-auto">
+				<button type="submit" class="btn btn-primary mb-3">Game VS Player</button>
+			</div>
+		</form>
+		<form class="row g-3" onsubmit="event.preventDefault(); handleModeForm(this);">
+			<div class="col-auto">
+				<label for="a">Player 1</label>
+				<input type="text" class="form-control-plaintext" name="p1" value="login" readonly>
+			</div>
+			<div class="col-auto">
+				<label for="b">Player 2</label>
+				<input type="text" class="form-control" name="p2" placeholder="Player 2 login" required>
+			</div>
+			<div class="col-auto">
+				<label for="b">Player 3</label>
+				<input type="text" class="form-control" name="p3" placeholder="Player 3 login" required>
+				<input type="text" hidden name="mode" value="tourn">
+			</div>
+			<div class="col-auto">
+				<button type="submit" class="btn btn-primary mb-3">Game Tournament</button>
+			</div>
+		</form>
+	</div>
 </div>

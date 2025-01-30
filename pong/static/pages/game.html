@@ -4,8 +4,13 @@
 
 
 <div class="game-container">
-	<canvas id="gameCanvas" width="800" height="400"></canvas>
 	<h1 class="monoton">Game Page</h1>
+	<h2 class="pix pulsar" style="color: white" id="versus">
+	</h2>
+	<script>
+		displayPlayers();
+	</script>
+	<canvas id="gameCanvas" width="800" height="400"></canvas>
 	<span class="righteous">PLAYING PONG</span>
 	<button onclick="initGame()">Start Game</button>
 	<button onclick="nextStep()">Simulate Results</button>

@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	} else {
 		if (code) {
 			localStorage.setItem("code", code);
-			localStorage.setItem("state", 1);
 
 			fetch("/api/token/", {
 				method: "POST",
