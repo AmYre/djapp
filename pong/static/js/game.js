@@ -1,17 +1,14 @@
 function displayPlayers() {
-	setTimeout(() => {
-		const h2 = document.getElementById("versus");
-		const state = JSON.parse(localStorage.getItem("pongAppState"));
-		const mode = state?.mode;
-		if (mode === "bot") h2.innerHTML = `${state?.user?.login || "Player1"} VS Bot`;
-		else if (mode === "human") h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user2?.login || "Player2"}`;
-		else if (mode === "tourn") {
-			if (game == 0) h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user2?.login || "Player2"}`;
-			else if (game == 1) h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user3?.login || "Player3"}`;
-			else if (game == 2) h2.innerHTML = `${state?.user2?.login || "Player2"} VS ${state?.user3?.login || "Player3"}`;
-		}
-		console.log("État chargé après délai:", state);
-	}, 1000);
+	const h2 = document.getElementById("versus");
+	const state = JSON.parse(localStorage.getItem("pongAppState"));
+	const mode = state?.mode;
+	if (mode === "bot") h2.innerHTML = `${state?.user?.login || "Player1"} VS Bot`;
+	else if (mode === "human") h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user2 || "Player2"}`;
+	else if (mode === "tourn") {
+		if (game == 0) h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user2 || "Player2"}`;
+		else if (game == 1) h2.innerHTML = `${state?.user || "Player1"} VS ${state?.user3 || "Player3"}`;
+		else if (game == 2) h2.innerHTML = `${state?.user2 || "Player2"} VS ${state?.user3 || "Player3"}`;
+	}
 }
 
 function initGame() {

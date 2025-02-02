@@ -7,7 +7,7 @@
 		<form class="row g-3" onsubmit="event.preventDefault(); handleModeForm(this);">
 			<div class="col-auto">
 				<label for="a">Player 1</label>
-				<input type="text" name="p1" class="form-control-plaintext" value="login" readonly>
+				<p class="p1 pix pulsar" style="color: white" id="p1bot"></p>
 				<input type="text" hidden name="p2" value="">
 				<input type="text" hidden name="p3" value="">
 				<input type="text" hidden name="mode" value="bot">
@@ -19,7 +19,7 @@
 		<form class="row g-3" onsubmit="event.preventDefault(); handleModeForm(this);">
 			<div class="col-auto">
 				<label for="a">Player 1</label>
-				<input type="text" class="form-control-plaintext" name="p1" value="login" readonly>
+				<p class="pix pulsar" style="color: white" id="p1human"></p>
 			</div>
 			<div class="col-auto">
 				<label for="b">Player 2</label>
@@ -34,7 +34,8 @@
 		<form class="row g-3" onsubmit="event.preventDefault(); handleModeForm(this);">
 			<div class="col-auto">
 				<label for="a">Player 1</label>
-				<input type="text" class="form-control-plaintext" name="p1" value="login" readonly>
+				<p class="pix pulsar" style="color: white" id="p1tourn"></p>
+
 			</div>
 			<div class="col-auto">
 				<label for="b">Player 2</label>
@@ -49,5 +50,8 @@
 				<button type="submit" class="btn btn-primary mb-3">Game Tournament</button>
 			</div>
 		</form>
+		<script>
+			displayPlayer1();
+		</script>
 	</div>
 </div>
