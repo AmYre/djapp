@@ -1,17 +1,17 @@
 .options-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: center;
-    height: 95%;
+	display: flex;
+	flex-direction: inline;
+	align-items: center;
 }
 
 .avatar-container {
-    color: white;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    padding: 1rem;
+	display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+	color: white;
+	top: 1vh;
+	left: 1vw;
 }
 
 * {
@@ -19,9 +19,9 @@
 }
 
 #image-track {
+    position: absolute;
     display: flex;
     gap: 4vmin;
-    position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(0%, -50%);
@@ -50,10 +50,10 @@
     gap: 10px;
 }
 
-.button {
+/*.button {
     background-color: white;
     color: black;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
-}
+}*/
