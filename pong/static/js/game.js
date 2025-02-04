@@ -13,6 +13,8 @@ function displayPlayers() {
 
 function initGame() {
 	const canvas = document.getElementById("gameCanvas");
+	const frame = document.getElementById("gameFrame");
+	const btns = document.getElementById("gameBtns");
 	const state = JSON.parse(localStorage.getItem("pongAppState"));
 	const h2 = document.getElementById("versus");
 
@@ -36,7 +38,7 @@ function initGame() {
 		let ballSpeedY = initialBallSpeed;
 		let player1Score = 0;
 		let player2Score = 0;
-		const WINNING_SCORE = 5;
+		const WINNING_SCORE = 1;
 		let gameOver = false;
 
 		// Key handling
@@ -94,7 +96,6 @@ function initGame() {
 				console.log("STATUS", state);
 				if (player2Score >= WINNING_SCORE) {
 					gameOver = true;
-					h2.innerHTML = "Game Over";
 					if (state.mode === "tourn") {
 						if (game == 0) {
 							state.game = 1;
@@ -108,11 +109,15 @@ function initGame() {
 					} else if (state.mode === "human") {
 						state.winner = state.user2;
 						localStorage.setItem("pongAppState", JSON.stringify(state));
-						nextStep();
+						frame.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
+						btns.innerHTML = `<button onclick="renderStep(3)">Play Again</button>
+	<button onclick="renderStep(1)">Change Options</button>`;
 					} else {
 						state.winner = "Bot";
 						localStorage.setItem("pongAppState", JSON.stringify(state));
-						nextStep();
+						frame.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
+						btns.innerHTML = `<button onclick="renderStep(3)">Play Again</button>
+	<button onclick="renderStep(1)">Change Options</button>`;
 					}
 				}
 				resetBall();
@@ -120,7 +125,6 @@ function initGame() {
 				player1Score++;
 				if (player1Score >= WINNING_SCORE) {
 					gameOver = true;
-					h2.innerHTML = "Game Over";
 					if (state.mode === "tourn") {
 						if (game == 0) {
 							state.game = 1;
@@ -135,7 +139,9 @@ function initGame() {
 						state.winner = state.user.login;
 						localStorage.setItem("pongAppState", JSON.stringify(state));
 						console.log("STATUS", state);
-						nextStep();
+						frame.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
+						btns.innerHTML = `<button onclick="renderStep(3)">Play Again</button>
+	<button onclick="renderStep(1)">Change Options</button>`;
 					} else {
 						state.winner = state.user.login;
 						try {
@@ -147,7 +153,9 @@ function initGame() {
 							console.error("Erreur lors de la sauvegarde:", error);
 						}
 						console.log("STATUS", state);
-						nextStep();
+						frame.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
+						btns.innerHTML = `<button onclick="renderStep(3)">Play Again</button>
+	<button onclick="renderStep(1)">Change Options</button>`;
 					}
 				}
 				resetBall();
