@@ -1,7 +1,14 @@
-
 .mode-container {
-	display: flex;
+	display : flex;
+	justify-content : center;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+}
+
+label {
+	color : white;
+}
+
+input {
+	color : white;
 }

@@ -1,12 +1,17 @@
 // State management
-const AppState = {
+let AppState = {
 	currentStep: 0,
 	user: null,
+	user2: null,
+	user3: null,
+	mode: null,
+	winner: "",
+	game: 0,
 	gameOptions: null,
 };
 
 // Views configuration
-const views = {
+let views = {
 	1: { path: "/static/pages/options.html" },
 	2: { path: "/static/pages/mode.html" },
 	3: { path: "/static/pages/game.html" },
@@ -50,13 +55,12 @@ async function updateState(newState) {
 }
 
 async function renderCurrentStep(step) {
-	console.log("func render");
 	const mainContent = document.body;
 	const view = views[step];
 	if (!view) return;
 
 	const html = await fetchView(view.path);
-	mainContent.innerHTML = html.replace("${login}", AppState.user?.login).replace("${avatar}", AppState.user?.image.link);
+	mainContent.innerHTML = html;
 	execScripts(mainContent);
 }
 

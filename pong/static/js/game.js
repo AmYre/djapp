@@ -1,6 +1,21 @@
+function displayPlayers() {
+	const h2 = document.getElementById("versus");
+	const state = JSON.parse(localStorage.getItem("pongAppState"));
+	const mode = state?.mode;
+	if (mode === "bot") h2.innerHTML = `${state?.user?.login || "Player1"} VS Bot`;
+	else if (mode === "human") h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user2 || "Player2"}`;
+	else if (mode === "tourn") {
+		if (game == 0) h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user2 || "Player2"}`;
+		else if (game == 1) h2.innerHTML = `${state?.user || "Player1"} VS ${state?.user3 || "Player3"}`;
+		else if (game == 2) h2.innerHTML = `${state?.user2 || "Player2"} VS ${state?.user3 || "Player3"}`;
+	}
+}
+
 function initGame() {
 	const canvas = document.getElementById("gameCanvas");
-	console.log("Canvas:", canvas);
+	const state = JSON.parse(localStorage.getItem("pongAppState"));
+	const h2 = document.getElementById("versus");
+
 	if (canvas) {
 		const canvas = document.getElementById("gameCanvas");
 		const ctx = canvas.getContext("2d");
@@ -21,6 +36,8 @@ function initGame() {
 		let ballSpeedY = initialBallSpeed;
 		let player1Score = 0;
 		let player2Score = 0;
+		const WINNING_SCORE = 5;
+		let gameOver = false;
 
 		// Key handling
 		let keysPressed = {};
@@ -35,14 +52,15 @@ function initGame() {
 
 		// Game loop
 		function gameLoop() {
-			requestAnimationFrame(gameLoop);
-			update();
-			draw();
+			if (!gameOver) {
+				requestAnimationFrame(gameLoop);
+				update();
+				draw();
+			}
 		}
 
 		// Update game logic
 		function update() {
-			// Player movement
 			if (keysPressed["w"]) player1Y -= paddleSpeed;
 			if (keysPressed["s"]) player1Y += paddleSpeed;
 			if (keysPressed["ArrowUp"]) player2Y -= paddleSpeed;
@@ -73,9 +91,65 @@ function initGame() {
 			// Scoring
 			if (ballX < 0) {
 				player2Score++;
+				console.log("STATUS", state);
+				if (player2Score >= WINNING_SCORE) {
+					gameOver = true;
+					h2.innerHTML = "Game Over";
+					if (state.mode === "tourn") {
+						if (game == 0) {
+							state.game = 1;
+							state.winner = state.user2;
+							localStorage.setItem("pongAppState", JSON.stringify(state));
+						} else if (game == 1) {
+							state.game = 2;
+							state.winner = state.user3;
+							localStorage.setItem("pongAppState", JSON.stringify(state));
+						}
+					} else if (state.mode === "human") {
+						state.winner = state.user2;
+						localStorage.setItem("pongAppState", JSON.stringify(state));
+						nextStep();
+					} else {
+						state.winner = "Bot";
+						localStorage.setItem("pongAppState", JSON.stringify(state));
+						nextStep();
+					}
+				}
 				resetBall();
 			} else if (ballX > canvas.width) {
 				player1Score++;
+				if (player1Score >= WINNING_SCORE) {
+					gameOver = true;
+					h2.innerHTML = "Game Over";
+					if (state.mode === "tourn") {
+						if (game == 0) {
+							state.game = 1;
+							state.winner = state.user2;
+							localStorage.setItem("pongAppState", JSON.stringify(state));
+						} else if (game == 1) {
+							state.game = 2;
+							state.winner = state.user3;
+							localStorage.setItem("pongAppState", JSON.stringify(state));
+						}
+					} else if (state.mode === "human") {
+						state.winner = state.user.login;
+						localStorage.setItem("pongAppState", JSON.stringify(state));
+						console.log("STATUS", state);
+						nextStep();
+					} else {
+						state.winner = state.user.login;
+						try {
+							localStorage.setItem("pongAppState", JSON.stringify(state));
+							// Vérifier immédiatement si la sauvegarde a fonctionné
+							const savedState = localStorage.getItem("pongAppState");
+							console.log("État sauvegardé:", JSON.parse(savedState));
+						} catch (error) {
+							console.error("Erreur lors de la sauvegarde:", error);
+						}
+						console.log("STATUS", state);
+						nextStep();
+					}
+				}
 				resetBall();
 			}
 		}
