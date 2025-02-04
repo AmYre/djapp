@@ -4,7 +4,10 @@
 
 <div class="results-container">
 	<h1 class="monoton">Game Results</h1>
-	<p class="righteous">Winner is ...</p>
+	<p class="righteous">Winner is <span id="winner" class="p1 pix pulsar" style="color: white"></span></p>
+	<script>
+		displayWinner();
+	</script>
 	<button onclick="renderStep(3)">Play Again</button>
 	<button onclick="renderStep(1)">Change Options</button>
 </div>

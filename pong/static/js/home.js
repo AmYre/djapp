@@ -5,6 +5,8 @@ let AppState = {
 	user2: null,
 	user3: null,
 	mode: null,
+	winner: "",
+	game: 0,
 	gameOptions: null,
 };
 
