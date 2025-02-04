@@ -1,9 +1,61 @@
-
 .options-container {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	flex-direction: inline;
+	justify-content: flex-start;
 	align-items: center;
-	height: 100vh;
 }
 
+.avatar-container {
+	position: relative;
+	display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+	color: white;
+	top: 1vh;
+	left: 1vw;
+}
+
+* {
+    margin: 0;
+}
+
+#image-track {
+    position: absolute;
+    display: flex;
+    gap: 4vmin;
+    left: 50%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    z-index: 1;
+    user-select: none;
+}
+
+.image-container {
+    position: relative;
+}
+
+.image {
+    width: 40vmin;
+    height: 56vmin;
+    object-fit: cover;
+    object-position: 100% center;
+    z-index: 1;
+}
+
+.buttons {
+    position: absolute;
+    bottom: -50px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+/*.button {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}*/

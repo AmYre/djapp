@@ -1,57 +1,63 @@
 <div id="stars"></div>
 <div id="stars2"></div>
 <div id="stars3"></div>
-<div class="mode-container">
-	<h1 class="monoton">Game Mode</h1>
-	<div class="mode-container">
-		<form class="row g-3" onsubmit="event.preventDefault(); handleModeForm(this);">
-			<div class="col-auto">
-				<label for="a">Player 1</label>
-				<p class="p1 pix pulsar" style="color: white" id="p1bot"></p>
-				<input type="text" hidden name="p2" value="">
-				<input type="text" hidden name="p3" value="">
-				<input type="text" hidden name="mode" value="bot">
-			</div>
-			<div class="col-auto">
-				<button type="submit" class="btn btn-primary mb-3">Game VS Bot</button>
-			</div>
-		</form>
-		<form class="row g-3" onsubmit="event.preventDefault(); handleModeForm(this);">
-			<div class="col-auto">
-				<label for="a">Player 1</label>
-				<p class="pix pulsar" style="color: white" id="p1human"></p>
-			</div>
-			<div class="col-auto">
-				<label for="b">Player 2</label>
-				<input type="text" class="form-control" name="p2" placeholder="Player 2 login" required>
-				<input type="text" hidden name="p3" value="">
-				<input type="text" hidden name="mode" value="human">
-			</div>
-			<div class="col-auto">
-				<button type="submit" class="btn btn-primary mb-3">Game VS Player</button>
-			</div>
-		</form>
-		<form class="row g-3" onsubmit="event.preventDefault(); handleModeForm(this);">
-			<div class="col-auto">
-				<label for="a">Player 1</label>
-				<p class="pix pulsar" style="color: white" id="p1tourn"></p>
 
-			</div>
-			<div class="col-auto">
-				<label for="b">Player 2</label>
-				<input type="text" class="form-control" name="p2" placeholder="Player 2 login" required>
-			</div>
-			<div class="col-auto">
-				<label for="b">Player 3</label>
-				<input type="text" class="form-control" name="p3" placeholder="Player 3 login" required>
-				<input type="text" hidden name="mode" value="tourn">
-			</div>
-			<div class="col-auto">
-				<button type="submit" class="btn btn-primary mb-3">Game Tournament</button>
-			</div>
-		</form>
-		<script>
-			displayPlayer1();
-		</script>
+<div class="mode-container">
+	<div class="heading-container">
+		<h1 class="monoton heading">GAME MODE</h1>
 	</div>
-</div>
+	<div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+		<div class="image-container">
+			<img class="image" src="/static/img/pl1.png" draggable="false" />
+			<div class="buttons">
+				<form onsubmit="event.preventDefault(); handleModeForm(this);">
+          <label for="a">Player 1</label>
+          <p class="p1 pix pulsar" style="color: white" id="p1bot"></p>
+          <input type="text" hidden name="p2" value="">
+          <input type="text" hidden name="p3" value="">
+          <input type="text" hidden name="mode" value="bot">
+          <button type="submit" class="btn btn-primary mb-3">Game VS Bot</button>
+	    	</form>
+			</div>
+	  </div>
+
+		<div class="image-container">
+			<img class="image" src="/static/img/pl2.png" draggable="false" />
+			<div class="buttons">
+			  <form onsubmit="event.preventDefault(); handleModeForm(this);">
+          <label for="a">Player 1</label>
+          <p class="pix pulsar" style="color: white" id="p1human"></p>
+          <label for="b">Player 2</label>
+          <input type="text" class="form-control" name="p2" placeholder="Player 2 login" required>
+          <input type="text" hidden name="p3" value="">
+          <input type="text" hidden name="mode" value="human">
+          <button type="submit" class="btn btn-primary mb-3">Game VS Player</button>
+        </form>
+			</div>
+		</div>
+    
+		<div class="image-container">
+			<img class="image" src="/static/img/pl3.png" draggable="false" />
+			<div class="buttons">
+        <form onsubmit="event.preventDefault(); handleModeForm(this);">
+          <label for="a">Player 1</label>
+          <p class="pix pulsar" style="color: white" id="p1tourn"></p>
+          <label for="b">Player 2</label>
+          <input type="text" class="form-control" name="p2" placeholder="Player 2 login" required>
+          <label for="b">Player 3</label>
+          <input type="text" class="form-control" name="p3" placeholder="Player 3 login" required>
+          <input type="text" hidden name="mode" value="tourn">
+          <button type="submit" class="btn btn-primary mb-3">Game Tournament</button>
+        </form>
+			</div>
+		</div>
+	
+  </div> img track
+  <script>
+    displayPlayer1();
+  </script>
+</div> mode cnt
+
+<script>
+  sliderInit();
+</script>
