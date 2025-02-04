@@ -3,11 +3,12 @@ function displayPlayers() {
 	const state = JSON.parse(localStorage.getItem("pongAppState"));
 	const mode = state?.mode;
 	if (mode === "bot") h2.innerHTML = `${state?.user?.login || "Player1"} VS Bot`;
-	else if (mode === "human") h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user2 || "Player2"}`;
-	else if (mode === "tourn") {
-		if (game == 0) h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user2 || "Player2"}`;
-		else if (game == 1) h2.innerHTML = `${state?.user || "Player1"} VS ${state?.user3 || "Player3"}`;
-		else if (game == 2) h2.innerHTML = `${state?.user2 || "Player2"} VS ${state?.user3 || "Player3"}`;
+	else if (mode === "human") {
+		h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user2 || "Player2"}`;
+	} else if (mode === "tourn") {
+		if (state.game == 0) h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user2 || "Player2"}`;
+		else if (state.game == 1) h2.innerHTML = `${state?.user || "Player1"} VS ${state?.user3 || "Player3"}`;
+		else if (state.game == 2) h2.innerHTML = `${state?.user2 || "Player2"} VS ${state?.user3 || "Player3"}`;
 	}
 }
 
@@ -97,14 +98,22 @@ function initGame() {
 				if (player2Score >= WINNING_SCORE) {
 					gameOver = true;
 					if (state.mode === "tourn") {
-						if (game == 0) {
+						if (state.game == 0) {
 							state.game = 1;
 							state.winner = state.user2;
 							localStorage.setItem("pongAppState", JSON.stringify(state));
-						} else if (game == 1) {
+							h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user3 || "Player3"}`;
+						} else if (state.game == 1) {
 							state.game = 2;
 							state.winner = state.user3;
 							localStorage.setItem("pongAppState", JSON.stringify(state));
+							h2.innerHTML = `${state?.user2 || "Player2"} VS ${state?.user3 || "Player3"}`;
+						} else if (state.game == 2) {
+							state.game = 0;
+							state.winner = state.user3;
+							localStorage.setItem("pongAppState", JSON.stringify(state));
+							frame.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
+							btns.innerHTML = `<button onclick="renderStep(3)">Play Again</button> <button onclick="renderStep(1)">Change Options</button>`;
 						}
 					} else if (state.mode === "human") {
 						state.winner = state.user2;
@@ -126,14 +135,16 @@ function initGame() {
 				if (player1Score >= WINNING_SCORE) {
 					gameOver = true;
 					if (state.mode === "tourn") {
-						if (game == 0) {
+						if (state.game == 0) {
 							state.game = 1;
-							state.winner = state.user2;
+							state.winner = state.user.login;
 							localStorage.setItem("pongAppState", JSON.stringify(state));
-						} else if (game == 1) {
+							h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user3 || "Player3"}`;
+						} else if (state.game == 1) {
 							state.game = 2;
-							state.winner = state.user3;
+							state.winner = state.user.login;
 							localStorage.setItem("pongAppState", JSON.stringify(state));
+							h2.innerHTML = `${state?.user2 || "Player2"} VS ${state?.user3 || "Player3"}`;
 						}
 					} else if (state.mode === "human") {
 						state.winner = state.user.login;
