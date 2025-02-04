@@ -8,7 +8,7 @@ body {
 #gameCanvas {
 	background-color: #000;
 	display: block;
-	margin: 100px auto;
+	margin: 100px;
 }
 
 .game-container {
