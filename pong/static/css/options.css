@@ -1,14 +1,16 @@
 .options-container {
 	display: flex;
 	flex-direction: inline;
+	justify-content: flex-start;
 	align-items: center;
 }
 
 .avatar-container {
+	position: relative;
 	display: flex;
+    align-items: center;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
 	color: white;
 	top: 1vh;
 	left: 1vw;
