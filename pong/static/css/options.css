@@ -18,13 +18,6 @@
 	color: white;
 }
 
-.heading-container {
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	height: 20vh;
-}
-
 * {
     margin: 0;
 }

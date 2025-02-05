@@ -18,7 +18,6 @@
 	font-style: normal;	
 	color: white;
 	font-size: 6.5vw;
-	margin-bottom: 0.5vh;
 	width: 100%;
 	text-align: center;
 }
@@ -29,6 +28,7 @@
 	font-style: normal;
 	width: 100%;
 	text-align: center;
+	justify-content: flex-start;
 }
 
 .righteous {
@@ -48,25 +48,69 @@ html, body {
 	overflow: hidden;
 }
 
-.login {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 340px;
-	height: 240px;
-	background: #191919;
-	border-radius: 5px;
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-	overflow: hidden;
-}
-
 .home-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
+
+.heading-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	height: 15vh; /* change */
+}
+
+/* change the absolute elements / swap out the slider for css? */
+
+.old-button {
+	font-family: "Righteous", serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+	background: white;
+	/*border: 2px solid black;*/
+	padding: 8px 20px;
+	box-shadow: 4px 4px 15px white; /* 3rd value is spread of colour- makes glowing effect */
+	transition-property: transform, box-shadow, outline-offset;
+	transition: 100ms ease-in;
+	
+	position: absolute;
+	top: calc(50% + 32vmin); /* based on the height of images */
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	z-index: 2;
+}
+
+.old-button a {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 15px;
+	text-decoration: none;
+	color: black;
+}
+
+.old-button a img {
+	width: 50px;
+}
+.old-button:hover {
+	box-shadow: 2px 2px 10px white;
+	/*transform: scale(0.99);*/
+	cursor: pointer;
+}
+
+.old-button:focus-visible {
+	outline-offset: 12px;
+	outline: 2px dotted #2f2e2a;
+}
+
 
 @keyframes pulse {
   0% {
@@ -149,14 +193,3 @@ html, body {
 
 @import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
 
-/* display buttons below image-track class */
-.home-buttons {
-    position: absolute;
-    top: calc(50% + 32vmin); /* Adjust this value based on the height of your images */
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-	z-index: 2;
-}

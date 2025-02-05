@@ -5,6 +5,7 @@ body {
 	overflow: hidden; /* Hide scrollbars */
 }
 
+/* a revoir to space the page out better- space around game canvas */
 #gameCanvas {
 	background-color: #000;
 	display: block;
