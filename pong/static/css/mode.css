@@ -6,7 +6,7 @@
 }
 
 label {
-	color : white;
+	color : black;
 }
 
 input {
@@ -31,7 +31,7 @@ input {
     perspective: 2000px;
 }
 
-.dm-front-card, .dm-back-card {
+.dm-front-card, .dm-back-card-one, .dm-back-card-two, .dm-back-card-three {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -55,9 +55,25 @@ input {
     opacity: 0.5;
 }
 
-.dm-back-card {
-    background: orange; /* Adjust as needed */
-    transform: rotateY(180deg); /* -180deg to flip direction */
+.dm-back-card-one {
+    background: #FFE668;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.dm-back-card-two {
+    background: black;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.dm-back-card-three {
+    background: #FFE668;
+    transform: rotateY(180deg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,9 +81,9 @@ input {
 }
 
 .dm-flip-card:hover .dm-front-card {
-    transform: rotateY(-180deg); /* 180deg to flip direction */
+    transform: rotateY(-180deg);
 }
 
-.dm-flip-card:hover .dm-back-card {
+.dm-flip-card:hover .dm-back-card-one, .dm-flip-card:hover .dm-back-card-two, .dm-flip-card:hover .dm-back-card-three {
     transform: rotateY(0deg);
 }

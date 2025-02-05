@@ -10,10 +10,10 @@
 		<div class="image-container">
 			<div class="dm-flip-card">
 				<div class="image dm-front-card" style="background-image: url('/static/img/pl1.png');" draggable="false"></div>
-				<div class="dm-back-card">
+				<div class="dm-back-card-one">
 					<form onsubmit="event.preventDefault(); handleModeForm(this);">
-						<label for="a">Player 1</label>
-						<p class="p1 pix pulsar" style="color: white" id="p1bot"></p>
+						<label for="a" class="pix">Player 1</label>
+						<p class="p1 pix pulsar" id="p1bot"></p>
 						<input type="text" hidden name="p2" value="">
 						<input type="text" hidden name="p3" value="">
 						<input type="text" hidden name="mode" value="bot">
@@ -26,11 +26,11 @@
 		<div class="image-container">
 			<div class="image dm-flip-card">
 				<div class="dm-front-card" style="background-image: url('/static/img/pl2.png');" draggable="false"></div>
-				<div class="dm-back-card">
+				<div class="dm-back-card-two">
 					<form onsubmit="event.preventDefault(); handleModeForm(this);">
-						<label for="a">Player 1</label>
-						<p class="pix pulsar" style="color: white" id="p1human"></p>
-						<label for="b">Player 2</label>
+						<label for="a" class="pix">Player 1</label>
+						<p class="pix pulsar" id="p1human"></p>
+						<label for="b" class="pix">Player 2</label>
 						<input type="text" class="form-control" name="p2" placeholder="Player 2 login" required>
 						<input type="text" hidden name="p3" value="">
 						<input type="text" hidden name="mode" value="human">
@@ -43,13 +43,13 @@
 		<div class="image-container">
 			<div class="dm-flip-card">
 				<div class="dm-front-card" style="background-image: url('/static/img/pl3.png');" draggable="false"></div>
-				<div class="dm-back-card">
+				<div class="dm-back-card-three">
 					<form onsubmit="event.preventDefault(); handleModeForm(this);">
-						<label for="a">Player 1</label>
-						<p class="pix pulsar" style="color: white" id="p1tourn"></p>
-						<label for="b">Player 2</label>
+						<label for="a" class="pix">Player 1</label>
+						<p class="pix pulsar" id="p1tourn"></p>
+						<label for="b" class="pix">Player 2</label>
 						<input type="text" class="form-control" name="p2" placeholder="Player 2 login" required>
-						<label for="b">Player 3</label>
+						<label for="b" class="pix">Player 3</label>
 						<input type="text" class="form-control" name="p3" placeholder="Player 3 login" required>
 						<input type="text" hidden name="mode" value="tourn">
 						<button type="submit" class="btn btn-primary mb-3">Game Tournament</button>
