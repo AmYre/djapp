@@ -2,8 +2,11 @@
 let AppState = {
 	currentStep: 0,
 	user: null,
+	score: 0,
 	user2: null,
+	score2: 0,
 	user3: null,
+	score3: 0,
 	mode: null,
 	winner: "",
 	game: 0,
@@ -97,7 +100,6 @@ function previousStep() {
 }
 
 async function logOut() {
-	
 	localStorage.clear();
 	window.history.pushState({ step: 0 }, "", "/");
 	const html = await fetchView("/static/pages/notHome.html");

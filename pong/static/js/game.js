@@ -16,8 +16,11 @@ function initGame() {
 	const canvas = document.getElementById("gameCanvas");
 	const frame = document.getElementById("gameFrame");
 	const btns = document.getElementById("gameBtns");
+	const score = document.getElementById("gameScore");
 	const state = JSON.parse(localStorage.getItem("pongAppState"));
 	const h2 = document.getElementById("versus");
+
+	btns.innerHTML = "";
 
 	if (canvas) {
 		const canvas = document.getElementById("gameCanvas");
@@ -100,20 +103,28 @@ function initGame() {
 					if (state.mode === "tourn") {
 						if (state.game == 0) {
 							state.game = 1;
+							state.score2 = 1;
 							state.winner = state.user2;
 							localStorage.setItem("pongAppState", JSON.stringify(state));
 							h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user3 || "Player3"}`;
+							btns.innerHTML = `<button onclick="initGame()">Next Game</button>`;
+							score.innerHTML = `<div>Score</div> <div>${state.user.login} : ${state.score} </div><div>${state.user2} : ${state.score2}</div></div><div>${state.user3} : ${state.score3}</div>`;
 						} else if (state.game == 1) {
 							state.game = 2;
+							state.score3 = 1;
 							state.winner = state.user3;
 							localStorage.setItem("pongAppState", JSON.stringify(state));
 							h2.innerHTML = `${state?.user2 || "Player2"} VS ${state?.user3 || "Player3"}`;
+							btns.innerHTML = `<button onclick="initGame()">Next Game</button>`;
+							score.innerHTML = `<div>Score</div> <div>${state.user.login} : ${state.score}</div><div>${state.user2} : ${state.score2}</div></div><div>${state.user3} : ${state.score3}</div>`;
 						} else if (state.game == 2) {
 							state.game = 0;
+							state.score3 = state.score3 + 1;
 							state.winner = state.user3;
 							localStorage.setItem("pongAppState", JSON.stringify(state));
 							frame.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
 							btns.innerHTML = `<button onclick="renderStep(3)">Play Again</button> <button onclick="renderStep(1)">Change Options</button>`;
+							score.innerHTML = `<div>Score</div> <div>${state.user.login} : ${state.score}</div><div>${state.user2} : ${state.score2}</div></div><div>${state.user3} : ${state.score3}</div>`;
 						}
 					} else if (state.mode === "human") {
 						state.winner = state.user2;
@@ -137,14 +148,28 @@ function initGame() {
 					if (state.mode === "tourn") {
 						if (state.game == 0) {
 							state.game = 1;
+							state.score = 1;
 							state.winner = state.user.login;
 							localStorage.setItem("pongAppState", JSON.stringify(state));
 							h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user3 || "Player3"}`;
+							btns.innerHTML = `<button onclick="initGame()">Next Game</button>`;
+							score.innerHTML = `<div>Score</div> <div>${state.user.login} : ${state.score}</div><div>${state.user2} : ${state.score2}</div></div><div>${state.user3} : ${state.score}</div>`;
 						} else if (state.game == 1) {
 							state.game = 2;
+							state.score = state.score + 1;
 							state.winner = state.user.login;
 							localStorage.setItem("pongAppState", JSON.stringify(state));
 							h2.innerHTML = `${state?.user2 || "Player2"} VS ${state?.user3 || "Player3"}`;
+							btns.innerHTML = `<button onclick="initGame()">Next Game</button>`;
+							score.innerHTML = `<div>Score</div> <div>${state.user.login} : ${state.score}</div><div>${state.user2} : ${state.score2}</div></div><div>${state.user3} : ${state.score3}</div>`;
+						} else if (state.game == 2) {
+							state.game = 0;
+							state.score2 = state.score2 + 1;
+							state.winner = state.user3;
+							localStorage.setItem("pongAppState", JSON.stringify(state));
+							frame.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
+							btns.innerHTML = `<button onclick="renderStep(3)">Play Again</button> <button onclick="renderStep(1)">Change Options</button>`;
+							score.innerHTML = `<div>Score</div> <div>${state.user.login} : ${state.score}</div><div>${state.user2} : ${state.score2}</div></div><div>${state.user3} : ${state.score3}</div>`;
 						}
 					} else if (state.mode === "human") {
 						state.winner = state.user.login;
