@@ -30,12 +30,6 @@ function sliderInit() {
                 objectPosition: `${100 + nextPercentage}% center`
             }, { duration: 1200, fill: "forwards" });
         }
-
-        for(const buttons of track.getElementsByClassName("buttons")) {
-            buttons.animate({
-                transform: `translate(${nextPercentage}%, 0)`
-            }, { duration: 1200, fill: "forwards" });
-        }
     }
 
     window.onmousedown = e => handleOnDown(e);

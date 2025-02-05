@@ -1,19 +1,28 @@
 .options-container {
 	display: flex;
-	flex-direction: inline;
+	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
+	position: relative;
+	width: 100%;
 }
 
 .avatar-container {
-	position: relative;
+	position: absolute;
+	top: 1vh;
+	left: 1vw;
 	display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: flex-start;
 	color: white;
-	top: 1vh;
-	left: 1vw;
+}
+
+.heading-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 20vh;
 }
 
 * {
@@ -21,43 +30,43 @@
 }
 
 #image-track {
-    position: absolute;
-    display: flex;
-    gap: 4vmin;
-    left: 50%;
-    top: 50%;
-    transform: translate(0%, -50%);
-    z-index: 1;
-    user-select: none;
+	position: absolute;
+	display: flex;
+	gap: 4vmin;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	user-select: none;
 }
 
 .image-container {
-    position: relative;
+	position: relative;
 }
 
 .image {
-    width: 40vmin;
-    height: 56vmin;
-    object-fit: cover;
-    object-position: 100% center;
-    z-index: 1;
+	width: 40vmin;
+	height: 56vmin;
+	object-fit: cover;
+	object-position: 100% center;
+	z-index: 1;
 }
 
 .img-box {
 	position: relative;
 	margin: 2rem 0 0;
-    width: 40vmin;
-    height: 56vmin;
+	width: 40vmin;
+	height: 56vmin;
 	border: 3px solid black;
-  }
-  
-  .img-box img {
+}
+
+.img-box img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-  }
-  
-  .img-box::after {
+}
+
+.img-box::after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -68,13 +77,13 @@
 	opacity: 0;
 	transition-property: opacity;
 	transition-duration: 200ms;
-  }
-  
-  .img-box:hover::after {
+}
+
+.img-box:hover::after {
 	opacity: 1;
-  }
-  
-  .overlay-button button {
+}
+
+.overlay-button button {
 	position: absolute;
 	top: 50%;
 	left: 30%;
@@ -92,13 +101,13 @@
 	transition-property: all;
 	transition-duration: 500ms;
 	z-index: 2;
-  }
-  
-  .img-box:hover .overlay-button button{
+}
+
+.img-box:hover .overlay-button button{
 	opacity: 1;
 	left: 50%;
-  }
-  
-  .overlay-button button:hover {
+}
+
+.overlay-button button:hover {
 	transform: translate(-50%, -50%) scale(1.1);
-  }
+}
