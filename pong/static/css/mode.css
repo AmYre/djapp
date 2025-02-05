@@ -12,3 +12,12 @@ label {
 input {
 	color : white;
 }
+
+.mode-buttons {
+    position: absolute;
+    bottom: -50px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
