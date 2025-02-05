@@ -21,3 +21,53 @@ input {
     display: flex;
     gap: 10px;
 }
+
+.dm-flip-card {
+    position: relative;
+    width: 40vmin; /* Adjust as needed */
+    height: 56vmin; /* Adjust as needed */
+    background: transparent;
+    transform-style: preserve-3d;
+    perspective: 2000px;
+}
+
+.dm-front-card, .dm-back-card {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+    transition: transform 1s;
+}
+
+.dm-front-card {
+    background-size: cover;
+    background-position: center center;
+}
+
+.dm-front-card:after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.37);
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+}
+
+.dm-back-card {
+    background: orange; /* Adjust as needed */
+    transform: rotateY(180deg); /* -180deg to flip direction */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dm-flip-card:hover .dm-front-card {
+    transform: rotateY(-180deg); /* 180deg to flip direction */
+}
+
+.dm-flip-card:hover .dm-back-card {
+    transform: rotateY(0deg);
+}
