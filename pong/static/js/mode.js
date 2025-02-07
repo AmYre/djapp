@@ -4,7 +4,6 @@ function displayPlayer1() {
 	const p1b = document.getElementById("p1bot");
 	const p1h = document.getElementById("p1human");
 	const p1t = document.getElementById("p1tourn");
-	console.log("Player 1:", state.user);
 	p1b.innerHTML = state.user?.login;
 	p1h.innerHTML = state.user?.login;
 	p1t.innerHTML = state.user?.login;
