@@ -6,10 +6,19 @@ body {
 }
 
 /* a revoir to space the page out better- space around game canvas */
+/* opacity/ background colour still not working */
 #gameCanvas {
-	background-color: #000;
-	display: block;
+	background-color: black;
+	opacity: 1;
 	margin: 100px;
+	border-top: 200px solid #ffdb28;
+	border-bottom: 100px solid #ffdb28;
+	border-left: 150px solid #FFE35D;
+	border-right: 150px solid #FFE35D;
+	border-radius: 3%;
+	justify-content: center;
+	align-items: center;
+	z-index: 2;
 }
 
 .game-container {
@@ -17,4 +26,38 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	/* spread items out a bit vertically */
+	gap: 20px;
 }
+
+.game-subheading {
+	color: white;
+	font-weight: 400;
+	font-style: normal;
+	width: 100%;
+	text-align: center;
+	margin-top: 10vh;
+}
+
+.text {
+	/* put everything in uppercase */
+	text-transform: uppercase;
+	width: 20ch;
+	border-right: 3px solid;
+	animation: blink 1s step-end infinite, type 2.5s steps(29) forwards;
+	overflow: hidden;
+	white-space: nowrap;
+  }
+  
+  @keyframes blink {
+	50% {
+	  border-color: transparent;
+	}
+  }
+  
+  @keyframes type {
+	0% {
+	  width: 0;
+	}
+  }
+  

@@ -82,7 +82,7 @@
 	left: 30%;
 	transform: translate(-50%, -50%);
 	border: 2px solid white;
-	border-radius: 5em;
+	/*border-radius: 5em;*/
 	background-color: black;
 	padding: 0.75rem;
 	text-decoration: none;
