@@ -23,6 +23,7 @@ function initGame() {
 	btns.innerHTML = "";
 
 	function sortWinner(state) {
+		console.log("STATE in sort", state);
 		const players = [
 			{ player: state.user.login, score: state.score },
 			{ player: state.user2, score: state.score2 },
@@ -136,7 +137,7 @@ function initGame() {
 						score.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
 					} else if (state.game == 2) {
 						state.game = 0;
-						state.score3 = player1Score >= WINNING_SCORE ? state.score2++ : state.score3++;
+						player1Score >= WINNING_SCORE ? state.score2++ : state.score3++;
 						state.winner = sortWinner(state);
 						if (state.winner[0].score == 1) {
 							frame.innerHTML = `<h3 class="pix pulsar" style="color: white">No Winners</h3>`;
