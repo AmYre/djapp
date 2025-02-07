@@ -44,7 +44,7 @@ function initGame() {
 		const paddleWidth = 20;
 		const ballSize = 10;
 		const paddleSpeed = 5;
-		const initialBallSpeed = 5;
+		const initialBallSpeed = 7;
 
 		// Game variables
 		let player1Y = (canvas.height - paddleHeight) / 2;
@@ -69,11 +69,27 @@ function initGame() {
 			delete keysPressed[event.key];
 		});
 
+		function updateAI() {
+			const paddleCenter = player2Y + paddleHeight / 2;
+			const predictedBallY = ballY + (ballSpeedY * (canvas.width - ballX)) / ballSpeedX;
+
+			const aiPaddleSpeed = paddleSpeed;
+
+			if (paddleCenter < predictedBallY) {
+				player2Y += aiPaddleSpeed;
+			} else if (paddleCenter > predictedBallY) {
+				player2Y -= aiPaddleSpeed;
+			}
+
+			player2Y = Math.max(0, Math.min(player2Y, canvas.height - paddleHeight));
+		}
+
 		// Game loop
 		function gameLoop() {
 			if (!gameOver) {
 				requestAnimationFrame(gameLoop);
 				update();
+				if (state.mode === "bot") updateAI();
 				draw();
 			}
 		}
