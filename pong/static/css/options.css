@@ -33,6 +33,17 @@
 	user-select: none;
 }
 
+#image-no-track {
+	position: absolute;
+	display: flex;
+	gap: 4vmin;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	user-select: none;
+}
+
 .image-container {
 	position: relative;
 }
