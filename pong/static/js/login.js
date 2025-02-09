@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				.then((response) => response.json())
 				.then((data) => {
 					localStorage.setItem("token", data.access_token);
-					localStorage.setItem("logged", "true");
 					console.log("Token data:", data.access_token);
 					url = "https://api.intra.42.fr/v2/me";
 					(headers = {

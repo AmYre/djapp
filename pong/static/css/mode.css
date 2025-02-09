@@ -49,7 +49,6 @@ input {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, 0.37);
     top: 0;
     left: 0;
     opacity: 0.5;
@@ -64,7 +63,7 @@ input {
     flex-direction: column;
 }
 .dm-back-card-two {
-    background: black;
+    background: #B52E19;
     transform: rotateY(180deg);
     display: flex;
     justify-content: center;
@@ -72,7 +71,7 @@ input {
     flex-direction: column;
 }
 .dm-back-card-three {
-    background: #FFE668;
+    background: #737576;
     transform: rotateY(180deg);
     display: flex;
     justify-content: center;
@@ -87,3 +86,125 @@ input {
 .dm-flip-card:hover .dm-back-card-one, .dm-flip-card:hover .dm-back-card-two, .dm-flip-card:hover .dm-back-card-three {
     transform: rotateY(0deg);
 }
+
+.typed1{
+    font-size: 14px;
+    transform: translate(140px, 165px);
+    color: white;
+	width: 100%;
+}
+
+.typed2{
+    font-size: 14px;
+    transform: translate(155px, 167px);
+    color: white;
+	width: 100%;
+}
+
+.typed3{
+    font-size: 14px;
+    transform: translate(143px, 167px);
+    color: white;
+	width: 100%;
+}
+
+.text1 {
+	text-transform: uppercase;
+	animation: blink 1s step-end infinite, type 2.5s steps(29) forwards;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.text2 {
+	text-transform: uppercase;
+    opacity: 0;
+	animation:
+        blink 1s step-end infinite 2s,
+        type 2.5s steps(29) forwards 0.5s,
+        fadeIn 0.1s linear forwards 0.5s;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.text3 {
+	text-transform: uppercase;
+    opacity: 0;
+    line-height: 17px;
+	animation:
+        blink 1s step-end infinite 4s,
+        type 2.5s steps(29) forwards 1s,
+        fadeIn 0.1s linear forwards 1s;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+
+@keyframes blink {
+	50% {
+		border-color: transparent;
+	}
+}
+
+@keyframes type {
+	0% {
+		width: 0;
+	}
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin: 9px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s cubic-bezier(0,1,0.5,1);
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s cubic-bezier(0,1,0.5,1);
+  }
+
+  input:checked + .slider {
+    background-color: black;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 4px white;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }

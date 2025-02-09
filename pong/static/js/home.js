@@ -15,10 +15,9 @@ let AppState = {
 
 // Views configuration
 let views = {
-	1: { path: "/static/pages/options.html" },
-	2: { path: "/static/pages/mode.html" },
-	3: { path: "/static/pages/game.html" },
-	4: { path: "/static/pages/results.html" },
+	1: { path: "/static/pages/mode.html" },
+	2: { path: "/static/pages/game.html" },
+	3: { path: "/static/pages/results.html" },
 };
 
 // Fetch and render HTML content
@@ -78,7 +77,7 @@ async function renderStep(step) {
 	window.history.pushState({ step: step }, "", "/");
 	// Fetch and process the HTML content
 	const html = await fetchView(view.path);
-	mainContent.innerHTML = html.replace("${login}", AppState.user?.login).replace("${avatar}", AppState.user?.image.link);
+	mainContent.innerHTML = html;
 	execScripts(mainContent);
 }
 

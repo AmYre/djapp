@@ -15,9 +15,18 @@ function handleModeForm(form) {
 	console.log("Form values:", values);
 
 	updateState({
-		currentStep: 3,
+		currentStep: 2,
 		user2: values.p2,
 		user3: values.p3,
 		mode: values.mode,
 	});
+}
+
+function displayAvatar() {
+	const user = JSON.parse(localStorage.getItem("user"));
+	const avatar = document.getElementById("avatar-img");
+	avatar.src = user.image.link;
+
+	const login = document.getElementById("avatar-name");
+	login.innerHTML = user.login;
 }

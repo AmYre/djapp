@@ -59,17 +59,16 @@ body {
 	animation: blink 1s step-end infinite, type 2.5s steps(29) forwards;
 	overflow: hidden;
 	white-space: nowrap;
-  }
-  
-  @keyframes blink {
+}
+
+@keyframes blink {
 	50% {
-	  border-color: transparent;
+		border-color: transparent;
 	}
-  }
-  
-  @keyframes type {
+}
+
+@keyframes type {
 	0% {
-	  width: 0;
+		width: 0;
 	}
-  }
-  
+}
