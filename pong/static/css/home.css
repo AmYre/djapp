@@ -310,18 +310,22 @@ a {
 	clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
 	top: calc(var(--_radius) - var(--_height) / 2);
 	left: 0;
+	display: none;
+	pointer-events: none;
 }
 .carousel:has(.carousel-control-button.left input:checked) {
-	--carousel-direction-animation-play-state: running;
+	--carousel-direction-animation-play-state: paused;
 }
 
 .carousel .carousel-control-button.right {
 	clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
 	top: calc(var(--_radius) - var(--_height) / 2);
 	right: 0;
+	display: none;
+	pointer-events: none;
 }
 .carousel:has(.carousel-control-button.right input:checked) {
-	--carousel-direction-animation-play-state: paused;
+	--carousel-direction-animation-play-state: running;
 }
 
 .carousel .carousel-rotation-direction {
