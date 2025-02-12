@@ -401,7 +401,9 @@ a {
 	width: inherit;
 	height: inherit;
 	background-color: rgba(var(--carousel-item-empty-color-rgb), 0.5);
-	background-image: var(--_image-url);
+	background-image:
+                linear-gradient(to top, rgba(var(--carousel-bg-color-rgb), 0.25) 0%, rgba(var(--carousel-bg-color-rgb), 1.0) 75%),
+                var(--_image-url);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -438,4 +440,19 @@ a {
 
 .carousel .carousel-item-wrapper:has(.carousel-item:hover) .carousel-ground {
 	opacity: 0.75;
+}
+
+.caption {
+	color: white;
+    position: absolute;
+    top: 0;
+    transform: translateY(-25px);
+    text-align: center;
+    width: 100%;
+	opacity: 0;
+	transition: opacity 0.5s;
+}
+
+.carousel-item:hover .caption{
+	opacity: 1;
 }
