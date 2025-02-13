@@ -13,6 +13,17 @@
 	font-family: "Monoton", serif;
 }
 
+.righteous {
+	font-family: "Righteous", serif;
+	font-weight: 400;
+	font-style: normal;
+	color: white;
+}
+
+.pix {
+	font-family: "Press Start 2P", serif;
+}
+
 .heading {
 	font-weight: 400;
 	font-style: normal;
@@ -31,16 +42,6 @@
 	justify-content: flex-start;
 }
 
-.righteous {
-	font-family: "Righteous", serif;
-	font-weight: 400;
-	font-style: normal;
-	color: white;
-}
-
-.pix {
-	font-family: "Press Start 2P", serif;
-}
 
 html, body {
 	height: 100%;

@@ -7,17 +7,6 @@
 	width: 100%;
 }
 
-.avatar-container {
-	position: absolute;
-	top: 1vh;
-	left: 1vw;
-	display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: flex-start;
-	color: white;
-}
-
 * {
     margin: 0;
 }

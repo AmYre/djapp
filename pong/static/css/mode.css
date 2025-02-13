@@ -5,6 +5,51 @@
 	align-items: center;
 }
 
+.avatar-container {
+	position: absolute;
+	top: 1vh;
+	left: 1vw;
+	display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+	color: white;
+}
+
+.logout-container {
+	position: absolute;
+	top: 1vh;
+	right: 1vw;
+	z-index: 2;
+}
+
+.logout-container img {
+	width: 130px;
+}
+
+.logout-container img:hover {
+	cursor: pointer;
+	animation: wiggle 0.7s infinite;
+}
+
+@keyframes wiggle {
+	0% {
+		transform: rotate(-5deg);
+	}
+	25% {
+		transform: rotate(5deg);
+	}
+	50% {
+		transform: rotate(-5deg);
+	}
+	75% {
+		transform: rotate(5deg);
+	}
+	100% {
+		transform: rotate(-5deg);
+	}
+}
+
 label {
 	color : black;
 }
