@@ -19,6 +19,7 @@ function initGame() {
 	const score = document.getElementById("gameScore");
 	const state = JSON.parse(localStorage.getItem("pongAppState"));
 	const h2 = document.getElementById("versus");
+	let reversed = false;
 
 	btns.innerHTML = "";
 
@@ -45,6 +46,11 @@ function initGame() {
 		let ballSize = 10;
 		let paddleSpeed = 5;
 		let initialBallSpeed = 7;
+
+		let w = "w";
+		let s = "s";
+		let up = "ArrowUp";
+		let down = "ArrowDown";
 
 		if (state.options.pheight == "0") {
 			paddleHeight = 10;
@@ -145,12 +151,27 @@ function initGame() {
 
 		// Update game logic
 		function update() {
-			if (keysPressed["w"]) player1Y -= paddleSpeed;
-			if (keysPressed["s"]) player1Y += paddleSpeed;
-			if (keysPressed["ArrowUp"]) player2Y -= paddleSpeed;
-			if (keysPressed["ArrowDown"]) player2Y += paddleSpeed;
+			if (keysPressed[" "]) {
+				if (reversed) {
+					reversed = false;
+					w = "w";
+					s = "s";
+					up = "ArrowUp";
+					down = "ArrowDown";
+				} else {
+					w = "s";
+					s = "w";
+					up = "ArrowDown";
+					down = "ArrowUp";
+					reversed = true;
+				}
+			}
 
-			// Keep paddles within bounds
+			if (keysPressed[w]) player1Y -= paddleSpeed;
+			if (keysPressed[s]) player1Y += paddleSpeed;
+			if (keysPressed[up]) player2Y -= paddleSpeed;
+			if (keysPressed[down]) player2Y += paddleSpeed;
+
 			player1Y = Math.max(0, Math.min(player1Y, canvas.height - paddleHeight));
 			player2Y = Math.max(0, Math.min(player2Y, canvas.height - paddleHeight));
 

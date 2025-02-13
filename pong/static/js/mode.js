@@ -19,7 +19,7 @@ function handleModeForm(form) {
 		user2: values.p2,
 		user3: values.p3,
 		mode: values.mode,
-		options: { bspeed: values.bspeed, bsize: values.bsize, pheight: values.pheight, pspeed: values.pspeed, spacewar: values.spacewar },
+		options: { bspeed: values.bspeed, bsize: values.bsize, pheight: values.pheight, pspeed: values.pspeed, spacewars: values.spacewars },
 	});
 }
 
