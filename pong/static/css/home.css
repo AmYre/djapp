@@ -451,7 +451,7 @@ a {
 	color: white;
     position: absolute;
     top: 0;
-    transform: translateY(-25px);
+    transform: translateY(-42px);
     text-align: center;
     width: 100%;
 	opacity: 0;
@@ -460,4 +460,6 @@ a {
 
 .carousel-item:hover .caption{
 	opacity: 1;
+	/* make the text stand out */
+	text-shadow: 0 0 5px black;
 }
