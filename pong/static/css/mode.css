@@ -157,7 +157,7 @@ input {
     flex-direction: column;
 }
 .dm-back-card-three {
-    background: #737576;
+    background: #002db3;
     transform: rotateY(180deg);
     display: flex;
     justify-content: center;
