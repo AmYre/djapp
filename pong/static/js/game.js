@@ -265,7 +265,9 @@ function initGame() {
 			ctx.fillRect(canvas.width - 20 - paddleWidth, player2Y, paddleWidth, paddleHeight);
 
 			// Draw score
-			ctx.font = "30px Arial";
+			//"Pong Score" font
+			ctx.font = "30px Pong Score";
+			//ctx.font = "30px Arial";
 			ctx.fillStyle = "#fff";
 			ctx.fillText(player1Score, canvas.width / 4, 50);
 			ctx.fillText(player2Score, (3 * canvas.width) / 4, 50);
