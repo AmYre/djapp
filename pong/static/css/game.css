@@ -1,19 +1,14 @@
-
 body {
 	background-color: #202020;
 	margin: 0;
-	overflow: hidden; /* Hide scrollbars */
+	overflow: hidden;
 }
 
-/* a revoir to space the page out better- space around game canvas */
-/* opacity/ background colour still not working */
-/* position:relative changes background opacity (???) */
 #gameCanvas {
-	/* semi opaque black background color */
 	background-color: rgba(0, 0, 0, 0.7);
 	opacity: 1;
-	border-top: 200px solid #ffdb28;
-	border-bottom: 200px solid #ffdb28;
+	border-top: 20px solid #ffdb28;
+	border-bottom: 20px solid #ffdb28;
 	border-left: 150px solid #FFE35D;
 	border-right: 150px solid #FFE35D;
 	border-radius: 3%;
@@ -50,11 +45,9 @@ body {
 	font-family: "Righteous", serif;
 	z-index: 2;
 	font-size: 6rem;
-	/*flex-grow: 100;*/
 }
 
 .text {
-	/* put everything in uppercase */
 	text-transform: uppercase;
 	animation: blink 1s step-end infinite, type 2.5s steps(29) forwards;
 	overflow: hidden;

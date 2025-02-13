@@ -40,11 +40,61 @@ function initGame() {
 		const ctx = canvas.getContext("2d");
 
 		// Game settings
-		const paddleHeight = 100;
-		const paddleWidth = 20;
-		const ballSize = 10;
-		const paddleSpeed = 5;
-		const initialBallSpeed = 7;
+		let paddleWidth = 20;
+		let paddleHeight = 100;
+		let ballSize = 10;
+		let paddleSpeed = 5;
+		let initialBallSpeed = 7;
+
+		if (state.options.pheight == "0") {
+			paddleHeight = 10;
+			paddleWidth = 2;
+		} else if (state.options.pheight == "25") {
+			paddleHeight = 50;
+			paddleWidth = 10;
+		} else if (state.options.pheight == "50") {
+			paddleHeight = 100;
+		} else if (state.options.pheight == "75") {
+			paddleHeight = 200;
+		} else if (state.options.pheight == "100") {
+			paddleHeight = 300;
+		}
+
+		if (state.options.pspeed == "0") {
+			paddleSpeed = 1;
+		} else if (state.options.pspeed == "25") {
+			paddleSpeed = 3;
+		} else if (state.options.pspeed == "50") {
+			paddleSpeed = 5;
+		} else if (state.options.pspeed == "75") {
+			paddleSpeed = 10;
+		} else if (state.options.pspeed == "100") {
+			paddleSpeed = 20;
+		}
+
+		if (state.options.bspeed == "0") {
+			initialBallSpeed = 1;
+		} else if (state.options.bspeed == "25") {
+			initialBallSpeed = 3;
+		} else if (state.options.bspeed == "50") {
+			initialBallSpeed = 5;
+		} else if (state.options.bspeed == "75") {
+			initialBallSpeed = 15;
+		} else if (state.options.bspeed == "100") {
+			initialBallSpeed = 50;
+		}
+
+		if (state.options.bsize == "0") {
+			ballSize = 1;
+		} else if (state.options.bsize == "25") {
+			ballSize = 5;
+		} else if (state.options.bsize == "50") {
+			ballSize = 12;
+		} else if (state.options.bsize == "75") {
+			ballSize = 30;
+		} else if (state.options.bsize == "100") {
+			ballSize = 100;
+		}
 
 		// Game variables
 		let player1Y = (canvas.height - paddleHeight) / 2;
@@ -72,8 +122,7 @@ function initGame() {
 		function updateAI() {
 			const paddleCenter = player2Y + paddleHeight / 2;
 			const predictedBallY = ballY + (ballSpeedY * (canvas.width - ballX)) / ballSpeedX;
-
-			const aiPaddleSpeed = paddleSpeed;
+			let aiPaddleSpeed = paddleSpeed;
 
 			if (paddleCenter < predictedBallY) {
 				player2Y += aiPaddleSpeed;
@@ -168,13 +217,13 @@ function initGame() {
 					state.winner = player1Score >= WINNING_SCORE ? state.user.login : state.user2;
 					localStorage.setItem("pongAppState", JSON.stringify(state));
 					frame.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
-					btns.innerHTML = `<button onclick="renderStep(3)">Play Again</button>
+					btns.innerHTML = `<button onclick="renderStep(2)">Play Again</button>
 	<button onclick="renderStep(1)">Change Options</button>`;
 				} else {
 					state.winner = player1Score >= WINNING_SCORE ? state.user.login : "Bot";
 					localStorage.setItem("pongAppState", JSON.stringify(state));
 					frame.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
-					btns.innerHTML = `<button onclick="renderStep(3)">Play Again</button>
+					btns.innerHTML = `<button onclick="renderStep(2)">Play Again</button>
 	<button onclick="renderStep(1)">Change Options</button>`;
 				}
 			}

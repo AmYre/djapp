@@ -23,29 +23,69 @@
 				</div>
 				<div class="dm-back-card-one">
 					<form onsubmit="event.preventDefault(); handleModeForm(this);">
-						<div class="pix" style="color: white">Difficulty Level</div>
+						<div class="pix" style="color: white">Paddle Speed</div>
 						<div class="range-slider">
-							<input type="range" min="0" max="100" step="25" id="difficulty" name="difficulty">
+							<input type="range" min="0" max="100" step="25" id="pspeed" name="pspeed">
 							<span class="pix" data-value="Normal">Normal</span>
 						</div>
-						<div class="pix" style="color: white">Size of Ball</div>
+						<div class="pix" style="color: white">Paddle Height</div>
 						<div class="range-slider">
-							<input type="range" min="0" max="100" step="25" id="ballsize" name="ball-size">
+							<input type="range" min="0" max="100" step="25" id="pheight" name="pheight">
+							<span class="pix" data-value="Normal">Normal</span>
+						</div>
+						<div class="pix" style="color: white">Ball Speed</div>
+						<div class="range-slider">
+							<input type="range" min="0" max="100" step="25" id="ballspeed" name="bspeed">
+							<span class="pix" data-value="Normal">Normal</span>
+						</div>
+						<div class="pix" style="color: white">Ball Size</div>
+						<div class="range-slider">
+							<input type="range" min="0" max="100" step="25" id="ballsize" name="bsize">
 							<span class="pix" data-value="Normal">Normal</span>
 						</div>
 						<script>
-							document.querySelectorAll("#difficulty").forEach((r) => {
+							document.querySelectorAll("#pspeed").forEach((r) => {
 								r.addEventListener("input", (e) => {
 									if (e.target.value == 0) {
-										e.target.nextElementSibling.textContent = "Unplayable";
+										e.target.nextElementSibling.textContent = "Painful";
 									} else if (e.target.value == 25) {
-										e.target.nextElementSibling.textContent = "Easy";
+										e.target.nextElementSibling.textContent = "Slow";
 									} else if (e.target.value == 50) {
 										e.target.nextElementSibling.textContent = "Normal";
 									} else if (e.target.value == 75) {
-										e.target.nextElementSibling.textContent = "Hard";
+										e.target.nextElementSibling.textContent = "Quick";
 									} else if (e.target.value == 100) {
-										e.target.nextElementSibling.textContent = "Invincible";
+										e.target.nextElementSibling.textContent = "Lightning";
+									}
+								});
+							});
+							document.querySelectorAll("#pheight").forEach((r) => {
+								r.addEventListener("input", (e) => {
+									if (e.target.value == 0) {
+										e.target.nextElementSibling.textContent = "Crazy";
+									} else if (e.target.value == 25) {
+										e.target.nextElementSibling.textContent = "Small";
+									} else if (e.target.value == 50) {
+										e.target.nextElementSibling.textContent = "Normal";
+									} else if (e.target.value == 75) {
+										e.target.nextElementSibling.textContent = "Big";
+									} else if (e.target.value == 100) {
+										e.target.nextElementSibling.textContent = "Why?";
+									}
+								});
+							});
+							document.querySelectorAll("#ballspeed").forEach((r) => {
+								r.addEventListener("input", (e) => {
+									if (e.target.value == 0) {
+										e.target.nextElementSibling.textContent = "Boring";
+									} else if (e.target.value == 25) {
+										e.target.nextElementSibling.textContent = "Slow";
+									} else if (e.target.value == 50) {
+										e.target.nextElementSibling.textContent = "Normal";
+									} else if (e.target.value == 75) {
+										e.target.nextElementSibling.textContent = "Quick";
+									} else if (e.target.value == 100) {
+										e.target.nextElementSibling.textContent = "Lightning";
 									}
 								});
 							});
@@ -60,7 +100,7 @@
 									} else if (e.target.value == 75) {
 										e.target.nextElementSibling.textContent = "Big";
 									} else if (e.target.value == 100) {
-										e.target.nextElementSibling.textContent = "Preposterous";
+										e.target.nextElementSibling.textContent = "Cosmic";
 									}
 								});
 							});
@@ -68,7 +108,7 @@
 						<div style="display:flex; justify-content: space-between; align-items: center;">
 							<div class="pix" style="color: white">Space War</div>
 							<label class="switch">
-								<input type="checkbox" name="space-war">
+								<input type="checkbox" name="spacewar">
 								<span class="slider"></span>
 							</label>
 						</div>
@@ -134,7 +174,3 @@
 		displayPlayer1();
 	</script>
 </div>
-
-<script>
-	sliderInit();
-</script>

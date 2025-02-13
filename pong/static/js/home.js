@@ -1,16 +1,16 @@
 // State management
 let AppState = {
 	currentStep: 0,
-	user: null,
+	user: {},
 	score: 0,
-	user2: null,
+	user2: "",
 	score2: 0,
-	user3: null,
+	user3: "",
 	score3: 0,
-	mode: null,
+	mode: "",
 	winner: "",
 	game: 0,
-	gameOptions: null,
+	options: {},
 };
 
 // Views configuration
@@ -104,7 +104,6 @@ async function logOut() {
 	const html = await fetchView("/static/pages/notHome.html");
 	document.body.innerHTML = html;
 	execScripts(document.body);
-	sliderInit();
 }
 
 // Handle browser back/forward buttons
