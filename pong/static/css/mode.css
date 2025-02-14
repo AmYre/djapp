@@ -240,7 +240,7 @@ input {
     background: #e5c103;
     transform: rotateY(180deg);
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
 }
@@ -392,24 +392,22 @@ input {
   }
 
   .range-slider{
-    --range-width: 320px;
+    --range-width: 300px;
     --track-clr: #ccc;
-
     --thumb-w: 20px;
-    --thumb-h: 30px;
+    --thumb-h: 20px;
     --thumb-radius: 0;
-    --thumb-space: 30px;
+    --thumb-space: 25px;
     --thumb-clr: black;
     --thumb-clr-active: black;
     --thumb-scale-y-active: .75;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: .5rem;
     width: 100%;
   }
+  
   .range-slider > [data-value]{
     font-family: "Press Start 2P", serif;
     font-size: 1rem;

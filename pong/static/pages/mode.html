@@ -19,29 +19,27 @@
 	<div id="image-format">
 		<div class="image-container">
 			<div class="dm-flip-card">
-				<div class="image dm-front-card" style="background-image: url('/static/img/cab1.png');"
-					draggable="false">
+				<div class="image dm-front-card" style="background-image: url('/static/img/cab1.png');" draggable="false">
 					<h2 class="pix text1 typed1" id="typed1">1 </br>Player</br> Game</h2>
-
 				</div>
 				<div class="dm-back-card-one">
 					<form onsubmit="event.preventDefault(); handleModeForm(this);">
-						<div class="pix" style="color: white">Paddle Speed</div>
+						<div class="righteous" style="color: white">Paddle Speed</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="pspeed" name="pspeed">
 							<span class="pix" data-value="Normal">Normal</span>
 						</div>
-						<div class="pix" style="color: white">Paddle Height</div>
+						<div class="righteous" style="color: white">Paddle Height</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="pheight" name="pheight">
 							<span class="pix" data-value="Normal">Normal</span>
 						</div>
-						<div class="pix" style="color: white">Ball Speed</div>
+						<div class="righteous" style="color: white">Ball Speed</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="ballspeed" name="bspeed">
 							<span class="pix" data-value="Normal">Normal</span>
 						</div>
-						<div class="pix" style="color: white">Ball Size</div>
+						<div class="righteous" style="color: white">Ball Size</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="ballsize" name="bsize">
 							<span class="pix" data-value="Normal">Normal</span>
@@ -109,7 +107,7 @@
 							});
 						</script>
 						<div style="display:flex; justify-content: space-between; align-items: center;">
-							<div class="pix" style="color: white">SpaceWarS</div>
+							<div class="righteous" style="color: white">SpaceWarS</div>
 							<label class="switch">
 								<input type="checkbox" name="spacewars">
 								<span class="slider"></span>
@@ -141,22 +139,22 @@
 				</div>
 				<div class="dm-back-card-two">
 					<form onsubmit="event.preventDefault(); handleModeForm(this);">
-						<div class="pix" style="color: white">Paddle Speed</div>
+						<div class="righteous" style="color: white">Paddle Speed</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="pspeed" name="pspeed">
 							<span class="pix" data-value="Normal">Normal</span>
 						</div>
-						<div class="pix" style="color: white">Paddle Height</div>
+						<div class="righteous" style="color: white">Paddle Height</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="pheight" name="pheight">
 							<span class="pix" data-value="Normal">Normal</span>
 						</div>
-						<div class="pix" style="color: white">Ball Speed</div>
+						<div class="righteous" style="color: white">Ball Speed</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="ballspeed" name="bspeed">
 							<span class="pix" data-value="Normal">Normal</span>
 						</div>
-						<div class="pix" style="color: white">Ball Size</div>
+						<div class="righteous" style="color: white">Ball Size</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="ballsize" name="bsize">
 							<span class="pix" data-value="Normal">Normal</span>
@@ -224,7 +222,7 @@
 							});
 						</script>
 						<div style="display:flex; justify-content: space-between; align-items: center;">
-							<div class="pix" style="color: white">SpaceWarS</div>
+							<div class="righteous" style="color: white">SpaceWarS</div>
 							<label class="switch">
 								<input type="checkbox" name="spacewars">
 								<span class="slider"></span>
@@ -257,113 +255,111 @@
 				</div>
 				<div class="dm-back-card-three">
 					<form onsubmit="event.preventDefault(); handleModeForm(this);">
-						<form onsubmit="event.preventDefault(); handleModeForm(this);">
-							<div class="pix" style="color: white">Paddle Speed</div>
-							<div class="range-slider">
-								<input type="range" min="0" max="100" step="25" id="pspeed" name="pspeed">
-								<span class="pix" data-value="Normal">Normal</span>
-							</div>
-							<div class="pix" style="color: white">Paddle Height</div>
-							<div class="range-slider">
-								<input type="range" min="0" max="100" step="25" id="pheight" name="pheight">
-								<span class="pix" data-value="Normal">Normal</span>
-							</div>
-							<div class="pix" style="color: white">Ball Speed</div>
-							<div class="range-slider">
-								<input type="range" min="0" max="100" step="25" id="ballspeed" name="bspeed">
-								<span class="pix" data-value="Normal">Normal</span>
-							</div>
-							<div class="pix" style="color: white">Ball Size</div>
-							<div class="range-slider">
-								<input type="range" min="0" max="100" step="25" id="ballsize" name="bsize">
-								<span class="pix" data-value="Normal">Normal</span>
-							</div>
-							<script>
-								document.querySelectorAll("#pspeed").forEach((r) => {
-									r.addEventListener("input", (e) => {
-										if (e.target.value == 0) {
-											e.target.nextElementSibling.textContent = "Painful";
-										} else if (e.target.value == 25) {
-											e.target.nextElementSibling.textContent = "Slow";
-										} else if (e.target.value == 50) {
-											e.target.nextElementSibling.textContent = "Normal";
-										} else if (e.target.value == 75) {
-											e.target.nextElementSibling.textContent = "Quick";
-										} else if (e.target.value == 100) {
-											e.target.nextElementSibling.textContent = "Lightning";
-										}
-									});
+						<div class="righteous" style="color: white">Paddle Speed</div>
+						<div class="range-slider">
+							<input type="range" min="0" max="100" step="25" id="pspeed" name="pspeed">
+							<span class="pix" data-value="Normal">Normal</span>
+						</div>
+						<div class="righteous" style="color: white">Paddle Height</div>
+						<div class="range-slider">
+							<input type="range" min="0" max="100" step="25" id="pheight" name="pheight">
+							<span class="pix" data-value="Normal">Normal</span>
+						</div>
+						<div class="righteous" style="color: white">Ball Speed</div>
+						<div class="range-slider">
+							<input type="range" min="0" max="100" step="25" id="ballspeed" name="bspeed">
+							<span class="pix" data-value="Normal">Normal</span>
+						</div>
+						<div class="righteous" style="color: white">Ball Size</div>
+						<div class="range-slider">
+							<input type="range" min="0" max="100" step="25" id="ballsize" name="bsize">
+							<span class="pix" data-value="Normal">Normal</span>
+						</div>
+						<script>
+							document.querySelectorAll("#pspeed").forEach((r) => {
+								r.addEventListener("input", (e) => {
+									if (e.target.value == 0) {
+										e.target.nextElementSibling.textContent = "Painful";
+									} else if (e.target.value == 25) {
+										e.target.nextElementSibling.textContent = "Slow";
+									} else if (e.target.value == 50) {
+										e.target.nextElementSibling.textContent = "Normal";
+									} else if (e.target.value == 75) {
+										e.target.nextElementSibling.textContent = "Quick";
+									} else if (e.target.value == 100) {
+										e.target.nextElementSibling.textContent = "Lightning";
+									}
 								});
-								document.querySelectorAll("#pheight").forEach((r) => {
-									r.addEventListener("input", (e) => {
-										if (e.target.value == 0) {
-											e.target.nextElementSibling.textContent = "Crazy";
-										} else if (e.target.value == 25) {
-											e.target.nextElementSibling.textContent = "Small";
-										} else if (e.target.value == 50) {
-											e.target.nextElementSibling.textContent = "Normal";
-										} else if (e.target.value == 75) {
-											e.target.nextElementSibling.textContent = "Big";
-										} else if (e.target.value == 100) {
-											e.target.nextElementSibling.textContent = "Why?";
-										}
-									});
+							});
+							document.querySelectorAll("#pheight").forEach((r) => {
+								r.addEventListener("input", (e) => {
+									if (e.target.value == 0) {
+										e.target.nextElementSibling.textContent = "Crazy";
+									} else if (e.target.value == 25) {
+										e.target.nextElementSibling.textContent = "Small";
+									} else if (e.target.value == 50) {
+										e.target.nextElementSibling.textContent = "Normal";
+									} else if (e.target.value == 75) {
+										e.target.nextElementSibling.textContent = "Big";
+									} else if (e.target.value == 100) {
+										e.target.nextElementSibling.textContent = "Why?";
+									}
 								});
-								document.querySelectorAll("#ballspeed").forEach((r) => {
-									r.addEventListener("input", (e) => {
-										if (e.target.value == 0) {
-											e.target.nextElementSibling.textContent = "Boring";
-										} else if (e.target.value == 25) {
-											e.target.nextElementSibling.textContent = "Slow";
-										} else if (e.target.value == 50) {
-											e.target.nextElementSibling.textContent = "Normal";
-										} else if (e.target.value == 75) {
-											e.target.nextElementSibling.textContent = "Quick";
-										} else if (e.target.value == 100) {
-											e.target.nextElementSibling.textContent = "Lightning";
-										}
-									});
+							});
+							document.querySelectorAll("#ballspeed").forEach((r) => {
+								r.addEventListener("input", (e) => {
+									if (e.target.value == 0) {
+										e.target.nextElementSibling.textContent = "Boring";
+									} else if (e.target.value == 25) {
+										e.target.nextElementSibling.textContent = "Slow";
+									} else if (e.target.value == 50) {
+										e.target.nextElementSibling.textContent = "Normal";
+									} else if (e.target.value == 75) {
+										e.target.nextElementSibling.textContent = "Quick";
+									} else if (e.target.value == 100) {
+										e.target.nextElementSibling.textContent = "Lightning";
+									}
 								});
-								document.querySelectorAll("#ballsize").forEach((r) => {
-									r.addEventListener("input", (e) => {
-										if (e.target.value == 0) {
-											e.target.nextElementSibling.textContent = "Quantic";
-										} else if (e.target.value == 25) {
-											e.target.nextElementSibling.textContent = "Small";
-										} else if (e.target.value == 50) {
-											e.target.nextElementSibling.textContent = "Normal";
-										} else if (e.target.value == 75) {
-											e.target.nextElementSibling.textContent = "Big";
-										} else if (e.target.value == 100) {
-											e.target.nextElementSibling.textContent = "Cosmic";
-										}
-									});
+							});
+							document.querySelectorAll("#ballsize").forEach((r) => {
+								r.addEventListener("input", (e) => {
+									if (e.target.value == 0) {
+										e.target.nextElementSibling.textContent = "Quantic";
+									} else if (e.target.value == 25) {
+										e.target.nextElementSibling.textContent = "Small";
+									} else if (e.target.value == 50) {
+										e.target.nextElementSibling.textContent = "Normal";
+									} else if (e.target.value == 75) {
+										e.target.nextElementSibling.textContent = "Big";
+									} else if (e.target.value == 100) {
+										e.target.nextElementSibling.textContent = "Cosmic";
+									}
 								});
-							</script>
-							<div style="display:flex; justify-content: space-between; align-items: center;">
-								<div class="pix" style="color: white">SpaceWarS</div>
-								<label class="switch">
-									<input type="checkbox" name="spacewars">
-									<span class="slider"></span>
-								</label>
-							</div>
-							<label for="a" class="pix">Player 1</label>
-							<p class="pix pulsar" id="p1tourn"></p>
-							<label for="b" class="pix">Player 2</label>
-							<input type="text" class="form-control" name="p2" placeholder="Player 2 login" required>
-							<label for="b" class="pix">Player 3</label>
-							<input type="text" class="form-control" name="p3" placeholder="Player 3 login" required>
-							<input type="text" hidden name="mode" value="tourn">
-							<div style="display:flex; justify-content: space-between; align-items: center;">
-								<img src="/static/img/stick.png" style="width:80px" alt="stick" class="">
-								<button type="submit" class="my-button"
-									style="display:flex; justify-content: center; align-items: center;">
-									<img src="/static/img/arcade.png" style="width:40px" />START
-								</button>
-								<img id="cab3" src="/static/img/coin.png" style="width:30px">
-								<img src="/static/img/btns.png" alt="btns" style="width:80px">
-							</div>
-						</form>
+							});
+						</script>
+						<div style="display:flex; justify-content: space-between; align-items: center;">
+							<div class="righteous" style="color: white">SpaceWarS</div>
+							<label class="switch">
+								<input type="checkbox" name="spacewars">
+								<span class="slider"></span>
+							</label>
+						</div>
+						<label for="a" class="pix">Player 1</label>
+						<p class="pix pulsar" id="p1tourn"></p>
+						<label for="b" class="pix">Player 2</label>
+						<input type="text" class="form-control" name="p2" placeholder="Player 2 login" required>
+						<label for="b" class="pix">Player 3</label>
+						<input type="text" class="form-control" name="p3" placeholder="Player 3 login" required>
+						<input type="text" hidden name="mode" value="tourn">
+						<div style="display:flex; justify-content: space-between; align-items: center;">
+							<img src="/static/img/stick.png" style="width:80px" alt="stick" class="">
+							<button type="submit" class="my-button"
+								style="display:flex; justify-content: center; align-items: center;">
+								<img src="/static/img/arcade.png" style="width:40px" />START
+							</button>
+							<img id="cab3" src="/static/img/coin.png" style="width:30px">
+							<img src="/static/img/btns.png" alt="btns" style="width:80px">
+						</div>
 					</form>
 				</div>
 			</div>
