@@ -1,34 +1,16 @@
-body {
-	background-color: #202020;
-	margin: 0;
-	overflow: hidden;
+.game-container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+    justify-content: space-evenly;
+	align-items: center;
 }
 
 #gameCanvas {
-	background-color: rgba(0, 0, 0, 0.7);
 	opacity: 1;
-	border-top: 20px solid #ffdb28;
-	border-bottom: 20px solid #ffdb28;
-	border-left: 150px solid #FFE35D;
-	border-right: 150px solid #FFE35D;
-	border-radius: 3%;
 	position: relative;
 	z-index: 1;
-}
-
-.game-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 20px;
-}
-
-.machine-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-evenly;
+	border : 5px solid white;
 }
 
 .game-subheading {
@@ -40,11 +22,11 @@ body {
 	margin-top: 10vh;
 }
 
-.overlay-heading {
-	color: black;
-	font-family: "Righteous", serif;
-	z-index: 2;
-	font-size: 6rem;
+#arcade{
+	position: absolute;
+    width: 2150px;
+    top: -50%;
+	left: -162px;
 }
 
 .text {
@@ -64,4 +46,34 @@ body {
 	0% {
 		width: 0;
 	}
+}
+
+#start {
+	width: 84px;
+    z-index: 1;
+    bottom: 0;
+    transform: rotateX(36deg) translate(5px, -14px);
+    filter: drop-shadow(0px 5px 6px black) hue-rotate(-68deg);
+    cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+#start:hover {
+	transform: rotateX(36deg) translate(5px, -14px) scale(1.1);
+	filter: drop-shadow(0px 5px 6px white) hue-rotate(0deg);
+}
+
+#options {
+	width: 86px;
+	z-index: 1;
+	bottom: 0;
+	transform : rotateX(36deg) translate(144px, -13px);
+	filter: drop-shadow(0px 5px 6px black) hue-rotate(-68deg);
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+#options:hover {
+	transform: rotateX(36deg) translate(148px, -12px) scale(1.1);
+	filter: drop-shadow(0px 5px 6px white) hue-rotate(0deg);
 }

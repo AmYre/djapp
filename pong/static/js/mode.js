@@ -14,6 +14,21 @@ function handleModeForm(form) {
 	const values = Object.fromEntries(formData.entries());
 	console.log("Form values:", values);
 
+	if (values.mode === "bot") {
+		const cab1 = document.getElementById("cab1");
+		cab1.style.display = "block";
+		cab1.classList.add("zoom1");
+	} else if (values.mode === "human") {
+		const cab2 = document.getElementById("cab2");
+		cab2.style.display = "block";
+		cab2.classList.add("zoom2");
+	} else if (values.mode === "tourn") {
+		const cab3 = document.getElementById("cab3");
+		cab3.style.display = "block";
+		cab3.classList.add("zoom3");
+	}
+
+	// setTimeout(() => {
 	updateState({
 		currentStep: 2,
 		user2: values.p2,
@@ -21,6 +36,7 @@ function handleModeForm(form) {
 		mode: values.mode,
 		options: { bspeed: values.bspeed, bsize: values.bsize, pheight: values.pheight, pspeed: values.pspeed, spacewars: values.spacewars },
 	});
+	// }, 2000);
 }
 
 function displayAvatar() {

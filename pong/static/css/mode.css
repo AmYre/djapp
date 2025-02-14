@@ -140,6 +140,79 @@ input {
     opacity: 0.5;
 }
 
+#cab1{
+  display: none;
+  position : absolute;
+  width: 384px!important;
+  top: 16px;
+  left: -6px;
+}
+
+#cab2{
+  display: none;
+  position : absolute;
+  width: 384px!important;
+  top: 16px;
+  left: -6px;
+}
+
+#cab3{
+  display: none;
+  position : absolute;
+  width: 384px!important;
+  top: 16px;
+  left: -6px;
+}
+
+.zoom1 {
+  z-index: 10;
+  animation: zooom1 2s;
+}
+
+.zoom2 {
+  z-index: 10;
+  animation: zooom2 2s;
+}
+
+.zoom3 {
+  z-index: 10;
+  animation: zooom3 2s;
+}
+
+
+@keyframes zooom1 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(6);
+    top : 100%;
+    left : 100%;
+  }
+}
+
+@keyframes zooom2 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(6);
+    top : 80%;
+    left : -80px;
+  }
+}
+
+@keyframes zooom3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(5);
+    top : 50%;
+    left : -450px;
+  }
+}
+
 .dm-back-card-one {
     background: #e5c103;
     transform: rotateY(180deg);
