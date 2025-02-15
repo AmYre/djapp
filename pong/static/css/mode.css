@@ -16,6 +16,19 @@
 	color: white;
 }
 
+.options {
+	color: white;
+	font-size: 1.3rem;
+	text-transform: uppercase;	
+}
+
+.slider-text {
+	color: black;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	margin-top: 10px;
+}
+
 #image-format {
 	position: absolute;
 	display: flex;
@@ -342,8 +355,8 @@ input {
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 50px;
+    height: 30px;
     margin: 9px;
   }
 
@@ -368,8 +381,8 @@ input {
   .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 22px;
+    width: 22px;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -386,9 +399,9 @@ input {
   }
 
   input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(22px);
+    -ms-transform: translateX(22px);
+    transform: translateX(22px);
   }
 
   .range-slider{
@@ -408,10 +421,10 @@ input {
     width: 100%;
   }
   
-  .range-slider > [data-value]{
+  /*.range-slider > [data-value]{
     font-family: "Press Start 2P", serif;
     font-size: 1rem;
-  }
+  }*/
 
   .range-slider > input[type="range"] {
     width: var(--range-width);

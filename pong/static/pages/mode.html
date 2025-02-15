@@ -24,25 +24,25 @@
 				</div>
 				<div class="dm-back-card-one">
 					<form onsubmit="event.preventDefault(); handleModeForm(this);">
-						<div class="righteous" style="color: white">Paddle Speed</div>
+						<div class="righteous options" style="color: white">Paddle Speed</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="pspeed" name="pspeed">
-							<span class="pix" data-value="Normal">Normal</span>
+							<span class="pix slider-text" data-value="Normal">Normal</span>
 						</div>
-						<div class="righteous" style="color: white">Paddle Height</div>
+						<div class="righteous options" style="color: white">Paddle Height</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="pheight" name="pheight">
-							<span class="pix" data-value="Normal">Normal</span>
+							<span class="pix slider-text" data-value="Normal">Normal</span>
 						</div>
-						<div class="righteous" style="color: white">Ball Speed</div>
+						<div class="righteous options" style="color: white">Ball Speed</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="ballspeed" name="bspeed">
-							<span class="pix" data-value="Normal">Normal</span>
+							<span class="pix slider-text" data-value="Normal">Normal</span>
 						</div>
-						<div class="righteous" style="color: white">Ball Size</div>
+						<div class="righteous options" style="color: white">Ball Size</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="ballsize" name="bsize">
-							<span class="pix" data-value="Normal">Normal</span>
+							<span class="pix slider-text" data-value="Normal">Normal</span>
 						</div>
 						<script>
 							document.querySelectorAll("#pspeed").forEach((r) => {
@@ -56,7 +56,7 @@
 									} else if (e.target.value == 75) {
 										e.target.nextElementSibling.textContent = "Quick";
 									} else if (e.target.value == 100) {
-										e.target.nextElementSibling.textContent = "Lightning";
+										e.target.nextElementSibling.textContent = "Preposterous";
 									}
 								});
 							});
@@ -65,11 +65,11 @@
 									if (e.target.value == 0) {
 										e.target.nextElementSibling.textContent = "Crazy";
 									} else if (e.target.value == 25) {
-										e.target.nextElementSibling.textContent = "Small";
+										e.target.nextElementSibling.textContent = "Short";
 									} else if (e.target.value == 50) {
 										e.target.nextElementSibling.textContent = "Normal";
 									} else if (e.target.value == 75) {
-										e.target.nextElementSibling.textContent = "Big";
+										e.target.nextElementSibling.textContent = "Tall";
 									} else if (e.target.value == 100) {
 										e.target.nextElementSibling.textContent = "Why?";
 									}
@@ -107,13 +107,13 @@
 							});
 						</script>
 						<div style="display:flex; justify-content: space-between; align-items: center;">
-							<div class="righteous" style="color: white">SpaceWarS</div>
+							<div class="righteous options" style="color: white">SPACEWARS</div>
 							<label class="switch">
 								<input type="checkbox" name="spacewars">
 								<span class="slider"></span>
 							</label>
 						</div>
-						<label for="a" class="pix">Player 1</label>
+						<label for="a" class="righteous options">Player 1</label>
 						<p class="p1 pix pulsar" id="p1bot"></p>
 						<input type="text" hidden name="p2" value="">
 						<input type="text" hidden name="p3" value="">
@@ -139,25 +139,25 @@
 				</div>
 				<div class="dm-back-card-two">
 					<form onsubmit="event.preventDefault(); handleModeForm(this);">
-						<div class="righteous" style="color: white">Paddle Speed</div>
+						<div class="righteous options" style="color: white">Paddle Speed</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="pspeed" name="pspeed">
-							<span class="pix" data-value="Normal">Normal</span>
+							<span class="pix slider-text" data-value="Normal">Normal</span>
 						</div>
-						<div class="righteous" style="color: white">Paddle Height</div>
+						<div class="righteous options" style="color: white">Paddle Height</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="pheight" name="pheight">
-							<span class="pix" data-value="Normal">Normal</span>
+							<span class="pix slider-text" data-value="Normal">Normal</span>
 						</div>
-						<div class="righteous" style="color: white">Ball Speed</div>
+						<div class="righteous options" style="color: white">Ball Speed</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="ballspeed" name="bspeed">
-							<span class="pix" data-value="Normal">Normal</span>
+							<span class="pix slider-text" data-value="Normal">Normal</span>
 						</div>
-						<div class="righteous" style="color: white">Ball Size</div>
+						<div class="righteous options" style="color: white">Ball Size</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="ballsize" name="bsize">
-							<span class="pix" data-value="Normal">Normal</span>
+							<span class="pix slider-text" data-value="Normal">Normal</span>
 						</div>
 						<script>
 							document.querySelectorAll("#pspeed").forEach((r) => {
@@ -222,15 +222,15 @@
 							});
 						</script>
 						<div style="display:flex; justify-content: space-between; align-items: center;">
-							<div class="righteous" style="color: white">SpaceWarS</div>
+							<div class="righteous options" style="color: white">SPACEWARS</div>
 							<label class="switch">
 								<input type="checkbox" name="spacewars">
 								<span class="slider"></span>
 							</label>
 						</div>
-						<label for="a" class="pix">Player 1</label>
+						<label for="a" class="righteous options">Player 1</label>
 						<p class="pix pulsar" id="p1human"></p>
-						<label for="b" class="pix">Player 2</label>
+						<label for="b" class="righteous options">Player 2</label>
 						<input type="text" class="form-control" name="p2" placeholder="Player 2 login" required>
 						<input type="text" hidden name="p3" value="">
 						<input type="text" hidden name="mode" value="human">
@@ -255,25 +255,25 @@
 				</div>
 				<div class="dm-back-card-three">
 					<form onsubmit="event.preventDefault(); handleModeForm(this);">
-						<div class="righteous" style="color: white">Paddle Speed</div>
+						<div class="righteous options" style="color: white">Paddle Speed</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="pspeed" name="pspeed">
-							<span class="pix" data-value="Normal">Normal</span>
+							<span class="pix slider-text" data-value="Normal">Normal</span>
 						</div>
-						<div class="righteous" style="color: white">Paddle Height</div>
+						<div class="righteous options" style="color: white">Paddle Height</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="pheight" name="pheight">
-							<span class="pix" data-value="Normal">Normal</span>
+							<span class="pix slider-text" data-value="Normal">Normal</span>
 						</div>
-						<div class="righteous" style="color: white">Ball Speed</div>
+						<div class="righteous options" style="color: white">Ball Speed</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="ballspeed" name="bspeed">
-							<span class="pix" data-value="Normal">Normal</span>
+							<span class="pix slider-text" data-value="Normal">Normal</span>
 						</div>
-						<div class="righteous" style="color: white">Ball Size</div>
+						<div class="righteous options" style="color: white">Ball Size</div>
 						<div class="range-slider">
 							<input type="range" min="0" max="100" step="25" id="ballsize" name="bsize">
-							<span class="pix" data-value="Normal">Normal</span>
+							<span class="pix slider-text" data-value="Normal">Normal</span>
 						</div>
 						<script>
 							document.querySelectorAll("#pspeed").forEach((r) => {
@@ -338,17 +338,17 @@
 							});
 						</script>
 						<div style="display:flex; justify-content: space-between; align-items: center;">
-							<div class="righteous" style="color: white">SpaceWarS</div>
+							<div class="righteous options" style="color: white">SPACEWARS</div>
 							<label class="switch">
 								<input type="checkbox" name="spacewars">
 								<span class="slider"></span>
 							</label>
 						</div>
-						<label for="a" class="pix">Player 1</label>
+						<label for="a" class="righteous options">Player 1</label>
 						<p class="pix pulsar" id="p1tourn"></p>
-						<label for="b" class="pix">Player 2</label>
+						<label for="b" class="righteous options">Player 2</label>
 						<input type="text" class="form-control" name="p2" placeholder="Player 2 login" required>
-						<label for="b" class="pix">Player 3</label>
+						<label for="b" class="righteous options">Player 3</label>
 						<input type="text" class="form-control" name="p3" placeholder="Player 3 login" required>
 						<input type="text" hidden name="mode" value="tourn">
 						<div style="display:flex; justify-content: space-between; align-items: center;">
