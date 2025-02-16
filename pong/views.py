@@ -8,6 +8,9 @@ import requests
 def home(request):
 	return render(request, 'home.html')
 
+def dashboard(request):
+	return render(request, 'dashboard.html')
+
 # def test(request):
 # 	return render(request, 'test.html', {'users': User.objects.all()})
 

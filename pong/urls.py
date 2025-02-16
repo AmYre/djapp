@@ -20,6 +20,7 @@ from pong import api
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 	path('api/token/', api.token, name='token'),
 	path('api/test/', api.test, name='test'),
 	path("__reload__/", include("django_browser_reload.urls")),

@@ -10,9 +10,9 @@
 	top: 1vh;
 	left: 1vw;
 	display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
 	color: white;
 }
 
@@ -154,34 +154,35 @@ input[type="text"]::placeholder {
 }
 
 .my-button {
-  text-decoration: none;
+  position: relative;
 	display: flex;
+  justify-content: space-evenly;
+  height: 50px;
+  width: 120px;
+  text-decoration: none;
 	flex-direction: row;
 	align-items: center;
 	background: white;
 	font-family: "Righteous", serif;
 	font-optical-sizing: auto;
+  font-size: 16px;
 	font-weight: 400;
 	font-style: normal;
-	padding: 8px 20px;
+	padding: 8px 10px;
 	box-shadow: 4px 4px 15px white;
 	transition-property: transform, box-shadow, outline-offset;
 	transition: 100ms ease-in;
 }
 
-.my-button a {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	gap: 15px;
-	text-decoration: none;
-	color: black;
+.my-button img {
+  width: 27px;
 }
 
-.my-button a img {
-	width: 50px;
+.coin{
+  position: absolute;
+  transform: translateX(64px);
 }
+
 .my-button:hover {
 	box-shadow: 2px 2px 10px white;
 	cursor: pointer;
@@ -207,12 +208,10 @@ input[type="text"]::placeholder {
     opacity: 0.5;
 }
 
-#cab1{
+#hd-zoom{
   display: none;
-  position : absolute;
-  width: 384px!important;
-  top: 16px;
-  left: -6px;
+  width: 28px;
+  z-index: 10;
 }
 
 #cab2{
@@ -232,51 +231,53 @@ input[type="text"]::placeholder {
 }
 
 .zoom1 {
-  z-index: 10;
-  animation: zooom1 2s;
+  position: absolute;
+  width: 28px !important;
+  bottom: 249px;
+  left: 504px;
+  z-index: 1;
+  animation: zooom 2s;
 }
 
 .zoom2 {
-  z-index: 10;
-  animation: zooom2 2s;
+  position: absolute;
+  width: 28px !important;
+  bottom: 249px;
+  left: 912px;
+  z-index: 1;
+  animation: zooom 2s;
 }
 
 .zoom3 {
-  z-index: 10;
-  animation: zooom3 2s;
+  position: absolute;
+  width: 28px !important;
+  bottom: 247px;
+  left: 1320px;
+  z-index: 1;
+  animation: zooom 2s;
 }
 
+.shrink {
+  animation: shrink 2s;
+}
 
-@keyframes zooom1 {
+@keyframes zooom {
   0% {
     transform: scale(1);
   }
   100% {
-    transform: scale(6);
-    top : 100%;
-    left : 100%;
+    transform: scale(49);
+    bottom : 24.2%;
+    left :49.5%;
   }
 }
 
-@keyframes zooom2 {
+@keyframes shrink {
   0% {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
   100% {
-    transform: scale(6);
-    top : 80%;
-    left : -80px;
-  }
-}
-
-@keyframes zooom3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(5);
-    top : 50%;
-    left : -450px;
+    transform: translate(-50%, -50%) scale(0.5);
   }
 }
 
