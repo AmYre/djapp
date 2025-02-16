@@ -14,19 +14,19 @@ function handleModeForm(form) {
 	const values = Object.fromEntries(formData.entries());
 	console.log("Form values:", values);
 
-	if (values.mode === "bot") {
-		const cab1 = document.getElementById("cab1");
-		cab1.style.display = "block";
-		cab1.classList.add("zoom1");
-	} else if (values.mode === "human") {
-		const cab2 = document.getElementById("cab2");
-		cab2.style.display = "block";
-		cab2.classList.add("zoom2");
-	} else if (values.mode === "tourn") {
-		const cab3 = document.getElementById("cab3");
-		cab3.style.display = "block";
-		cab3.classList.add("zoom3");
-	}
+	// if (values.mode === "bot") {
+	// 	const cab1 = document.getElementById("cab1");
+	// 	cab1.style.display = "block";
+	// 	cab1.classList.add("zoom1");
+	// } else if (values.mode === "human") {
+	// 	const cab2 = document.getElementById("cab2");
+	// 	cab2.style.display = "block";
+	// 	cab2.classList.add("zoom2");
+	// } else if (values.mode === "tourn") {
+	// 	const cab3 = document.getElementById("cab3");
+	// 	cab3.style.display = "block";
+	// 	cab3.classList.add("zoom3");
+	// }
 
 	// setTimeout(() => {
 	updateState({
@@ -55,4 +55,67 @@ function displayUser() {
 	let login = document.getElementById("login");
 	avatar.src = state.user?.image?.link;
 	login.innerHTML = state.user?.login;
+}
+
+function displayOptions() {
+	document.querySelectorAll("#pspeed").forEach((r) => {
+		r.addEventListener("input", (e) => {
+			if (e.target.value == 0) {
+				e.target.nextElementSibling.textContent = "Painful";
+			} else if (e.target.value == 25) {
+				e.target.nextElementSibling.textContent = "Slow";
+			} else if (e.target.value == 50) {
+				e.target.nextElementSibling.textContent = "Normal";
+			} else if (e.target.value == 75) {
+				e.target.nextElementSibling.textContent = "Quick";
+			} else if (e.target.value == 100) {
+				e.target.nextElementSibling.textContent = "Lightning";
+			}
+		});
+	});
+	document.querySelectorAll("#pheight").forEach((r) => {
+		r.addEventListener("input", (e) => {
+			if (e.target.value == 0) {
+				e.target.nextElementSibling.textContent = "Crazy";
+			} else if (e.target.value == 25) {
+				e.target.nextElementSibling.textContent = "Small";
+			} else if (e.target.value == 50) {
+				e.target.nextElementSibling.textContent = "Normal";
+			} else if (e.target.value == 75) {
+				e.target.nextElementSibling.textContent = "Big";
+			} else if (e.target.value == 100) {
+				e.target.nextElementSibling.textContent = "Why?";
+			}
+		});
+	});
+	document.querySelectorAll("#ballspeed").forEach((r) => {
+		r.addEventListener("input", (e) => {
+			if (e.target.value == 0) {
+				e.target.nextElementSibling.textContent = "Boring";
+			} else if (e.target.value == 25) {
+				e.target.nextElementSibling.textContent = "Slow";
+			} else if (e.target.value == 50) {
+				e.target.nextElementSibling.textContent = "Normal";
+			} else if (e.target.value == 75) {
+				e.target.nextElementSibling.textContent = "Quick";
+			} else if (e.target.value == 100) {
+				e.target.nextElementSibling.textContent = "Lightning";
+			}
+		});
+	});
+	document.querySelectorAll("#ballsize").forEach((r) => {
+		r.addEventListener("input", (e) => {
+			if (e.target.value == 0) {
+				e.target.nextElementSibling.textContent = "Quantic";
+			} else if (e.target.value == 25) {
+				e.target.nextElementSibling.textContent = "Small";
+			} else if (e.target.value == 50) {
+				e.target.nextElementSibling.textContent = "Normal";
+			} else if (e.target.value == 75) {
+				e.target.nextElementSibling.textContent = "Big";
+			} else if (e.target.value == 100) {
+				e.target.nextElementSibling.textContent = "Cosmic";
+			}
+		});
+	});
 }

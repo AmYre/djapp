@@ -18,8 +18,8 @@
 
 .options {
 	color: white;
-	font-size: 1.3rem;
-	text-transform: uppercase;	
+	font-size: 1.1rem;
+	text-transform: uppercase;
 }
 
 .slider-text {
@@ -92,6 +92,37 @@ label {
 
 input {
 	color : white;
+}
+
+input[type="text"] {
+  background-color: #CCCCCC;
+  height: 20px;
+  font-family: 'Press Start 2P';
+  color: black;
+  box-shadow: 0px 0px 3px white;
+  width: 150px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+.wrap-inputs-text{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wrap-label-input{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 10px;
+}
+
+input[type="text"]::placeholder {
+  color: rgb(136, 136, 136);
+  font-family: 'Press Start 2P';
+  font-size: 10px;
 }
 
 .mode-buttons {
@@ -257,6 +288,7 @@ input {
     align-items: center;
     flex-direction: column;
 }
+
 .dm-back-card-two {
     background: #B52E19;
     transform: rotateY(180deg);
@@ -272,6 +304,14 @@ input {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+form{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 15px;
 }
 
 .dm-flip-card:hover .dm-front-card {
@@ -355,8 +395,8 @@ input {
 .switch {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 30px;
+    width: 40px;
+    height: 20px;
     margin: 9px;
   }
 
@@ -381,10 +421,10 @@ input {
   .slider:before {
     position: absolute;
     content: "";
-    height: 22px;
-    width: 22px;
+    height: 14px;
+    width: 14px;
     left: 4px;
-    bottom: 4px;
+    bottom: 3px;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s cubic-bezier(0,1,0.5,1);
@@ -399,18 +439,16 @@ input {
   }
 
   input:checked + .slider:before {
-    -webkit-transform: translateX(22px);
-    -ms-transform: translateX(22px);
-    transform: translateX(22px);
+    transform: translateX(17px);
   }
 
   .range-slider{
     --range-width: 300px;
     --track-clr: #ccc;
-    --thumb-w: 20px;
-    --thumb-h: 20px;
+    --thumb-w: 15px;
+    --thumb-h: 15px;
     --thumb-radius: 0;
-    --thumb-space: 25px;
+    --thumb-space: 18px;
     --thumb-clr: black;
     --thumb-clr-active: black;
     --thumb-scale-y-active: .75;
@@ -420,11 +458,6 @@ input {
     align-items: center;
     width: 100%;
   }
-  
-  /*.range-slider > [data-value]{
-    font-family: "Press Start 2P", serif;
-    font-size: 1rem;
-  }*/
 
   .range-slider > input[type="range"] {
     width: var(--range-width);
@@ -440,7 +473,6 @@ input {
     box-shadow: 0 0 4px white;
   }
 
-  /* chromium */
   .range-slider > input[type="range"]::-webkit-slider-thumb{
     cursor: grab;
     width: var(--thumb-w);
@@ -450,31 +482,10 @@ input {
     outline: none;
     border: none;
     border-radius: var(--thumb-radius);
-    /* track  - either side of the thumb using box-shadow */
     box-shadow:
       calc((var(--range-width) / 2 + var(--thumb-space)) * -1 ) 0 0 calc(var(--range-width) / 2) var(--thumb-clr),
       calc((var(--range-width) / 2 + var(--thumb-space))) 0 0 calc(var(--range-width) / 2) var(--track-clr);
     -webkit-appearance: none;
-    appearance: none;
-    transition-property: scale,box-shadow,background-color;
-    transition-duration: 300ms;
-    transition-timing-function: ease-in-out;
-    scale: 1 var(--thumb-scale-y,1);
-  }
-  /* Firefox */
-  .range-slider > input[type="range"]::-moz-range-thumb {
-    cursor: grab;
-    width: var(--thumb-w);
-    height: var(--thumb-h);
-    background-color: var(--thumb-clr);
-    outline: none;
-    border: none;
-    border-radius: var(--thumb-radius);
-    /* track  - either side of the thumb using box-shadow */
-    box-shadow:
-      calc((var(--range-width) / 2 + var(--thumb-space)) * -1 ) 0 0 calc(var(--range-width) / 2) var(--thumb-clr),
-      calc((var(--range-width) / 2 + var(--thumb-space))) 0 0 calc(var(--range-width) / 2) var(--track-clr);
-    -moz-appearance: none;
     appearance: none;
     transition-property: scale,box-shadow,background-color;
     transition-duration: 300ms;
