@@ -1,30 +1,46 @@
 function displayPlayers() {
-	const h2 = document.getElementById("versus");
+	const versus = document.getElementById("versus");
+	const p1 = document.getElementById("footerP1");
+	const p2 = document.getElementById("footerP2");
+	const p3 = document.getElementById("footerP3");
 	const state = JSON.parse(localStorage.getItem("pongAppState"));
 	const mode = state?.mode;
-	if (mode === "bot") h2.innerHTML = `🐵 ${state?.user?.login || "Player1"} VS Bot 🤖`;
+	if (mode === "bot") versus.textContent = `🐵 ${state?.user?.login || "Player1"} VS Bot 🤖`;
 	else if (mode === "human") {
-		h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user2 || "Player2"}`;
+		versus.textContent = `${state?.user?.login || "Player1"} VS ${state?.user2 || "Player2"}`;
 	} else if (mode === "tourn") {
-		if (state.game == 0) h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user2 || "Player2"}`;
-		else if (state.game == 1) h2.innerHTML = `${state?.user || "Player1"} VS ${state?.user3 || "Player3"}`;
-		else if (state.game == 2) h2.innerHTML = `${state?.user2 || "Player2"} VS ${state?.user3 || "Player3"}`;
+		p1.textContent = `${state?.user?.login.slice(0, 3).toUpperCase()} : 0000${state?.score}`;
+		p2.textContent = `${state?.user2.slice(0, 3).toUpperCase()} : 0000${state?.score2}`;
+		p3.textContent = `${state?.user3.slice(0, 3).toUpperCase()} : 0000${state?.score3}`;
+		if (state.game == 0) versus.textContent = `${state?.user?.login || "Player1"} VS ${state?.user2 || "Player2"}`;
+		else if (state.game == 1) versus.textContent = `${state?.user || "Player1"} VS ${state?.user3 || "Player3"}`;
+		else if (state.game == 2) versus.textContent = `${state?.user2 || "Player2"} VS ${state?.user3 || "Player3"}`;
 	}
 }
 
 function initGame() {
 	console.log("INIT GAME");
 	const canvas = document.getElementById("gameCanvas");
-	const gameText = document.getElementById("gameText");
-	const btns = document.getElementById("gameBtns");
-	const score = document.getElementById("gameScore");
+	const versus = document.getElementById("versus");
+	const winner = document.getElementById("gameWin");
+	const tournWin1 = document.getElementById("tournWin1");
+	const tournWin2 = document.getElementById("tournWin2");
+	const tournWin3 = document.getElementById("tournWin3");
+	const p1 = document.getElementById("footerP1");
+	const p2 = document.getElementById("footerP2");
+	const p3 = document.getElementById("footerP3");
 	const state = JSON.parse(localStorage.getItem("pongAppState"));
-	const h2 = document.getElementById("versus");
+
+	let scoreRight = document.getElementById("gameScoreRight");
+	let scoreLeft = document.getElementById("gameScoreLeft");
 	let reversed = false;
 
-	// delete the onclick event on the id="start" btn
-	// const start = document.getElementById("start");
-	// start.removeAttribute("onclick");
+	scoreLeft.textContent = 0;
+	scoreRight.textContent = 0;
+	canvas.style.zIndex = 1;
+	winner.textContent = "";
+	winner.style.display = "none";
+	winner.classList.remove("text");
 
 	function sortWinner(state) {
 		console.log("STATE in sort", state);
@@ -105,7 +121,6 @@ function initGame() {
 			ballSize = 100;
 		}
 
-		// Game variables
 		let player1Y = (canvas.height - paddleHeight) / 2;
 		let player2Y = (canvas.height - paddleHeight) / 2;
 		let ballX = canvas.width / 2;
@@ -114,7 +129,7 @@ function initGame() {
 		let ballSpeedY = initialBallSpeed;
 		let player1Score = 0;
 		let player2Score = 0;
-		const WINNING_SCORE = 1;
+		const WINNING_SCORE = 5;
 		let gameOver = false;
 
 		// Key handling
@@ -142,7 +157,6 @@ function initGame() {
 			player2Y = Math.max(0, Math.min(player2Y, canvas.height - paddleHeight));
 		}
 
-		// Game loop
 		function gameLoop() {
 			if (!gameOver) {
 				requestAnimationFrame(gameLoop);
@@ -152,7 +166,6 @@ function initGame() {
 			}
 		}
 
-		// Update game logic
 		function update() {
 			if (keysPressed[" "]) {
 				if (reversed) {
@@ -196,12 +209,9 @@ function initGame() {
 				ballSpeedX = -ballSpeedX;
 			}
 
-			// Scoring
-			if (ballX < 0) {
-				player2Score++;
-				resetBall();
-			} else if (ballX > canvas.width) {
-				player1Score++;
+			if (ballX < 0 || ballX > canvas.width) {
+				ballX < 0 ? player2Score++ : player1Score++;
+				ballX < 0 ? (scoreRight.innerHTML = player2Score) : (scoreLeft.innerHTML = player1Score);
 				resetBall();
 			}
 
@@ -213,40 +223,86 @@ function initGame() {
 						player1Score >= WINNING_SCORE ? state.score++ : state.score2++;
 						state.winner = player1Score >= WINNING_SCORE ? state.user.login : state.user2;
 						localStorage.setItem("pongAppState", JSON.stringify(state));
-						h2.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user3 || "Player3"}`;
-						btns.innerHTML = `<button onclick="initGame()">Next Game</button>`;
-						score.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
+						p1.textContent = `${state?.user?.login.slice(0, 3).toUpperCase()} : 0000${state?.score}`;
+						p2.textContent = `${state?.user2.slice(0, 3).toUpperCase()} : 0000${state?.score2}`;
+						p3.textContent = `${state?.user3.slice(0, 3).toUpperCase()} : 0000${state?.score3}`;
+						versus.innerHTML = `${state?.user?.login || "Player1"} VS ${state?.user3 || "Player3"}`;
+						winner.textContent = `Winner is ${state.winner}`;
+						winner.style.display = "block";
+						winner.classList.add("text");
 					} else if (state.game == 1) {
 						state.game = 2;
 						player1Score >= WINNING_SCORE ? state.score++ : state.score3++;
 						state.winner = player1Score >= WINNING_SCORE ? state.user.login : state.user3;
 						localStorage.setItem("pongAppState", JSON.stringify(state));
-						h2.innerHTML = `${state?.user2 || "Player2"} VS ${state?.user3 || "Player3"}`;
-						btns.innerHTML = `<button onclick="initGame()">Next Game</button>`;
-						score.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
+						p1.textContent = `${state?.user?.login.slice(0, 3).toUpperCase()} : 0000${state?.score}`;
+						p2.textContent = `${state?.user2.slice(0, 3).toUpperCase()} : 0000${state?.score2}`;
+						p3.textContent = `${state?.user3.slice(0, 3).toUpperCase()} : 0000${state?.score3}`;
+						versus.innerHTML = `${state?.user2 || "Player2"} VS ${state?.user3 || "Player3"}`;
+						winner.textContent = `Winner is ${state.winner}`;
+						winner.style.display = "block";
+						winner.classList.add("text");
 					} else if (state.game == 2) {
+						scoreLeft.textContent = "";
+						scoreRight.textContent = "";
 						state.game = 0;
+						canvas.style.zIndex = -1;
 						player1Score >= WINNING_SCORE ? state.score2++ : state.score3++;
 						state.winner = sortWinner(state);
 						if (state.winner[0].score == 1) {
-							gameText.innerHTML = `<h3 class="pix pulsar" style="color: white">No Winners</h3>`;
+							winner.textContent = `😣 No Winners 🥺`;
+							winner.style.display = "block";
+							winner.classList.add("text");
 						} else {
-							gameText.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner[0].player}</h3>`;
+							p1.textContent = "";
+							p2.textContent = "";
+							p3.textContent = "";
+
+							tournWin1.textContent = `🥇 ${state.winner[0].player.slice(0, 3).toUpperCase()} : 0000${state.winner[0].score} ${state.winner[0].player} 🎉🎊🏆`;
+							tournWin2.textContent = `🥈 ${state.winner[1].player.slice(0, 3).toUpperCase()} : 0000${state.winner[1].score} ${state.winner[1].player}`;
+							tournWin3.textContent = `🥉 ${state.winner[2].player.slice(0, 3).toUpperCase()} : 0000${state.winner[2].score} ${state.winner[2].player}`;
+
+							setTimeout(() => {
+								scoreLeft.textContent = ">>>> HIGH";
+								scoreRight.textContent = "SCORES <<<<";
+								scoreLeft.style.paddingRight = "0px";
+								scoreRight.style.paddingLeft = "0px";
+								tournWin1.style.display = "block";
+								tournWin1.classList.add("text");
+							}, 500);
+
+							setTimeout(() => {
+								tournWin2.style.display = "block";
+								tournWin2.classList.add("text");
+							}, 1500);
+
+							setTimeout(() => {
+								tournWin3.style.display = "block";
+								tournWin3.classList.add("text");
+							}, 2000);
 						}
 						localStorage.setItem("pongAppState", JSON.stringify(state));
-						btns.innerHTML = `<button onclick="renderStep(2)">Play Again</button> <button onclick="renderStep(1)">Change Options</button>`;
-						score.innerHTML = `<div>Score</div> <div>1 - ${state.winner[0].player} : ${state.winner[0].score}</div><div>2 - ${state.winner[1].player} : ${state.winner[1].score}</div><div>3 - ${state.winner[2].player} : ${state.winner[2].score}</div>`;
+						versus.textContent = "Game Over";
+
+						// remove the onClick event on the start button
+						document.getElementById("start").removeAttribute("onClick");
+						state.score = 0;
+						state.score2 = 0;
+						state.score3 = 0;
+						localStorage.setItem("pongAppState", JSON.stringify(state));
 					}
 				} else if (state.mode === "human") {
 					state.winner = player1Score >= WINNING_SCORE ? state.user.login : state.user2;
 					localStorage.setItem("pongAppState", JSON.stringify(state));
-					gameText.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
-					btns.innerHTML = `<button onclick="renderStep(2)">Play Again</button>
-	<button onclick="renderStep(1)">Change Options</button>`;
+					winner.textContent = `Winner is ${state.winner}`;
+					winner.style.display = "block";
+					winner.classList.add("text");
 				} else {
 					state.winner = player1Score >= WINNING_SCORE ? state.user.login : "Bot";
 					localStorage.setItem("pongAppState", JSON.stringify(state));
-					gameText.innerHTML = `<h3 class="pix pulsar" style="color: white">Winner is ${state.winner}</h3>`;
+					winner.textContent = `Winner is ${state.winner}`;
+					winner.style.display = "block";
+					winner.classList.add("text");
 				}
 			}
 		}
@@ -264,14 +320,6 @@ function initGame() {
 			// Draw paddles
 			ctx.fillRect(20, player1Y, paddleWidth, paddleHeight);
 			ctx.fillRect(canvas.width - 20 - paddleWidth, player2Y, paddleWidth, paddleHeight);
-
-			// Draw score
-			//"Pong Score" font
-			ctx.font = "30px Pong Score";
-			//ctx.font = "30px Arial";
-			ctx.fillStyle = "#fff";
-			ctx.fillText(player1Score, canvas.width / 4, 50);
-			ctx.fillText(player2Score, (3 * canvas.width) / 4, 50);
 		}
 
 		// Reset ball position and speed

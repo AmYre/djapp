@@ -10,6 +10,8 @@ let AppState = {
 	mode: "",
 	winner: "",
 	game: 0,
+	leftScore: 0,
+	rightScore: 0,
 	options: {},
 };
 
