@@ -20,7 +20,7 @@ logs:
 	$(DC) logs -f $(APP)
 
 migrate:
-	$(DC) exec $(APP) python manage.py makemigrations
+	$(DC) exec $(APP) python manage.py makemigrations $(APP)
 	$(DC) exec $(APP) python manage.py migrate
 
 clean:

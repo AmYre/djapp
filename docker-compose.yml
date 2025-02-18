@@ -1,7 +1,8 @@
 version: '3.8'
 
 services:
-  web:
+  pong:
+    container_name: pong
     build: .
     ports:
       - "8000:8000"
@@ -21,6 +22,7 @@ services:
     tty: true
 
   db:
+    container_name: pong_db
     image: postgres:13
     volumes:
       - postgres_data:/var/lib/postgresql/data

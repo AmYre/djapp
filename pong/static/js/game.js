@@ -217,6 +217,23 @@ function initGame() {
 
 			if (player1Score >= WINNING_SCORE || player2Score >= WINNING_SCORE) {
 				gameOver = true;
+				fetch("/api/dash/", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						stats: {
+							user: state.user.login,
+							score: state.score,
+							score2: state.score2,
+							score3: state.score3,
+							mode: state.mode,
+							options: state.options,
+						},
+					}),
+				});
+				console.log("stats sent");
 				if (state.mode === "tourn") {
 					if (state.game == 0) {
 						state.game = 1;

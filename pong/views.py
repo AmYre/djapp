@@ -22,8 +22,8 @@ def get_token(request):
 		token_url = "https://api.intra.42.fr/oauth/token"
 		token_data = {
 			'grant_type': 'authorization_code',
-			'client_id': 'u-s4t2ud-430c86d0bc180f3cc2225e562523e9bb9b060d27de7b9125654633f8585ade65',
-			'client_secret': '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',
+			'client_id': 'u-s4t2ud-278c6f5b974f198ff7770777621b6736535fe09144a049d6a79e2c37877665db',
+			'client_secret': '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',
 			'code': code,
 			'redirect_uri': 'http://localhost:8000/'
 		}

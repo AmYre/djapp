@@ -1,6 +1,10 @@
 from urllib.parse import urlencode
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
+from django.core.exceptions import ValidationError
+from .models import GameStats
+
 import requests
 
 @api_view(['POST'])
@@ -32,6 +36,51 @@ def token(request):
     )
     return Response(response.json())
 
-@api_view(['GET'])
-def test(request):
-	return Response({'message': 'Hello, world!'})
+@api_view(['POST'])
+def dash(request):
+    try:
+        stats = request.data.get('stats')
+        print(f"*********************Received stats: {stats}")
+        if not stats:
+            return Response(
+                {'error': 'No stats data provided'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Validate required fields
+        required_fields = ['user', 'score', 'score2', 'score3', 'mode', 'options']
+        missing_fields = [field for field in required_fields if field not in stats]
+
+        if missing_fields:
+            return Response(
+                {'error': f'Missing required fields: {", ".join(missing_fields)}'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Create the GameStats object
+        game_stats = GameStats.objects.create(
+            user=stats['user'],
+            score=stats['score'],
+            score2=stats['score2'],
+            score3=stats['score3'],
+            mode=stats['mode'],
+            options=stats['options']
+        )
+
+        # Return the created object data
+        return Response({
+            'message': 'Game stats saved successfully',
+            'id': game_stats.id,
+            'created_at': game_stats.created_at
+        }, status=status.HTTP_201_CREATED)
+
+    except ValidationError as e:
+        return Response(
+            {'error': str(e)},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    except Exception as e:
+        return Response(
+            {'error': 'An error occurred while saving game stats'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
