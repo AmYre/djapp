@@ -50,6 +50,13 @@ function initGame() {
 	let scoreLeft = document.getElementById("gameScoreLeft");
 	let reversed = false;
 
+	let particles = [];
+	let isColliding = false;
+	let collisionPoint = { x: 0, y: 0 };
+	let haloOpacity = 0;
+	let paddleCollisionPoint = { x: 0, y: 0 };
+	let paddleHaloOpacity = 0;
+
 	scoreLeft.textContent = 0;
 	scoreRight.textContent = 0;
 	canvas.style.zIndex = 1;
@@ -68,6 +75,35 @@ function initGame() {
 
 		console.log("WINNER", players);
 		return players;
+	}
+
+	class Particle {
+		constructor(x, y) {
+			this.x = x;
+			this.y = y;
+			this.speed = {
+				x: (Math.random() - 0.5) * 8,
+				y: (Math.random() - 0.5) * 8,
+			};
+			this.radius = Math.random() * 3;
+			this.life = 1;
+
+			const brightness = Math.floor(Math.random() * 256);
+			this.color = `rgb(${brightness}, ${brightness}, ${brightness})`;
+		}
+
+		update() {
+			this.x += this.speed.x;
+			this.y += this.speed.y;
+			this.life -= 0.02;
+		}
+
+		draw(ctx) {
+			ctx.beginPath();
+			ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+			ctx.fillStyle = this.color.replace(")", `, ${this.life})`);
+			ctx.fill();
+		}
 	}
 
 	if (canvas) {
@@ -144,6 +180,8 @@ function initGame() {
 		let ballSpeedY = initialBallSpeed;
 		let player1Score = 0;
 		let player2Score = 0;
+		let lastAIUpdate = 0;
+		const AI_UPDATE_INTERVAL = 1000; // 1 seconde
 		const WINNING_SCORE = 5;
 		let gameOver = false;
 
@@ -158,18 +196,71 @@ function initGame() {
 			delete keysPressed[event.key];
 		});
 
-		function updateAI() {
-			const paddleCenter = player2Y + paddleHeight / 2;
-			const predictedBallY = ballY + (ballSpeedY * (canvas.width - ballX)) / ballSpeedX;
-			let aiPaddleSpeed = paddleSpeed;
+		function drawParticles() {
+			// Mettre à jour et dessiner les particules existantes
+			for (let i = particles.length - 1; i >= 0; i--) {
+				particles[i].update();
+				particles[i].draw(ctx);
 
-			if (paddleCenter < predictedBallY) {
-				player2Y += aiPaddleSpeed;
-			} else if (paddleCenter > predictedBallY) {
-				player2Y -= aiPaddleSpeed;
+				if (particles[i].life <= 0) {
+					particles.splice(i, 1);
+				}
+			}
+		}
+
+		function drawHalo() {
+			if (haloOpacity > 0) {
+				ctx.beginPath();
+				const gradient = ctx.createRadialGradient(collisionPoint.x, collisionPoint.y, 0, collisionPoint.x, collisionPoint.y, ballSize * 4);
+				gradient.addColorStop(0, `rgba(255, 255, 255, ${haloOpacity})`);
+				gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+				ctx.fillStyle = gradient;
+				ctx.arc(collisionPoint.x, collisionPoint.y, ballSize * 4, 0, Math.PI * 2);
+				ctx.fill();
+				haloOpacity -= 0.05;
 			}
 
-			player2Y = Math.max(0, Math.min(player2Y, canvas.height - paddleHeight));
+			if (paddleHaloOpacity > 0) {
+				ctx.beginPath();
+				const paddleGradient = ctx.createRadialGradient(paddleCollisionPoint.x, paddleCollisionPoint.y, 0, paddleCollisionPoint.x, paddleCollisionPoint.y, ballSize * 6);
+				paddleGradient.addColorStop(0, `rgba(20, 20, 20, ${paddleHaloOpacity})`);
+				paddleGradient.addColorStop(1, "rgba(8, 29, 44, 0)");
+				ctx.fillStyle = paddleGradient;
+				ctx.arc(paddleCollisionPoint.x, paddleCollisionPoint.y, ballSize * 4, 0, Math.PI * 2);
+				ctx.fill();
+				paddleHaloOpacity -= 0.05;
+			}
+		}
+
+		function updateAI() {
+			const currentTime = Date.now();
+			if (currentTime - lastAIUpdate < AI_UPDATE_INTERVAL) {
+				return; // Ne met à jour qu'une fois par seconde
+			}
+			console.log("AI UPDATE");
+
+			lastAIUpdate = currentTime;
+			const paddleCenter = player2Y + paddleHeight / 2;
+
+			// agit seulement si la balle passe la moitié du terrain
+			if (ballX < canvas.width / 2) return;
+			if (ballSpeedX < 0) return;
+
+			// Prédiction avec incertitude entre -25 et 25
+			const uncertainty = Math.floor(Math.random() * 51) - 25;
+			console.log("uncertainty", uncertainty);
+			const predictedBallY = ballY + (ballSpeedY * (canvas.width - ballX)) / ballSpeedX + uncertainty;
+
+			if (paddleCenter < predictedBallY - paddleHeight / 4) {
+				keysPressed["ArrowDown"] = true;
+				delete keysPressed["ArrowUp"];
+			} else if (paddleCenter > predictedBallY + paddleHeight / 4) {
+				keysPressed["ArrowUp"] = true;
+				delete keysPressed["ArrowDown"];
+			} else {
+				delete keysPressed["ArrowUp"];
+				delete keysPressed["ArrowDown"];
+			}
 		}
 
 		function gameLoop() {
@@ -213,15 +304,26 @@ function initGame() {
 			// Ball collision with walls
 			if (ballY < ballSize || ballY > canvas.height - ballSize) {
 				ballSpeedY = -ballSpeedY;
+				isColliding = true;
+				collisionPoint = { x: ballX, y: ballY };
+				haloOpacity = 1;
 			}
 
 			// Ball collision with paddles
 			if (ballX - ballSize < 20 + paddleWidth && ballY > player1Y && ballY < player1Y + paddleHeight) {
 				ballSpeedX = -ballSpeedX;
+				// Ajouter des particules
+				for (let i = 0; i < 20; i++) {
+					particles.push(new Particle(ballX, ballY));
+				}
 			}
 
 			if (ballX + ballSize > canvas.width - 20 - paddleWidth && ballY > player2Y && ballY < player2Y + paddleHeight) {
 				ballSpeedX = -ballSpeedX;
+				// Ajouter des particules
+				for (let i = 0; i < 20; i++) {
+					particles.push(new Particle(ballX, ballY));
+				}
 			}
 
 			if (ballX < 0 || ballX > canvas.width) {
@@ -386,6 +488,8 @@ function initGame() {
 		function draw() {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+			drawHalo();
+			drawParticles();
 			// Draw ball
 			ctx.fillStyle = "#fff";
 			ctx.beginPath();
