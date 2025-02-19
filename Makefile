@@ -16,6 +16,9 @@ stop:
 down:
 	$(DC) down --remove-orphans
 
+admin:
+	$(DC) exec $(APP) python manage.py createsuperuser
+
 logs:
 	$(DC) logs -f $(APP)
 

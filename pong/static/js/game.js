@@ -18,6 +18,21 @@ function displayPlayers() {
 	}
 }
 
+function getCookie(name) {
+	let cookieValue = null;
+	if (document.cookie && document.cookie !== "") {
+		const cookies = document.cookie.split(";");
+		for (let i = 0; i < cookies.length; i++) {
+			const cookie = cookies[i].trim();
+			if (cookie.substring(0, name.length + 1) === name + "=") {
+				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+				break;
+			}
+		}
+	}
+	return cookieValue;
+}
+
 function initGame() {
 	console.log("INIT GAME");
 	const canvas = document.getElementById("gameCanvas");
@@ -217,23 +232,6 @@ function initGame() {
 
 			if (player1Score >= WINNING_SCORE || player2Score >= WINNING_SCORE) {
 				gameOver = true;
-				fetch("/api/dash/", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						stats: {
-							user: state.user.login,
-							score: state.score,
-							score2: state.score2,
-							score3: state.score3,
-							mode: state.mode,
-							options: state.options,
-						},
-					}),
-				});
-				console.log("stats sent");
 				if (state.mode === "tourn") {
 					if (state.game == 0) {
 						state.game = 1;
@@ -262,7 +260,6 @@ function initGame() {
 					} else if (state.game == 2) {
 						scoreLeft.textContent = "";
 						scoreRight.textContent = "";
-						state.game = 0;
 						canvas.style.zIndex = -1;
 						player1Score >= WINNING_SCORE ? state.score2++ : state.score3++;
 						state.winner = sortWinner(state);
@@ -298,11 +295,28 @@ function initGame() {
 								tournWin3.classList.add("text");
 							}, 2000);
 						}
-						localStorage.setItem("pongAppState", JSON.stringify(state));
 						versus.textContent = "Game Over";
-
-						// remove the onClick event on the start button
-						document.getElementById("start").removeAttribute("onClick");
+						fetch("/api/dash/", {
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+								"X-CSRFToken": getCookie("csrftoken"),
+							},
+							body: JSON.stringify({
+								stats: {
+									user: state.user.login,
+									score: state.score,
+									user2: state.user2,
+									score2: state.score2,
+									user3: state.user3,
+									score3: state.score3,
+									mode: state.mode,
+									options: state.options,
+								},
+							}),
+						});
+						console.log("stats sent");
+						state.game = 0;
 						state.score = 0;
 						state.score2 = 0;
 						state.score3 = 0;
@@ -310,12 +324,56 @@ function initGame() {
 					}
 				} else if (state.mode === "human") {
 					state.winner = player1Score >= WINNING_SCORE ? state.user.login : state.user2;
+					state.score = player1Score;
+					state.score2 = player2Score;
+					fetch("/api/dash/", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							"X-CSRFToken": getCookie("csrftoken"),
+						},
+						body: JSON.stringify({
+							stats: {
+								user: state.user.login,
+								score: player1Score,
+								user2: state.user2,
+								score2: player2Score,
+								user3: "none",
+								score3: 0,
+								mode: state.mode,
+								options: state.options,
+							},
+						}),
+					});
+					console.log("stats sent");
+					state.score = 0;
+					state.score2 = 0;
 					localStorage.setItem("pongAppState", JSON.stringify(state));
 					winner.textContent = `Winner is ${state.winner}`;
 					winner.style.display = "block";
 					winner.classList.add("text");
 				} else {
 					state.winner = player1Score >= WINNING_SCORE ? state.user.login : "Bot";
+					fetch("/api/dash/", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							"X-CSRFToken": getCookie("csrftoken"),
+						},
+						body: JSON.stringify({
+							stats: {
+								user: state.user.login,
+								score: player1Score,
+								user2: "none",
+								score2: player2Score,
+								user3: "none",
+								score3: 0,
+								mode: state.mode,
+								options: state.options,
+							},
+						}),
+					});
+					console.log("stats sent");
 					localStorage.setItem("pongAppState", JSON.stringify(state));
 					winner.textContent = `Winner is ${state.winner}`;
 					winner.style.display = "block";

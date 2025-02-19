@@ -10,7 +10,9 @@ class User(models.Model):
 class GameStats(models.Model):
     user = models.CharField(max_length=100)
     score = models.IntegerField(default=0)
+    user2 = models.CharField(max_length=100)
     score2 = models.IntegerField(default=0)
+    user3 = models.CharField(max_length=100)
     score3 = models.IntegerField(default=0)
     mode = models.CharField(max_length=50)
     options = models.JSONField()
