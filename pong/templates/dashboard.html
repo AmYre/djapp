@@ -3,11 +3,37 @@
 
 <head>
 	<title>Dashboard</title>
+	<link rel="icon" href="/static/img/42.png" type="image/x-icon">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Press+Start+2P&family=Righteous&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="/static/css/stars.css">
+	<link rel="stylesheet" href="/static/css/dashboard.css">
+	<script src="/static/js/home.js" defer></script>
+	<script src="/static/js/mode.js" defer></script>
 </head>
 
 <body>
-	<h1>Dashboard</h1>
-	<p>Welcome to the dashboard!</p>
-	<p><a href="/logout">Logout</a></p>
+	<div id="stars"></div>
+	<div id="stars2"></div>
+	<div id="stars3"></div>
 
+	<div class="dashboard-container">
+		<div class="avatar-container">
+			<img src="" alt="avatar" id="avatar-img" style="border-radius: 100%; width: 150px">
+			<div class="righteous" id="avatar-name"></div>
+		</div>
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				displayAvatar();
+			});
+		</script>
+		<div class="logout-container">
+			<img src="/static/img/logout.png" alt="logoutImg" id="logoutImg" onclick="logOut()">
+		</div>
+		<h2 class="pix dashboard-heading text">Welcome to your dashboard</h1>
+		<img id="arcade" src="/static/img/gameMachine.png">
+	</div>
+</body>
 </html>

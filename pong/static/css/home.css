@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
+
 @font-face {
   font-family: "Pong Score";
   src: url('../fonts/ataris-pong-score.ttf') format('truetype');
@@ -17,7 +19,6 @@
 	font-family: "Righteous", serif;
 }
 
-@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
 
 .pix {
 	font-family: "Press Start 2P", serif;
