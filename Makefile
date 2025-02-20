@@ -8,10 +8,13 @@ build:
 	$(DC) build
 
 up:
-	exec $(DC) up --build
+	$(DC) up -d --build
 
 stop:
 	$(DC) stop
+	
+start:
+	$(DC) start
 
 down:
 	$(DC) down --remove-orphans
@@ -35,3 +38,9 @@ fclean: clean
 	docker system prune -a -f --volumes
 
 .PHONY: build up down logs shell migrate test clean
+
+# Makefile error 130 is normal - exit code for quitting with ctrl+c signal
+# added -d to up rule so containers run in detached mode - background - less verbose/ less error messages (take away -d for developing and debugging)
+# use make stop or make down to pause or remove containers (instead of quitting with ctrl+c previously)
+# exec not needed for rules with commands run outside of containers
+# admin and migrate rules run inside running containers so exec is needed
