@@ -326,10 +326,10 @@ function initGame() {
 				ballX = canvas.width - 20 - paddleWidth - ballSize;
 				ballSpeedX = -ballSpeedX;
 			}
-
+			// update scores
 			if (ballX < paddleWidth + 10 || ballX > canvas.width - paddleWidth - 10) {
-				ballX < paddleWidth ? player2Score++ : player1Score++;
-				ballX < paddleWidth ? (scoreRight.innerHTML = player2Score) : (scoreLeft.innerHTML = player1Score);
+				ballX < paddleWidth + 10 ? player2Score++ : player1Score++;
+				ballX < paddleWidth + 10 ? (scoreRight.innerHTML = player2Score) : (scoreLeft.innerHTML = player1Score);
 
 				for (let i = 0; i < 100; i++) {
 					particles.push(new Particle(ballX, ballY));
