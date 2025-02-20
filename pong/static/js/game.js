@@ -57,6 +57,10 @@ function initGame() {
 	let paddleCollisionPoint = { x: 0, y: 0 };
 	let paddleHaloOpacity = 0;
 
+	const ACCELERATION_INTERVAL = 5000; // Accélération toutes les 5 secondes
+	const SPEED_INCREMENT = 1.2; // Facteur d'accélération
+	let lastSpeedIncrease = Date.now();
+
 	scoreLeft.textContent = 0;
 	scoreRight.textContent = 0;
 	canvas.style.zIndex = 1;
@@ -197,7 +201,6 @@ function initGame() {
 		});
 
 		function drawParticles() {
-			// Mettre à jour et dessiner les particules existantes
 			for (let i = particles.length - 1; i >= 0; i--) {
 				particles[i].update();
 				particles[i].draw(ctx);
@@ -232,34 +235,36 @@ function initGame() {
 			}
 		}
 
+		function updateBallSpeed() {
+			const currentTime = Date.now();
+			if (currentTime - lastSpeedIncrease >= ACCELERATION_INTERVAL) {
+				ballSpeedX *= SPEED_INCREMENT;
+				ballSpeedY *= SPEED_INCREMENT;
+				lastSpeedIncrease = currentTime;
+				console.log("Vitesse de la balle augmentée:", ballSpeedX);
+			}
+		}
+
 		function updateAI() {
 			const currentTime = Date.now();
 			if (currentTime - lastAIUpdate < AI_UPDATE_INTERVAL) {
-				return; // Ne met à jour qu'une fois par seconde
+				return;
 			}
-			console.log("AI UPDATE");
-
 			lastAIUpdate = currentTime;
-			const paddleCenter = player2Y + paddleHeight / 2;
 
-			// agit seulement si la balle passe la moitié du terrain
-			if (ballX < canvas.width / 2) return;
-			if (ballSpeedX < 0) return;
-
-			// Prédiction avec incertitude entre -25 et 25
-			const uncertainty = Math.floor(Math.random() * 51) - 25;
-			console.log("uncertainty", uncertainty);
-			const predictedBallY = ballY + (ballSpeedY * (canvas.width - ballX)) / ballSpeedX + uncertainty;
-
-			if (paddleCenter < predictedBallY - paddleHeight / 4) {
-				keysPressed["ArrowDown"] = true;
-				delete keysPressed["ArrowUp"];
-			} else if (paddleCenter > predictedBallY + paddleHeight / 4) {
-				keysPressed["ArrowUp"] = true;
-				delete keysPressed["ArrowDown"];
+			if (ballSpeedX < 0) {
+				return;
+			}
+			// Déplacer la raquette vers la position prédite
+			if (player2Y < ballY) {
+				keysPressed[down] = true;
+				delete keysPressed[up];
+			} else if (player2Y > ballY) {
+				keysPressed[up] = true;
+				delete keysPressed[down];
 			} else {
-				delete keysPressed["ArrowUp"];
-				delete keysPressed["ArrowDown"];
+				delete keysPressed[up];
+				delete keysPressed[down];
 			}
 		}
 
@@ -297,6 +302,8 @@ function initGame() {
 			player1Y = Math.max(0, Math.min(player1Y, canvas.height - paddleHeight));
 			player2Y = Math.max(0, Math.min(player2Y, canvas.height - paddleHeight));
 
+			updateBallSpeed();
+
 			// Move the ball
 			ballX += ballSpeedX;
 			ballY += ballSpeedY;
@@ -311,24 +318,23 @@ function initGame() {
 
 			// Ball collision with paddles
 			if (ballX - ballSize < 20 + paddleWidth && ballY > player1Y && ballY < player1Y + paddleHeight) {
+				ballX = 20 + paddleWidth + ballSize;
 				ballSpeedX = -ballSpeedX;
-				// Ajouter des particules
-				for (let i = 0; i < 20; i++) {
-					particles.push(new Particle(ballX, ballY));
-				}
 			}
 
 			if (ballX + ballSize > canvas.width - 20 - paddleWidth && ballY > player2Y && ballY < player2Y + paddleHeight) {
+				ballX = canvas.width - 20 - paddleWidth - ballSize;
 				ballSpeedX = -ballSpeedX;
-				// Ajouter des particules
-				for (let i = 0; i < 20; i++) {
-					particles.push(new Particle(ballX, ballY));
-				}
 			}
 
-			if (ballX < 0 || ballX > canvas.width) {
-				ballX < 0 ? player2Score++ : player1Score++;
-				ballX < 0 ? (scoreRight.innerHTML = player2Score) : (scoreLeft.innerHTML = player1Score);
+			if (ballX < paddleWidth + 10 || ballX > canvas.width - paddleWidth - 10) {
+				ballX < paddleWidth ? player2Score++ : player1Score++;
+				ballX < paddleWidth ? (scoreRight.innerHTML = player2Score) : (scoreLeft.innerHTML = player1Score);
+
+				for (let i = 0; i < 100; i++) {
+					particles.push(new Particle(ballX, ballY));
+				}
+
 				resetBall();
 			}
 
@@ -505,8 +511,9 @@ function initGame() {
 		function resetBall() {
 			ballX = canvas.width / 2;
 			ballY = canvas.height / 2;
-			ballSpeedX = initialBallSpeed * (Math.random() < 0.5 ? 1 : -1);
-			ballSpeedY = initialBallSpeed * (Math.random() < 0.5 ? 1 : -1);
+			ballSpeedX = initialBallSpeed;
+			ballSpeedY = initialBallSpeed;
+			astSpeedIncrease = Date.now();
 		}
 
 		// Start the game
