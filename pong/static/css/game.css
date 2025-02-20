@@ -152,7 +152,7 @@
 }
 
 #start:hover {
-	transform: rotateX(36deg) translate(-11px, 59px) scale(1.1);
+	transform: rotateX(36deg) translate(-3px, 53px) scale(1.1);
 	filter: drop-shadow(0px 5px 6px white) hue-rotate(0deg);
 }
 
@@ -167,7 +167,7 @@
 }
 
 #options:hover {
-	transform: rotateX(36deg) translate(-20px, 61px) scale(1.1);
+	transform: rotateX(36deg) translate(-12px, 54px) scale(1.1);
 	filter: drop-shadow(0px 5px 6px white) hue-rotate(0deg);
 }
 
@@ -182,7 +182,7 @@
 }
 
 #scores:hover {
-	transform: rotateX(36deg) translate(-3px, 60px) scale(1.1);
+	transform: rotateX(36deg) translate(7px, 55px) scale(1.1);
 	filter: drop-shadow(0px 5px 6px white) hue-rotate(0deg);
 }
 
