@@ -23,6 +23,9 @@
 		<div class="avatar-container">
 			<img src="" alt="avatar" id="avatar-img" style="border-radius: 100%; width: 150px">
 			<div class="righteous" id="avatar-name"></div>
+			<div class="old-button">
+				<a class="pix" onclick="logOut()"><img src="/static/img/exit.png">logout</a>
+			</div>
 		</div>
 		<script>
 			document.addEventListener("DOMContentLoaded", () => {
@@ -36,6 +39,9 @@
 				<h2 class="pix dashboard-heading text">Welcome to your dashboard</h2>
 		</div>
 		<img id="arcade" src="/static/img/gameMachineButtons.png">
+		<div id="gameBtns">
+			<img id="options" onclick="renderStep(1)" src="/static/img/options.png">
+		</div>
 	</div>
 </body>
 </html>
