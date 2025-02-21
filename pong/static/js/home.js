@@ -108,6 +108,11 @@ async function logOut() {
 	execScripts(document.body);
 }
 
+async function logOutDash() {
+	localStorage.clear();
+	window.location.href = "/";
+}
+
 // Handle browser back/forward buttons
 window.addEventListener("popstate", (event) => {
 	// Get the step from the event state, fallback to 0 if not found
