@@ -1,0 +1,70 @@
+.wrap {
+	position: absolute;
+	width: 50%;
+	margin: 0 auto;
+	filter: drop-shadow(2px 2px 15px rgba(255, 255, 255, 0.37));
+}
+
+.wrap-text {
+	position: absolute;
+	color : white;
+}
+
+ul li {
+  line-height: 2;
+  font-weight: bold;
+  font-family: "Press Start 2P", sans-serif;
+  font-size: .85em;
+  text-transform: uppercase;
+  clear: both;
+}
+ul li:before {
+  content: "\2023";
+  padding: 0 1em 0 0;
+}
+
+.bar {
+  background: #ffffff;
+  width: 0;
+  margin: .25em 0;
+  color: #000000;
+  position: relative;
+  transition: width 2s, background .2s;
+  -webkit-transform: translate3d(0, 0, 0);
+  clear: both;
+}
+.bar:nth-of-type(2n) {
+  background: #808080;
+}
+.bar .label {
+  font-size: .75em;
+  padding: 1em;
+  background: #808080;
+  width: 8em;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  font-weight: bold;
+  font-family: "Press Start 2P", sans-serif;
+}
+
+.bar .label.light {
+  background: white;
+}
+
+.count {
+  position: absolute;
+  right: .25em;
+  top: .75em;
+  padding: .15em;
+  font-size: .75em;
+  font-weight: bold;
+  font-family: "Press Start 2P", sans-serif;
+}
+
+#myChart {
+	position: absolute;
+	width: 200px!important;
+	height: 200px!important;
+	filter: drop-shadow(2px 2px 15px rgba(255, 255, 255, 0.37));
+}
