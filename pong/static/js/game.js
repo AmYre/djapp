@@ -36,6 +36,7 @@ function getCookie(name) {
 function initGame() {
 	console.log("INIT GAME");
 	const canvas = document.getElementById("gameCanvas");
+	const start = document.getElementById("start");
 	const versus = document.getElementById("versus");
 	const winner = document.getElementById("gameWin");
 	const tournWin1 = document.getElementById("tournWin1");
@@ -372,10 +373,12 @@ function initGame() {
 						player1Score >= WINNING_SCORE ? state.score2++ : state.score3++;
 						state.winner = sortWinner(state);
 						if (state.winner[0].score == 1) {
+							start.removeAttribute("onclick");
 							winner.textContent = `😣 No Winners 🥺`;
 							winner.style.display = "block";
 							winner.classList.add("text");
 						} else {
+							start.removeAttribute("onclick");
 							p1.textContent = "";
 							p2.textContent = "";
 							p3.textContent = "";
