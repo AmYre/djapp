@@ -43,23 +43,23 @@
 		</div>
 		<div id="dashFrame">
 			<h2 class="pix dashboard-heading">Welcome to your dashboard</h2>
-		</div>
-		<img id="arcade" src="/static/img/gameMachineButtons.png">
-		<div class="wrap-text">
-			<div class="pix text">Most played option : Normal</div>
-			<div class="pix text">Most winned option : Cosmic</div>
-			<div class="pix text">Most lost opponent : Bot</div>
-			<div class="pix text">Most winned opponent : Bibi</div>
-			<div class="pix text">Most played opponent : Barryonic</div>
-		</div>
-		<div class="wrap">
-			<div class="holder">
-				<div class="bar cf" data-percent="85%"><span class="label">Loss</span></div>
-				<div class="bar cf" data-percent="75%"><span class="label light">Wins</span></div>
-				<div class="bar cf" data-percent="65%"><span class="label">Draws</span></div>
+			<div class="wrap-text">
+				<div class="pix text">Most played option : Normal</div>
+				<div class="pix text">Most winned option : Cosmic</div>
+				<div class="pix text">Most lost opponent : Bot</div>
+				<div class="pix text">Most winned opponent : Bibi</div>
+				<div class="pix text">Most played opponent : Barryonic</div>
+			</div>
+			<canvas id="myChart"></canvas>
+			<div class="wrap-bars">
+				<div class="holder">
+					<div class="bar cf" data-percent="85%"><span class="label">Loss</span></div>
+					<div class="bar cf" data-percent="75%"><span class="label light">Wins</span></div>
+					<div class="bar cf" data-percent="65%"><span class="label">Draws</span></div>
+				</div>
 			</div>
 		</div>
-		<canvas id="myChart"></canvas>
+		<img id="arcade" src="/static/img/gameMachineButtons.png">
 		<div id="gameBtns">
 			<img id="options" onclick="renderStep(1)" src="/static/img/options.png">
 		</div>

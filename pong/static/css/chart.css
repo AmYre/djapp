@@ -1,13 +1,25 @@
-.wrap {
-	position: absolute;
-	width: 50%;
-	margin: 0 auto;
-	filter: drop-shadow(2px 2px 15px rgba(255, 255, 255, 0.37));
-}
-
 .wrap-text {
 	position: absolute;
 	color : white;
+	left: 100px;
+    top: 300px;
+}
+
+#myChart {
+	position: absolute;
+    right: 85px;
+    top: 250px;
+    width: 250px !important;
+    height: 250px !important;
+	filter: drop-shadow(2px 2px 15px rgba(255, 255, 255, 0.37));
+}
+
+.wrap-bars {
+	position: absolute;
+    left: 100px;
+    bottom: 60px;
+    width: 80%;
+	filter: drop-shadow(2px 2px 15px rgba(255, 255, 255, 0.37));
 }
 
 ul li {
@@ -60,11 +72,4 @@ ul li:before {
   font-size: .75em;
   font-weight: bold;
   font-family: "Press Start 2P", sans-serif;
-}
-
-#myChart {
-	position: absolute;
-	width: 200px!important;
-	height: 200px!important;
-	filter: drop-shadow(2px 2px 15px rgba(255, 255, 255, 0.37));
 }

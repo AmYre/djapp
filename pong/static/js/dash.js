@@ -16,13 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
 				legend: {
 					labels: {
 						font: {
-							size: 64,
+							size: 32,
 							family: "'Press Start 2P', cursive",
 							weight: "bold",
 						},
 						color: "white",
-						boxWidth: 80, // Largeur du carré
-						boxHeight: 80, // Hauteur du carré
+						boxWidth: 40,
+						boxHeight: 40,
 					},
 				},
 			},
