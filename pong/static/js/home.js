@@ -108,8 +108,12 @@ async function logOut() {
 	execScripts(document.body);
 }
 
-async function logOutDash() {
+function logOutDash() {
 	localStorage.clear();
+	window.location.href = "/";
+}
+
+function optionsDash() {
 	window.location.href = "/";
 }
 
