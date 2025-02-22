@@ -30,7 +30,7 @@
 		<div class="avatar-container">
 			<img src="" alt="avatar" id="avatar-img" style="border-radius: 100%; width: 150px">
 			<div class="righteous" id="avatar-name"></div>
-			<div class="logout-button" onclick="logOut()">
+			<div class="logout-button" onclick="logOutDash()">
 				<img src="/static/img/exit.png">logout
 			</div>
 		</div>
@@ -39,17 +39,14 @@
 				displayAvatar();
 			});
 		</script>
-		<div class="logout-container">
-			<img src="/static/img/logout.png" alt="logoutImg" id="logoutImg" onclick="logOutDash()">
-		</div>
 		<div id="dashFrame">
 			<h2 class="pix dashboard-heading">Welcome to your dashboard</h2>
 			<div class="wrap-text">
-				<div class="pix text">Most played option : Normal</div>
-				<div class="pix text">Most winned option : Cosmic</div>
-				<div class="pix text">Most lost opponent : Bot</div>
-				<div class="pix text">Most winned opponent : Bibi</div>
-				<div class="pix text">Most played opponent : Barryonic</div>
+				<div class="pix text1">Most played option : Normal</div>
+				<div class="pix text2">Most successful option : Cosmic</div>
+				<div class="pix text3">Least successful option : Why?</div>
+				<div class="pix text4">Most played opponent : Bibi</div>
+				<div class="pix text5">Most beaten opponent : Barryonic</div>
 			</div>
 
 			<div class="wrap-balls">

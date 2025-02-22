@@ -33,12 +33,74 @@
 	z-index: 2;
 }
 
-.text {
+.text1 {
+	width: 0; 
+    display: block; 
 	text-transform: uppercase;
 	animation: blink 1s step-end infinite, type 2.5s steps(29) forwards;
 	overflow: hidden;
 	white-space: nowrap;
+	line-height: 30px;
+	text-transform: uppercase;
 }
+
+.text2 {
+	width: 0; 
+    display: block;
+	text-transform: uppercase;
+    opacity: 0;
+	line-height: 30px;
+	animation:
+        blink 1s step-end infinite 2s,
+        type 2.5s steps(29) forwards 0.5s,
+        fadeIn 0.1s linear forwards 0.5s;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.text3 {
+	width: 0; 
+    display: block;
+	text-transform: uppercase;
+    opacity: 0;
+    line-height: 30px;
+	animation:
+        blink 1s step-end infinite 4s,
+        type 2.5s steps(29) forwards 1s,
+        fadeIn 0.1s linear forwards 1s;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.text4 {
+	width: 0; 
+    display: block; 
+	text-transform: uppercase;
+    opacity: 0;
+    line-height: 30px;
+	animation:
+        blink 1s step-end infinite 6s,
+        type 2.5s steps(29) forwards 1.5s,
+        fadeIn 0.1s linear forwards 1.5s;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+
+.text5 {
+	width: 0; 
+    display: block; 
+	text-transform: uppercase;
+    opacity: 0;
+    line-height: 30px;
+	animation:
+        blink 1s step-end infinite 8s,
+        type 2.5s steps(29) forwards 2s,
+        fadeIn 0.1s linear forwards 2s;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
 
 @keyframes blink {
 	50% {
@@ -50,6 +112,18 @@
 	0% {
 		width: 0;
 	}
+	100% {
+        width: 100%; /* Animate to full width */
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 #arcade {
@@ -79,38 +153,8 @@
 	z-index: 2;
 }
 
-.logout-container {
-	position: absolute;
-	top: 1vh;
-	right: 1vw;
-	z-index: 2;
-}
-
-.logout-container img {
-	width: 130px;
-}
-
-.logout-container img:hover {
-	cursor: pointer;
-	animation: wiggle 0.7s infinite;
-}
-
-@keyframes wiggle {
-	0% {
-		transform: rotate(-5deg);
-	}
-	25% {
-		transform: rotate(5deg);
-	}
-	50% {
-		transform: rotate(-5deg);
-	}
-	75% {
-		transform: rotate(5deg);
-	}
-	100% {
-		transform: rotate(-5deg);
-	}
+.avatar-container img {
+	height: 140px;
 }
 
 #options {

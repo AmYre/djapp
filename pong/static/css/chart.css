@@ -24,6 +24,7 @@
 	color : white;
 	left: 100px;
     top: 300px;
+	width: 100%;
 }
 
 #myChart {

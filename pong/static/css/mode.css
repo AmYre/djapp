@@ -53,18 +53,18 @@
 	z-index: 1;
 }
 
-.logout-container {
+.scores-container {
 	position: absolute;
 	top: 1vh;
 	right: 1vw;
 	z-index: 2;
 }
 
-.logout-container img {
+.scores-container img {
 	width: 130px;
 }
 
-.logout-container img:hover {
+.scores-container img:hover {
 	cursor: pointer;
 	animation: wiggle 0.7s infinite;
 }
@@ -504,3 +504,53 @@ form{
     outline: 1px dashed white;
     outline-offset: 4px;
   }
+  
+  
+.logout-button {
+	display: flex;
+	flex-direction: column;
+	font-family: "Righteous", serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+	background: white;
+	padding: 10px;
+	box-shadow: 4px 4px 15px white;
+	transition-property: transform, box-shadow, outline-offset;
+	transition: 100ms ease-in;
+	align-items: center;
+	z-index: 2;
+	margin-top: 10px;
+}
+
+.logout-button {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	padding: 5px;
+	gap: 5px;
+	text-decoration: none;
+	color: black;
+}
+
+.logout-button img {
+	width: 50px;
+	height: 30px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	color: black;
+}
+
+.logout-button:hover {
+	box-shadow: 2px 2px 10px white;
+	cursor: pointer;
+}
+
+.logout-button:focus-visible {
+	outline-offset: 12px;
+	outline: 2px dotted #2f2e2a;
+}
