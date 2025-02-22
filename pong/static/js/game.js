@@ -61,6 +61,9 @@ function initGame() {
 	const ACCELERATION_INTERVAL = 5000; // Accélération toutes les 5 secondes
 	const SPEED_INCREMENT = 1.2; // Facteur d'accélération
 	let lastSpeedIncrease = Date.now();
+	
+	// so ball is thrown in alternating directions
+	let goingRight = Math.random() < 0.5;
 
 	scoreLeft.textContent = 0;
 	scoreRight.textContent = 0;
@@ -181,7 +184,7 @@ function initGame() {
 		let player2Y = (canvas.height - paddleHeight) / 2;
 		let ballX = canvas.width / 2;
 		let ballY = canvas.height / 2;
-		let ballSpeedX = initialBallSpeed;
+		let ballSpeedX = goingRight ? initialBallSpeed : -initialBallSpeed;
 		let ballSpeedY = initialBallSpeed;
 		let player1Score = 0;
 		let player2Score = 0;
@@ -514,9 +517,10 @@ function initGame() {
 		function resetBall() {
 			ballX = canvas.width / 2;
 			ballY = canvas.height / 2;
-			ballSpeedX = initialBallSpeed;
+			goingRight = !goingRight;
+			ballSpeedX = goingRight ? initialBallSpeed : -initialBallSpeed;
 			ballSpeedY = initialBallSpeed;
-			astSpeedIncrease = Date.now();
+			lastSpeedIncrease = Date.now();
 		}
 
 		// Start the game
