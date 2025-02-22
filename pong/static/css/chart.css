@@ -1,15 +1,21 @@
 .wrap-balls{
   position: absolute;
+  right: 123px;
+  top: 260px;
 }
 
 .vertical {
+  font-size: 15px;
   position: absolute;
+  background-color: #ffffff;
   transform: rotate(-90deg);
+  width: 200px;
+  right: 19px;
+  top: 84px;
+  padding: 5px;
 }
 
 #balls{
-    right: 123px;
-    top: 260px;
     filter: drop-shadow(2px 2px 15px rgba(255, 255, 255, 0.37));
 }
 
