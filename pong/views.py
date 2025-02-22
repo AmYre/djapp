@@ -1,15 +1,47 @@
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from .models import User
+from .models import GameStats
 import requests
 
 # Create your views here.
 def home(request):
+	# print(GameStats.objects.all())
 	return render(request, 'home.html')
 
 def dashboard(request):
-	return render(request, 'dashboard.html')
+	game_stats = GameStats.objects.all()
+	botCount = game_stats.filter(mode='bot').count()
+	humanCount = game_stats.filter(mode='human').count()
+	tournCount = game_stats.filter(mode='tourn').count()
+
+	stats = {
+        'total': game_stats.count(),
+        'modes': {
+            'bot': botCount/(botCount+humanCount+tournCount)*100,
+			'human': humanCount/(botCount+humanCount+tournCount)*100,
+			'tourn': tournCount/(botCount+humanCount+tournCount)*100
+        }
+    }
+
+	all_options = [game.options for game in game_stats if game.options]
+	most_played_options = {}
+	if all_options:
+		for game_options in all_options:
+			for key, value in game_options.items():
+				if key not in most_played_options:
+					most_played_options[key] = {}
+				if value not in most_played_options[key]:
+					most_played_options[key][value] = 0
+				most_played_options[key][value] += 1
+
+	most_popular = {}
+	for option_type, values in most_played_options.items():
+		most_popular[option_type] = max(values.items(), key=lambda x: x[1])[0]
+
+	stats['most_played_options'] = most_popular
+
+	return render(request, 'dashboard.html', {'stats': stats})
 
 # def test(request):
 # 	return render(request, 'test.html', {'users': User.objects.all()})

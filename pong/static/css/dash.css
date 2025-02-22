@@ -34,8 +34,8 @@
 }
 
 .text1 {
-	width: 0; 
-    display: block; 
+	width: 0;
+    display: block;
 	text-transform: uppercase;
 	animation: blink 1s step-end infinite, type 2.5s steps(29) forwards;
 	overflow: hidden;
@@ -45,7 +45,7 @@
 }
 
 .text2 {
-	width: 0; 
+	width: 0;
     display: block;
 	text-transform: uppercase;
     opacity: 0;
@@ -59,7 +59,7 @@
 }
 
 .text3 {
-	width: 0; 
+	width: 0;
     display: block;
 	text-transform: uppercase;
     opacity: 0;
@@ -73,8 +73,8 @@
 }
 
 .text4 {
-	width: 0; 
-    display: block; 
+	width: 0;
+    display: block;
 	text-transform: uppercase;
     opacity: 0;
     line-height: 30px;
@@ -86,10 +86,9 @@
 	white-space: nowrap;
 }
 
-
 .text5 {
-	width: 0; 
-    display: block; 
+	width: 0;
+    display: block;
 	text-transform: uppercase;
     opacity: 0;
     line-height: 30px;

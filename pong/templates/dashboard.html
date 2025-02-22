@@ -11,18 +11,21 @@
 	<link rel="stylesheet" href="/static/css/reset.css">
 	<link rel="stylesheet" href="/static/css/home.css">
 	<link rel="stylesheet" href="/static/css/stars.css">
-	<link rel="stylesheet" href="/static/css/chart.css">
-	<link rel="stylesheet" href="/static/css/dashboard.css">
+	<link rel="stylesheet" href="/static/css/charts.css">
+	<link rel="stylesheet" href="/static/css/dash.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 	<script src="/static/js/home.js" defer></script>
 	<script src="/static/js/mode.js" defer></script>
 	<script src="/static/js/dash.js" defer></script>
-	<script src="/static/js/balls.js" defer></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 
 <body>
+	<input type="hidden" id="statsTotal" value="{{ stats.total }}">
+	<input type="hidden" id="statsBot" value="{{ stats.modes.bot }}">
+	<input type="hidden" id="statsHuman" value="{{ stats.modes.human }}">
+	<input type="hidden" id="statsTourn" value="{{ stats.modes.tourn }}">
 	<div id="stars"></div>
 	<div id="stars2"></div>
 	<div id="stars3"></div>
@@ -48,7 +51,7 @@
 				<div class="pix text4">Most played opponent : Bibi</div>
 				<div class="pix text5">Most beaten opponent : Barryonic</div>
 			</div>
-
+			<canvas id="radarChart"></canvas>
 			<div class="wrap-balls">
 				<div style="position: relative;">
 					<div class="pix vertical">
@@ -58,7 +61,7 @@
 					</div>
 				</div>
 			</div>
-			<canvas id="myChart"></canvas>
+			<canvas id="pieChart"></canvas>
 			<div class="wrap-bars">
 				<div class="holder">
 					<div class="bar cf" data-percent="85%"><span class="label">Loss</span></div>

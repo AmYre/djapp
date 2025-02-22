@@ -8,11 +8,11 @@ build:
 	$(DC) build
 
 up:
-	$(DC) up -d --build
+	$(DC) up --build
 
 stop:
 	$(DC) stop
-	
+
 start:
 	$(DC) start
 

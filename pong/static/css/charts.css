@@ -1,3 +1,12 @@
+
+#radarChart {
+	position: absolute;
+	top: 165px;
+  left: 273px;
+	width: 400px!important;
+	height: 400px!important;
+}
+
 .wrap-balls{
   position: absolute;
   right: 123px;
@@ -21,26 +30,28 @@
 
 .wrap-text {
 	position: absolute;
+  font-size: 13px;
 	color : white;
-	left: 100px;
-    top: 300px;
 	width: 100%;
+  left: 270px;
+  bottom: 47px;
 }
 
-#myChart {
+#pieChart {
 	position: absolute;
-    right: 85px;
-    bottom: 55px;
-    width: 180px !important;
-    height: 180px !important;
+  right: 85px;
+  bottom: 55px;
+  width: 180px !important;
+  height: 180px !important;
 	filter: drop-shadow(2px 2px 15px rgba(255, 255, 255, 0.37));
 }
 
 .wrap-bars {
   position: absolute;
-  left: 100px;
-  bottom: 60px;
+  left: -123px;
+  bottom: 273px;
   width: 60%;
+  transform: rotate(-90deg);
   filter: drop-shadow(2px 2px 15px rgba(255, 255, 255, 0.37));
 }
 
