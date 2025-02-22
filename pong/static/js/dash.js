@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				legend: {
 					labels: {
 						font: {
-							size: 32,
+							size: 58,
 							family: "'Press Start 2P', cursive",
 							weight: "bold",
 						},

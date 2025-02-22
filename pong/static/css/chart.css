@@ -1,3 +1,18 @@
+.wrap-balls{
+  position: absolute;
+}
+
+.vertical {
+  position: absolute;
+  transform: rotate(-90deg);
+}
+
+#balls{
+    right: 123px;
+    top: 260px;
+    filter: drop-shadow(2px 2px 15px rgba(255, 255, 255, 0.37));
+}
+
 .wrap-text {
 	position: absolute;
 	color : white;
@@ -8,18 +23,18 @@
 #myChart {
 	position: absolute;
     right: 85px;
-    top: 250px;
-    width: 250px !important;
-    height: 250px !important;
+    bottom: 55px;
+    width: 180px !important;
+    height: 180px !important;
 	filter: drop-shadow(2px 2px 15px rgba(255, 255, 255, 0.37));
 }
 
 .wrap-bars {
-	position: absolute;
-    left: 100px;
-    bottom: 60px;
-    width: 80%;
-	filter: drop-shadow(2px 2px 15px rgba(255, 255, 255, 0.37));
+  position: absolute;
+  left: 100px;
+  bottom: 60px;
+  width: 60%;
+  filter: drop-shadow(2px 2px 15px rgba(255, 255, 255, 0.37));
 }
 
 ul li {
