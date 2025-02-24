@@ -61,7 +61,7 @@ function initGame() {
 	const ACCELERATION_INTERVAL = 5000; // Accélération toutes les 5 secondes
 	const SPEED_INCREMENT = 1.2; // Facteur d'accélération
 	let lastSpeedIncrease = Date.now();
-	
+
 	// so ball is thrown in alternating directions
 	let goingRight = Math.random() < 0.5;
 
@@ -186,9 +186,13 @@ function initGame() {
 		let ballY = canvas.height / 2;
 		let ballSpeedX = goingRight ? initialBallSpeed : -initialBallSpeed;
 		let ballSpeedY = initialBallSpeed;
+		let ballAIX = ballX;
+		let ballAIY = ballY;
+		let ballSpeedAIY = ballSpeedY;
 		let player1Score = 0;
 		let player2Score = 0;
 		let lastAIUpdate = 0;
+		let lastAIReaction = 0;
 		const AI_UPDATE_INTERVAL = 1000; // 1 seconde
 		const WINNING_SCORE = 5;
 		let gameOver = false;
@@ -197,10 +201,19 @@ function initGame() {
 		let keysPressed = {};
 
 		document.addEventListener("keydown", (event) => {
-			keysPressed[event.key] = true;
+			// If in bot mode, only allow player 1 controls (w/s) and space
+			if (state.mode === "bot") {
+				if (event.key === w || event.key === s || event.key === " ") {
+					keysPressed[event.key] = true;
+				}
+			} else {
+				// In other modes, allow all controls
+				keysPressed[event.key] = true;
+			}
 		});
 
 		document.addEventListener("keyup", (event) => {
+			// Always allow key releases to prevent stuck keys
 			delete keysPressed[event.key];
 		});
 
@@ -249,23 +262,67 @@ function initGame() {
 			}
 		}
 
-		function updateAI() {
+		function updateBallAI() {
 			const currentTime = Date.now();
 			if (currentTime - lastAIUpdate < AI_UPDATE_INTERVAL) {
 				return;
 			}
+			console.log("AI update");
 			lastAIUpdate = currentTime;
+			ballAIX = ballX;
+			ballAIY = ballY;
+			ballSpeedAIY = ballSpeedY;
+		}
 
-			if (ballSpeedX < 0) {
+		function updateAI() {
+			const humanReaction = Date.now();
+			if (humanReaction - lastAIReaction < 400) {
 				return;
 			}
-			// Déplacer la raquette vers la position prédite
-			if (player2Y < ballY) {
-				keysPressed[down] = true;
+			console.log("AI reaction");
+			lastAIReaction = humanReaction;
+			if (ballSpeedX < 0 || ballX < canvas.width / 2) {
 				delete keysPressed[up];
-			} else if (player2Y > ballY) {
-				keysPressed[up] = true;
 				delete keysPressed[down];
+				return;
+			}
+
+			let predictX = ballAIX;
+			let predictY = ballAIY;
+			let predictSpeedY = ballSpeedAIY;
+
+			// Add some randomness to the prediction
+			const randomError = (Math.random() - 0.5) * canvas.height * 0.15; // 15% random error
+
+			// Calculate if the ball is close to the AI paddle
+			const isClose = canvas.width - paddleWidth - predictX < canvas.width * 0.3; // within 30% of canvas width
+
+			// Predict trajectory
+			while (predictX < canvas.width - paddleWidth - 20) {
+				predictX += ballSpeedX;
+				predictY += predictSpeedY;
+
+				if (predictY <= ballSize || predictY >= canvas.height - ballSize) {
+					predictSpeedY = -predictSpeedY;
+				}
+			}
+
+			// Apply error to prediction if ball is far, be more precise when close
+			const targetY = isClose ? predictY : predictY + randomError;
+
+			// Add deadzone to prevent shaking, smaller when ball is close
+			const deadzone = isClose ? paddleHeight / 8 : paddleHeight / 3;
+			const currentCenter = player2Y + paddleHeight / 2;
+			const distanceToTarget = targetY - currentCenter;
+
+			if (Math.abs(distanceToTarget) > deadzone) {
+				if (distanceToTarget > 0) {
+					keysPressed[down] = true;
+					delete keysPressed[up];
+				} else {
+					keysPressed[up] = true;
+					delete keysPressed[down];
+				}
 			} else {
 				delete keysPressed[up];
 				delete keysPressed[down];
@@ -276,6 +333,7 @@ function initGame() {
 			if (!gameOver) {
 				requestAnimationFrame(gameLoop);
 				update();
+				updateBallAI();
 				if (state.mode === "bot") updateAI();
 				draw();
 			}
@@ -300,8 +358,21 @@ function initGame() {
 
 			if (keysPressed[w]) player1Y -= paddleSpeed;
 			if (keysPressed[s]) player1Y += paddleSpeed;
-			if (keysPressed[up]) player2Y -= paddleSpeed;
-			if (keysPressed[down]) player2Y += paddleSpeed;
+			if (state.mode === "bot") {
+				// Only use AI-set keys
+				if (keysPressed[up]) player2Y -= paddleSpeed;
+				if (keysPressed[down]) player2Y += paddleSpeed;
+				// Clear any human keyboard input for player 2
+				document.addEventListener("keydown", (event) => {
+					if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+						event.preventDefault();
+					}
+				});
+			} else {
+				// Normal player 2 controls
+				if (keysPressed[up]) player2Y -= paddleSpeed;
+				if (keysPressed[down]) player2Y += paddleSpeed;
+			}
 
 			player1Y = Math.max(0, Math.min(player1Y, canvas.height - paddleHeight));
 			player2Y = Math.max(0, Math.min(player2Y, canvas.height - paddleHeight));

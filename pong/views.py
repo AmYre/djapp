@@ -10,19 +10,30 @@ def home(request):
 	return render(request, 'home.html')
 
 def dashboard(request):
+	user = request.GET.get('user')
 	game_stats = GameStats.objects.all()
 	botCount = game_stats.filter(mode='bot').count()
 	humanCount = game_stats.filter(mode='human').count()
 	tournCount = game_stats.filter(mode='tourn').count()
 
-	stats = {
-        'total': game_stats.count(),
-        'modes': {
-            'bot': botCount/(botCount+humanCount+tournCount)*100,
-			'human': humanCount/(botCount+humanCount+tournCount)*100,
-			'tourn': tournCount/(botCount+humanCount+tournCount)*100
-        }
-    }
+	if (botCount+humanCount+tournCount) == 0:
+		stats = {
+			'total': 0,
+			'modes': {
+				'bot': 0,
+				'human': 0,
+				'tourn': 0
+			}
+		}
+	else:
+		stats = {
+			'total': game_stats.count(),
+			'modes': {
+				'bot': botCount/(botCount+humanCount+tournCount)*100,
+				'human': humanCount/(botCount+humanCount+tournCount)*100,
+				'tourn': tournCount/(botCount+humanCount+tournCount)*100
+			}
+		}
 
 	all_options = [game.options for game in game_stats if game.options]
 	most_played_options = {}

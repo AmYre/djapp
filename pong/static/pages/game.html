@@ -9,7 +9,7 @@
 		<div class="righteous" id="avatar-name"></div>
 		<div class="logout-button" onclick="logOut()">
 			<img src="/static/img/exit.png">logout
-		</div>	
+		</div>
 	</div>
 	<script>
 		displayAvatar();
@@ -37,11 +37,16 @@
 		</div>
 	</div>
 	<div id="gameBtns">
-		<a href="/dashboard">
+		<a id="dashLogin" href="">
 			<img id="scores" src="static/img/scores.png">
 		</a>
 		<img id="start" onclick="initGame()" src="static/img/start.png">
 		<img id="options" onclick="renderStep(1)" src="static/img/options.png">
 	</div>
+	<script>
+		let user = JSON.parse(localStorage.getItem("user"));
+		console.log("HEEERE", user);
+		document.getElementById("dashLogin").href = `/dashboard/?user=${user.login}`;
+	</script>
 </div>
 </div>

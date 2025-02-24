@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	let statsHuman = document.getElementById("statsHuman").value;
 	let statsTourn = document.getElementById("statsTourn").value;
 
-	console.log("sttbooot", statsBot);
 	var pieChart = new Chart(ctxPie, {
 		type: "pie",
 		data: {
