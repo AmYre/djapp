@@ -23,8 +23,8 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
 	path('api/token/', api.token, name='token'),
 	path('api/dash/', api.dash, name='dash'),
+	path('api/verify_tournament/', api.verify_tournament, name='verify_tournament'),
 	path("__reload__/", include("django_browser_reload.urls")),
-	path('api/verify-tournament/<int:tournament_id>/', views.verify_tournament, name='verify_tournament'),
 ]
 
 # tournament path:

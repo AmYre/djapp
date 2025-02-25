@@ -4,6 +4,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ValidationError
 from .models import GameStats
+from web3 import Web3
+import json
+from django.http import JsonResponse
 
 import requests
 
@@ -86,3 +89,42 @@ def dash(request):
             {'error': 'An error occurred while saving game stats'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
+
+@api_view(['GET'])
+def verify_tournament(request):
+	# Connect to local blockchain
+	w3 = Web3(Web3.HTTPProvider('http://127.0.0.1:8545'))
+
+	# Contract info
+	contract_address = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512'
+
+	# Get ABI from your contract JSON
+	with open('blockchain/artifacts/contracts/TournamentScore.sol/TournamentScore.json') as f:
+		contract_json = json.load(f)
+		contract_abi = contract_json['abi']
+
+	# Create contract instance
+	contract = w3.eth.contract(address=contract_address, abi=contract_abi)
+
+	try:
+		# Get tournament data from blockchain
+		tournament = contract.functions.getTournament(tournament_id).call()
+		
+		return JsonResponse({
+			'verified': True,
+			'tournament': {
+				'winner': tournament[0],
+				'winnerScore': tournament[1],
+				'secondPlace': tournament[2],
+				'secondScore': tournament[3],
+				'thirdPlace': tournament[4],
+				'thirdScore': tournament[5],
+				'timestamp': tournament[6]
+			}
+		})
+	except Exception as e:
+		return JsonResponse({
+			'verified': False,
+			'error': str(e)
+		}, status=400)
+		

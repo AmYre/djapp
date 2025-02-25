@@ -3,7 +3,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from .models import GameStats
 import requests
-from web3 import Web3
 from django.conf import settings
 
 # Create your views here.
