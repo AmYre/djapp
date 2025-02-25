@@ -481,25 +481,47 @@ function initGame() {
 							}, 2000);
 						}
 						versus.textContent = "Game Over";
-						fetch("/api/dash/", {
-							method: "POST",
-							headers: {
-								"Content-Type": "application/json",
-								"X-CSRFToken": getCookie("csrftoken"),
-							},
-							body: JSON.stringify({
-								stats: {
-									user: state.user.login,
-									score: state.score,
-									user2: state.user2,
-									score2: state.score2,
-									user3: state.user3,
-									score3: state.score3,
-									mode: state.mode,
-									options: state.options,
+						try {
+							// First record to backend
+							fetch("/api/dash/", {
+								method: "POST",
+								headers: {
+									"Content-Type": "application/json",
+									"X-CSRFToken": getCookie("csrftoken"),
 								},
-							}),
-						});
+								body: JSON.stringify({
+									stats: {
+										user: state.user.login,
+										score: state.score,
+										user2: state.user2,
+										score2: state.score2,
+										user3: state.user3,
+										score3: state.score3,
+										mode: state.mode,
+										options: state.options,
+									},
+								}),
+							});
+							try {
+								blockchainManager.recordTournamentScore(
+									state.winner[0].player,
+									state.winner[0].score,
+									state.winner[1].player,
+									state.winner[1].score,
+									state.winner[2].player,
+									state.winner[2].score
+								);
+								
+								// This will print the tournament data to console
+								const tournaments = blockchainManager.getAllTournaments();
+								console.log("All tournament records:");
+								console.table(tournaments);
+							} catch (error) {
+								console.error("Failed to record tournament:", error);
+							}
+						} catch (error) {
+							console.error("Error recording tournament results:", error);
+						}
 						console.log("stats sent");
 						state.game = 0;
 						state.score = 0;

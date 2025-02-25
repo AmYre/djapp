@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.urls import path, include
 from . import views
-from pong import api
+from . import api
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -24,4 +24,10 @@ urlpatterns = [
 	path('api/token/', api.token, name='token'),
 	path('api/dash/', api.dash, name='dash'),
 	path("__reload__/", include("django_browser_reload.urls")),
+	path('api/verify-tournament/<int:tournament_id>/', views.verify_tournament, name='verify_tournament'),
 ]
+
+# tournament path:
+#1. The verify-tournament endpoint will be accessible at `/api/verify-tournament/<tournament_id>/`
+#2. It's properly scoped to the pong app
+#3. It's included in the main URL configuration through the include in urls.py
