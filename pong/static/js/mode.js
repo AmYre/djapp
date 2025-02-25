@@ -43,7 +43,7 @@ function handleModeForm(form) {
 }
 
 function displayAvatar() {
-	const user = JSON.parse(localStorage.getItem("user"));
+	var user = JSON.parse(localStorage.getItem("user"));
 	const avatar = document.getElementById("avatar-img");
 	avatar.src = user.image.link;
 
@@ -72,7 +72,7 @@ function displayOptions() {
 			} else if (e.target.value == 75) {
 				e.target.nextElementSibling.textContent = "Quick";
 			} else if (e.target.value == 100) {
-				e.target.nextElementSibling.textContent = "Lightning";
+				e.target.nextElementSibling.textContent = "Flash";
 			}
 		});
 	});

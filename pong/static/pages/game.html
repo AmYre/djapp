@@ -44,9 +44,9 @@
 		<img id="options" onclick="renderStep(1)" src="static/img/options.png">
 	</div>
 	<script>
-		let user = JSON.parse(localStorage.getItem("user"));
+		var userG = JSON.parse(localStorage.getItem("user"));
 		console.log("HEEERE", user);
-		document.getElementById("dashLogin").href = `/dashboard/?user=${user.login}`;
+		document.getElementById("dashLogin").href = `/dashboard/?user=${userG.login}`;
 	</script>
 </div>
 </div>

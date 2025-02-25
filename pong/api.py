@@ -48,7 +48,7 @@ def dash(request):
             )
 
         # Validate required fields
-        required_fields = ['user', 'score', 'score2', 'score3', 'mode', 'options']
+        required_fields = ['user', 'score', 'user2', 'score2', 'user3', 'score3', 'mode', 'options']
         missing_fields = [field for field in required_fields if field not in stats]
 
         if missing_fields:
@@ -61,7 +61,9 @@ def dash(request):
         game_stats = GameStats.objects.create(
             user=stats['user'],
             score=stats['score'],
+            user2=stats['user2'],
             score2=stats['score2'],
+            user3=stats['user3'],
             score3=stats['score3'],
             mode=stats['mode'],
             options=stats['options']

@@ -22,9 +22,8 @@
 		</a>
 	</div>
 	<script>
-		let user = JSON.parse(localStorage.getItem("user"));
-		console.log("HOOOOORE", user.login);
-		document.getElementById("dashUser").href = `/dashboard/?user=${user.login}`;
+		var userM = JSON.parse(localStorage.getItem("user"));
+		document.getElementById("dashUser").href = `/dashboard/?user=${userM.login}`;
 	</script>
 	<div id="image-format">
 		<div class="image-container">

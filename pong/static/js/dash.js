@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+	// ################### PIE CHART ###################
 	var ctxPie = document.getElementById("pieChart").getContext("2d");
-	// read value from hidden input
 
 	let statsBot = document.getElementById("statsBot").value;
 	let statsHuman = document.getElementById("statsHuman").value;
@@ -34,12 +34,22 @@ document.addEventListener("DOMContentLoaded", function () {
 			},
 		},
 	});
+	// ################### BAR CHART ###################
+
+	// let statsWin = document.getElementById("statsWins").value;
+	// let statsLoss = document.getElementById("statsLosses").value;
+	// let statsDraw = document.getElementById("statsDraws").value;
+
+	// document.getElementById("barWin").setAttribute("data-percent", statsWin);
+	// document.getElementById("barLoss").setAttribute("data-percent", statsLoss);
+	// document.getElementById("barDraw").setAttribute("data-percent", statsDraw);
 
 	setTimeout(function start() {
 		$(".bar").each(function (i) {
 			var $bar = $(this);
 			$(this).append('<span class="count"></span>');
 			setTimeout(function () {
+				$bar.css("min-width", 140);
 				$bar.css("width", $bar.attr("data-percent"));
 			}, i * 100);
 		});
