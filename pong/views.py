@@ -86,10 +86,14 @@ def calculate_radar_values(user_games):
                 defense_count += 1
 
         # WAR - Calculate SpaceWars usage
+        # Count every game
+        spacewars_total += 1
+
+        # Check if spacewars exists in options
         if game.options and 'spacewars' in game.options:
-            spacewars_total += 1
-            if game.options['spacewars'] == 'on':
-                spacewars_count += 1
+            # If it exists, it's enabled
+            spacewars_count += 1
+            print(f"Found game with spacewars enabled")
 
         # ACCURACY - Calculate paddle height usage (inverse scale)
         if game.options and 'pheight' in game.options:
@@ -126,6 +130,7 @@ def calculate_radar_values(user_games):
 
     if spacewars_total > 0:
         radar_data['War'] = (spacewars_count / spacewars_total) * 100
+        print(f"WAR calculation: {spacewars_count}/{spacewars_total} = {radar_data['War']}%")
 
     if accuracy_count > 0:
         radar_data['Accuracy'] = accuracy_sum / accuracy_count

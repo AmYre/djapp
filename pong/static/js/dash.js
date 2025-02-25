@@ -36,14 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 	// ################### BAR CHART ###################
 
-	// let statsWin = document.getElementById("statsWins").value;
-	// let statsLoss = document.getElementById("statsLosses").value;
-	// let statsDraw = document.getElementById("statsDraws").value;
-
-	// document.getElementById("barWin").setAttribute("data-percent", statsWin);
-	// document.getElementById("barLoss").setAttribute("data-percent", statsLoss);
-	// document.getElementById("barDraw").setAttribute("data-percent", statsDraw);
-
 	setTimeout(function start() {
 		$(".bar").each(function (i) {
 			var $bar = $(this);
@@ -191,6 +183,15 @@ document.addEventListener("DOMContentLoaded", function () {
 	// ################### RADAR OPTIONS ###################
 	const ctxRadar = document.getElementById("radarChart").getContext("2d");
 
+	const statSpeed = document.getElementById("statsSpeed").value;
+	const statAttack = document.getElementById("statsAttack").value;
+	const statDefense = document.getElementById("statsDefense").value;
+	const statWar = document.getElementById("statsWar").value;
+	const statAccuracy = document.getElementById("statsAccuracy").value;
+	const statMadness = document.getElementById("statsMadness").value;
+
+	console.log(statSpeed, statAttack, statDefense, statWar, statAccuracy, statMadness);
+
 	// Create the radar chart
 	new Chart(ctxRadar, {
 		type: "radar",
@@ -198,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			labels: ["Speed", "Attack", "Defense", "War", "Accuracy", "Madness"],
 			datasets: [
 				{
-					data: [85, 72, 65, 90, 55, 78],
+					data: [statSpeed, statAttack, statDefense, statWar, statAccuracy, statMadness],
 					fill: true,
 					backgroundColor: "rgba(255, 255, 255, 0.2)",
 					borderColor: "rgb(255, 255, 255)",
