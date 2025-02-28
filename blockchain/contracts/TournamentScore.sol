@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.28;
 
 contract TournamentScore {
     struct Tournament {
         string winner;
-        string score;
+        string winnerScore;  // Changed to string to match function parameters
         string secondPlace;
-        uint256 secondScore;
+        string secondScore;  // Changed to string
         string thirdPlace;
-        uint256 thirdScore;
+        string thirdScore;   // Changed to string
         uint256 timestamp;
     }
 
@@ -16,11 +16,11 @@ contract TournamentScore {
     
     function recordTournament(
         string memory _winner,
-        uint256 _winnerScore,
+        string memory _winnerScore,  // Changed to string memory
         string memory _secondPlace,
-        uint256 _secondScore,
+        string memory _secondScore,   // Changed to string memory
         string memory _thirdPlace,
-        uint256 _thirdScore
+        string memory _thirdScore     // Changed to string memory
     ) public {
         tournaments.push(Tournament(
             _winner,
@@ -39,11 +39,11 @@ contract TournamentScore {
 
     function getTournament(uint256 index) public view returns (
         string memory,
-        uint256,
+        string memory,  // Changed return type to string
         string memory,
-        uint256,
+        string memory,  // Changed return type to string
         string memory,
-        uint256,
+        string memory,  // Changed return type to string
         uint256
     ) {
         Tournament memory t = tournaments[index];

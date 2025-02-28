@@ -1,19 +1,27 @@
 const hre = require("hardhat");
+const fs = require('fs');
+const path = require('path');
 
 async function main() {
-  // Get the contract factory
   const TournamentScore = await hre.ethers.getContractFactory("TournamentScore");
-  
-  // Deploy the contract
   const tournamentScore = await TournamentScore.deploy();
-  
-  // Wait for the contract to be deployed
   await tournamentScore.waitForDeployment();
-
-  // Get the contract address
-  const address = await tournamentScore.getAddress();
   
+  const address = await tournamentScore.getAddress();
   console.log("TournamentScore deployed to:", address);
+
+  // Save contract address to a JSON file
+  const contractData = {
+    address: address,
+    timestamp: new Date().toISOString()
+  };
+
+  // Save in both blockchain directory and pong static directory
+  const blockchainPath = path.join(__dirname, '../contractAddress.json');
+  const staticPath = path.join(__dirname, '../../pong/static/contractAddress.json');
+  
+  fs.writeFileSync(blockchainPath, JSON.stringify(contractData, null, 2));
+  fs.writeFileSync(staticPath, JSON.stringify(contractData, null, 2));
 }
 
 main()

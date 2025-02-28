@@ -1,45 +1,9 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/home/lbarry/transcending/jangoing/blockchain/contracts/Lock.sol": {
-      "lastModificationDate": 1740434738886,
-      "contentHash": "7eee587c347fe6b1de50c96688cb9477",
-      "sourceName": "contracts/Lock.sol",
-      "solcConfig": {
-        "version": "0.8.28",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.28"
-      ],
-      "artifacts": [
-        "Lock"
-      ]
-    },
     "/home/lbarry/transcending/jangoing/blockchain/contracts/TournamentScore.sol": {
-      "lastModificationDate": 1740438164787,
-      "contentHash": "59563b0414c695496f4ee9ae4c3c7b3c",
+      "lastModificationDate": 1740765912624,
+      "contentHash": "fc6c8bf4a2c925aa4f864af427aa31cf",
       "sourceName": "contracts/TournamentScore.sol",
       "solcConfig": {
         "version": "0.8.28",
@@ -67,7 +31,7 @@
       },
       "imports": [],
       "versionPragmas": [
-        "^0.8.0"
+        "^0.8.28"
       ],
       "artifacts": [
         "TournamentScore"

@@ -3,7 +3,17 @@ class BlockchainManager {
         this.web3 = null;
         this.contract = null;
         this.contractAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
-        //this.initialize();
+    }
+	
+	async getContractAddress() {
+        try {
+            const response = await fetch('/static/contractAddress.json');
+            const data = await response.json();
+            return data.address;
+        } catch (error) {
+            console.error("Failed to fetch contract address:", error);
+            return null;
+        }
     }
 
 	async initialize() {
@@ -15,6 +25,12 @@ class BlockchainManager {
 		return;
 	}
 		try {
+			// Get contract address first
+			this.contractAddress = await this.getContractAddress();
+			if (!this.contractAddress) {
+				throw new Error("Could not get contract address");
+			}
+			
 			// Request account access
 			await ethereum.request({ method: 'eth_requestAccounts' });
 			this.web3 = new Web3(ethereum);
@@ -24,14 +40,32 @@ class BlockchainManager {
 			console.log("Is MetaMask:", ethereum.isMetaMask);
 			console.log("Selected network:", await this.web3.eth.net.getId());
 			
+			// Added proper event listeners and handlers for account and network changes
+			// error handling and state management 
+			ethereum.on('disconnect', (error) => {
+				console.log('MetaMask disconnected:', error);
+				this.web3 = null;
+				this.contract = null;
+			});
+
+			ethereum.on('accountsChanged', (accounts) => {
+				console.log('Account changed:', accounts[0]);
+				this.initialize();
+			});
+
+			ethereum.on('chainChanged', (chainId) => {
+				console.log('Network changed:', chainId);
+				window.location.reload();
+			});
+
 			await this.initializeContract();
 			console.log("Blockchain Manager initialized successfully");
-			
+
 			const accountInfo = await this.getAccountInfo();
 			console.log("Connected account:", accountInfo);
-		} catch (error) {
+			} catch (error) {
 			console.error("Failed to initialize BlockchainManager:", error);
-		}
+			}
 	}
 
     initializeContract() {
@@ -40,12 +74,12 @@ class BlockchainManager {
             "name": "getTournament",
             "outputs": [
                 {"internalType": "string", "name": "", "type": "string"},
-                {"internalType": "uint256", "name": "", "type": "uint256"},
                 {"internalType": "string", "name": "", "type": "string"},
-                {"internalType": "uint256", "name": "", "type": "uint256"},
                 {"internalType": "string", "name": "", "type": "string"},
-                {"internalType": "uint256", "name": "", "type": "uint256"},
-                {"internalType": "uint256", "name": "", "type": "uint256"}
+                {"internalType": "string", "name": "", "type": "string"},
+                {"internalType": "string", "name": "", "type": "string"},
+                {"internalType": "string", "name": "", "type": "string"},
+                {"internalType": "uint256", "name": "", "type": "uint256"} // timestamp only non-string variable
             ],
             "stateMutability": "view",
             "type": "function"
@@ -60,17 +94,17 @@ class BlockchainManager {
         {
             "inputs": [
                 {"internalType": "string", "name": "_winner", "type": "string"},
-                {"internalType": "uint256", "name": "_winnerScore", "type": "uint256"},
+                {"internalType": "string", "name": "_winnerScore", "type": "string"},
                 {"internalType": "string", "name": "_secondPlace", "type": "string"},
-                {"internalType": "uint256", "name": "_secondScore", "type": "uint256"},
+                {"internalType": "string", "name": "_secondScore", "type": "string"},
                 {"internalType": "string", "name": "_thirdPlace", "type": "string"},
-                {"internalType": "uint256", "name": "_thirdScore", "type": "uint256"}
+                {"internalType": "string", "name": "_thirdScore", "type": "string"}
             ],
             "name": "recordTournament",
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
-        }]; // Add your contract ABI here
+        }]; 
         this.contract = new this.web3.eth.Contract(contractABI, this.contractAddress);
     }
 
@@ -82,13 +116,44 @@ class BlockchainManager {
 
         try {
             const accounts = await this.web3.eth.getAccounts();
+			if (!accounts || accounts.length === 0) {
+				throw new Error("No accounts available");
+			}
+			
+			// Estimate gas first
+			const gasEstimate = await this.contract.methods.recordTournament(
+				winner.toString(),
+				winnerScore.toString(),
+				secondPlace.toString(),
+				secondScore.toString(),
+				thirdPlace.toString(),
+				thirdScore.toString()
+			).estimateGas({ from: accounts[0] });
+	
+			// Add 20% buffer to gas estimate
+			const gasLimit = Math.ceil(gasEstimate * 1.2);
+			console.log("Gas estimate:", gasEstimate, "Gas limit:", gasLimit);
+			// console log if transaction should pass or fail
+			const balance = await this.web3.eth.getBalance(accounts[0]);
+			const gasPrice = await this.web3.eth.getGasPrice();
+			const gasCost = gasPrice * gasLimit;
+			const ethCost = this.web3.utils.fromWei(gasCost, 'ether');
+			console.log("Account balance:", this.web3.utils.fromWei(balance, 'ether'), "ETH");
+			console.log("Gas price:", this.web3.utils.fromWei(gasPrice, 'gwei'), "Gwei");
+			console.log("Gas cost:", ethCost, "ETH");
+			if (balance < gasCost) {
+				throw new Error("Insufficient funds to cover gas cost");
+			}
+			else 
+				console.log("Sufficient funds to cover gas cost");
+					
             const result = await this.contract.methods.recordTournament(
                 winner,
-                winnerScore,
+                winnerScore.toString(),
                 secondPlace,
-                secondScore,
+                secondScore.toString(),
                 thirdPlace,
-                thirdScore
+                thirdScore.toString()
             ).send({ from: accounts[0] });
             
             console.log("Tournament recorded to blockchain:", result);

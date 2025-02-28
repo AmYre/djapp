@@ -9,11 +9,15 @@ module.exports = {
       mining: {
         auto: true,
         interval: 0 // Mine blocks instantly (0) or set a specific interval in milliseconds
-      }
+      },
+	  gas: 2100000,
+	  gasPrice: 8000000000
     },
     localhost: {
       url: "http://127.0.0.1:8545",
       chainId: 1337,
+	  gas: 2100000,
+	  gasPrice: 8000000000
       // Accounts are automatically provided by Hardhat
     }
   },
