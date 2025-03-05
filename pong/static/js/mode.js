@@ -9,37 +9,76 @@ function displayPlayer1() {
 	p1t.innerHTML = state.user?.login;
 }
 
+function getCookie(name) {
+	let cookieValue = null;
+	if (document.cookie && document.cookie !== "") {
+		const cookies = document.cookie.split(";");
+		for (let i = 0; i < cookies.length; i++) {
+			const cookie = cookies[i].trim();
+			if (cookie.substring(0, name.length + 1) === name + "=") {
+				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+				break;
+			}
+		}
+	}
+	return cookieValue;
+}
+
 function handleModeForm(form) {
 	const formData = new FormData(form);
 	const values = Object.fromEntries(formData.entries());
 	console.log("Form values:", values);
 
-	const cards = document.getElementById("image-format");
-	cards.classList.add("shrink");
+	fetch("/api/validate/", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			"X-CSRFToken": getCookie("csrftoken"),
+		},
+		body: JSON.stringify(values),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			if (data.valid) {
+				const cards = document.getElementById("image-format");
+				cards.classList.add("shrink");
 
-	if (values.mode == "bot") {
-		const zoom = document.getElementById("hd-zoom");
-		zoom.style.display = "block";
-		zoom.classList.add("zoom1");
-	} else if (values.mode == "human") {
-		const zoom = document.getElementById("hd-zoom");
-		zoom.style.display = "block";
-		zoom.classList.add("zoom2");
-	} else if (values.mode == "tourn") {
-		const zoom = document.getElementById("hd-zoom");
-		zoom.style.display = "block";
-		zoom.classList.add("zoom3");
-	}
-
-	setTimeout(() => {
-		updateState({
-			currentStep: 2,
-			user2: values.p2,
-			user3: values.p3,
-			mode: values.mode,
-			options: { bspeed: values.bspeed, bsize: values.bsize, pheight: values.pheight, pspeed: values.pspeed, spacewars: values.spacewars },
+				if (values.mode == "bot") {
+					const zoom = document.getElementById("hd-zoom");
+					zoom.style.display = "block";
+					zoom.classList.add("zoom1");
+				} else if (values.mode == "human") {
+					const zoom = document.getElementById("hd-zoom");
+					zoom.style.display = "block";
+					zoom.classList.add("zoom2");
+				} else if (values.mode == "tourn") {
+					const zoom = document.getElementById("hd-zoom");
+					zoom.style.display = "block";
+					zoom.classList.add("zoom3");
+				}
+				setTimeout(() => {
+					updateState({
+						currentStep: 2,
+						user2: data.validated_data.p2,
+						user3: data.validated_data.p3,
+						mode: data.validated_data.mode,
+						options: {
+							bspeed: data.validated_data.bspeed,
+							bsize: data.validated_data.bsize,
+							pheight: data.validated_data.pheight,
+							pspeed: data.validated_data.pspeed,
+							spacewars: data.validated_data.spacewars,
+						},
+					});
+				}, 1800);
+			} else {
+				// Afficher les erreurs
+				alert("Erreur de validation: " + data.errors.join(", "));
+			}
+		})
+		.catch((error) => {
+			console.error("Error:", error);
 		});
-	}, 1800);
 }
 
 function displayAvatar() {

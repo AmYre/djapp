@@ -3,7 +3,7 @@
 
 <head>
 	<title>Pong</title>
-	<link rel="icon" href="/static/img/42.png" type="image/x-icon">
+	<link rel="icon" href="/static/img/favi.jpg" type="image/x-icon">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Press+Start+2P&family=Righteous&display=swap"
@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="/static/css/stars.css">
 	<link rel="stylesheet" href="/static/css/carousel.css">
 	<script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
-    <script src="/static/js/blockchain.js"></script>
+	<script src="/static/js/blockchain.js"></script>
 	<script src="/static/js/home.js" defer></script>
 	<script src="/static/js/login.js" defer></script>
 	<script src="/static/js/mode.js" defer></script>
@@ -28,11 +28,10 @@
 
 	<div class="home-container">
 		<div class="heading-container">
-			<h1 class="monoton heading">world of pong</h1>
-			<h2 class="pix pulsar subheading">TRANSCENDANCE EDITION</h2>
+			<h1 class="monoton heading" id="homeTitle">world of pong</h1>
+			<h2 class="pix pulsar subheading">TRANSCENDENCE EDITION</h2>
 			<div class="old-button">
-				<a class="pix"
-					href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-278c6f5b974f198ff7770777621b6736535fe09144a049d6a79e2c37877665db&redirect_uri=http%3A%2F%2Flocalhost%3A8000&response_type=code">
+				<a class="pix" href="{{ auth_url }}">
 					<img src="/static/img/42.png" />login</a>
 			</div>
 		</div>

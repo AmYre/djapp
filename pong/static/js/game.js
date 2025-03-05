@@ -18,6 +18,11 @@ function displayPlayers() {
 	}
 }
 
+function goToDash() {
+	let userG = JSON.parse(localStorage.getItem("user"));
+	window.location.href = `/dashboard/?user=${userG.login}`;
+}
+
 function getCookie(name) {
 	let cookieValue = null;
 	if (document.cookie && document.cookie !== "") {
@@ -73,7 +78,6 @@ function initGame() {
 	winner.classList.remove("text");
 
 	function sortWinner(state) {
-		console.log("STATE in sort", state);
 		const players = [
 			{ player: state.user.login, score: state.score },
 			{ player: state.user2, score: state.score2 },
@@ -115,7 +119,6 @@ function initGame() {
 	}
 
 	if (canvas) {
-		console.log("CANVAS");
 		const ctx = canvas.getContext("2d");
 
 		// Game settings
@@ -267,7 +270,6 @@ function initGame() {
 			if (currentTime - lastAIUpdate < AI_UPDATE_INTERVAL) {
 				return;
 			}
-			console.log("AI update");
 			lastAIUpdate = currentTime;
 			ballAIX = ballX;
 			ballAIY = ballY;
@@ -279,7 +281,6 @@ function initGame() {
 			if (humanReaction - lastAIReaction < 400) {
 				return;
 			}
-			console.log("AI reaction");
 			lastAIReaction = humanReaction;
 			if (ballSpeedX < 0 || ballX < canvas.width / 2) {
 				delete keysPressed[up];
@@ -340,19 +341,22 @@ function initGame() {
 		}
 
 		function update() {
-			if (keysPressed[" "]) {
-				if (reversed) {
-					reversed = false;
-					w = "w";
-					s = "s";
-					up = "ArrowUp";
-					down = "ArrowDown";
-				} else {
-					w = "s";
-					s = "w";
-					up = "ArrowDown";
-					down = "ArrowUp";
-					reversed = true;
+			if (state.options.spacewars) {
+				console.log("SPACE WARS ON");
+				if (keysPressed[" "]) {
+					if (reversed) {
+						reversed = false;
+						w = "w";
+						s = "s";
+						up = "ArrowUp";
+						down = "ArrowDown";
+					} else {
+						w = "s";
+						s = "w";
+						up = "ArrowDown";
+						down = "ArrowUp";
+						reversed = true;
+					}
 				}
 			}
 
@@ -511,11 +515,7 @@ function initGame() {
 									state.winner[2].player,
 									state.winner[2].score
 								);
-								
-								// This will print the tournament data to console
 								const tournaments = blockchainManager.getAllTournaments();
-								console.log("All tournament records:");
-								console.table(tournaments);
 							} catch (error) {
 								console.error("Failed to record tournament:", error);
 							}

@@ -1,14 +1,33 @@
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from .models import GameStats
-import requests
 from django.conf import settings
+from dotenv import load_dotenv
+from .models import GameStats
+import urllib.parse
+import requests
+import os
+load_dotenv()
 
 # Create your views here.
 def home(request):
-	# print(GameStats.objects.all())
-	return render(request, 'home.html')
+	client_id = os.environ.get('CLIENT_ID')
+	redirect_uri = os.environ.get('REDIRECT_UNSLASH')
+		
+	# Fix: Encode the redirect_uri properly
+	encoded_redirect = urllib.parse.quote(str(redirect_uri).encode('utf-8'))
+		
+	auth_url = (
+		f"https://api.intra.42.fr/oauth/authorize?"
+		f"client_id={client_id}&"
+		f"redirect_uri={encoded_redirect}&"
+		f"response_type=code"
+	)
+		
+	context = {
+		'auth_url': auth_url
+	}
+	return render(request, 'home.html', context)
 
 def calculate_radar_values(user_games):
     radar_data = {
@@ -466,10 +485,10 @@ def get_token(request):
 		token_url = "https://api.intra.42.fr/oauth/token"
 		token_data = {
 			'grant_type': 'authorization_code',
-			'client_id': 'u-s4t2ud-278c6f5b974f198ff7770777621b6736535fe09144a049d6a79e2c37877665db',
-			'client_secret': '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',
+			'client_id': os.environ.get('CLIENT_ID'),
+			'client_secret': os.environ.get('CLIENT_SECRET'),
 			'code': code,
-			'redirect_uri': 'http://localhost:8000/'
+			'redirect_uri': os.environ.get('REDIRECT_URI')
 		}
 		token_response = requests.post(token_url, data=token_data)
 		token_json = token_response.json()

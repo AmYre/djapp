@@ -37,15 +37,11 @@
 		</div>
 	</div>
 	<div id="gameBtns">
-		<a id="dashLogin" href="">
+		<a id="dashLogin" onclick="goToDash()">
 			<img id="scores" src="static/img/scores.png">
 		</a>
 		<img id="start" onclick="initGame()" src="static/img/start.png">
 		<img id="options" onclick="renderStep(1)" src="static/img/options.png">
 	</div>
-	<script>
-		var userG = JSON.parse(localStorage.getItem("user"));
-		document.getElementById("dashLogin").href = `/dashboard/?user=${userG.login}`;
-	</script>
 </div>
 </div>

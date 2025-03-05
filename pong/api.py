@@ -1,15 +1,23 @@
-from urllib.parse import urlencode
+from django.core.exceptions import ValidationError
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.http import require_POST
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from django.core.exceptions import ValidationError
 from .models import GameStats
+from urllib.parse import urlencode
+from dotenv import load_dotenv
 from web3 import Web3
-import json
-from django.http import JsonResponse
-
 import requests
+import json
+import os
+import re
 
+load_dotenv()
+
+@csrf_protect
+@require_POST
 @api_view(['POST'])
 def token(request):
     code = request.data.get('code')
@@ -17,10 +25,10 @@ def token(request):
     token_url = "https://api.intra.42.fr/oauth/token"
     token_data = {
         'grant_type': 'authorization_code',
-        'client_id': 'u-s4t2ud-278c6f5b974f198ff7770777621b6736535fe09144a049d6a79e2c37877665db',
-        'client_secret': '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',
+        'client_id': os.environ.get('CLIENT_ID'),
+        'client_secret': os.environ.get('CLIENT_SECRET'),
         'code': code,
-        'redirect_uri': 'http://localhost:8000'
+        'redirect_uri': os.environ.get('REDIRECT_UNSLASH')
     }
 
     # URL encode the data
@@ -39,6 +47,8 @@ def token(request):
     )
     return Response(response.json())
 
+@csrf_protect
+@require_POST
 @api_view(['POST'])
 def dash(request):
     try:
@@ -90,41 +100,56 @@ def dash(request):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
-@api_view(['GET'])
-def verify_tournament(request):
-	# Connect to local blockchain
-	w3 = Web3(Web3.HTTPProvider('http://127.0.0.1:8545'))
+@csrf_protect
+@require_POST
+@api_view(['POST'])
+def validate(request):
+    try:
+        data = request.data
+        errors = []
+        validated_data = {}
 
-	# Contract info
-	contract_address = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512'
+        if data.get('mode') not in ['bot', 'human', 'tourn']:
+            errors.append("Mode de jeu invalide")
+        else:
+            validated_data['mode'] = data.get('mode')
 
-	# Get ABI from your contract JSON
-	with open('blockchain/artifacts/contracts/TournamentScore.sol/TournamentScore.json') as f:
-		contract_json = json.load(f)
-		contract_abi = contract_json['abi']
+        player_fields = []
+        if data.get('mode') == 'human':
+            player_fields = ['p2']
+        elif data.get('mode') == 'tourn':
+            player_fields = ['p2', 'p3']
 
-	# Create contract instance
-	contract = w3.eth.contract(address=contract_address, abi=contract_abi)
+        for field in player_fields:
+            if field in data and data[field]:
+                sanitized_name = re.sub(r'[^\w\s-]', '', data[field])[:10]
+                if not sanitized_name:
+                    errors.append(f"Nom du joueur {field} invalide")
+                else:
+                    validated_data[field] = sanitized_name
+            else:
+                errors.append(f"Nom du joueur {field} requis")
 
-	try:
-		# Get tournament data from blockchain
-		tournament = contract.functions.getTournament(tournament_id).call()
-		
-		return JsonResponse({
-			'verified': True,
-			'tournament': {
-				'winner': tournament[0],
-				'winnerScore': tournament[1],
-				'secondPlace': tournament[2],
-				'secondScore': tournament[3],
-				'thirdPlace': tournament[4],
-				'thirdScore': tournament[5],
-				'timestamp': tournament[6]
-			}
-		})
-	except Exception as e:
-		return JsonResponse({
-			'verified': False,
-			'error': str(e)
-		}, status=400)
-		
+        game_params = ['bspeed', 'bsize', 'pheight', 'pspeed']
+        for param in game_params:
+            if param in data:
+                try:
+                    value = int(data[param])
+                    if value not in [0, 25, 50, 75, 100]:
+                        errors.append(f"Valeur invalide pour {param}")
+                    else:
+                        validated_data[param] = value
+                except (ValueError, TypeError):
+                    errors.append(f"Valeur invalide pour {param}")
+            else:
+                validated_data[param] = 50  # Valeur par défaut
+
+        validated_data['spacewars'] = bool(data.get('spacewars'))
+
+        if errors:
+            return Response({'valid': False, 'errors': errors}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({'valid': True, 'validated_data': validated_data}, status=status.HTTP_200_OK)
+
+    except Exception as e:
+        return Response({'valid': False, 'errors': [str(e)]}, status=status.HTTP_400_BAD_REQUEST)

@@ -1,4 +1,3 @@
-// State management
 let AppState = {
 	currentStep: 0,
 	user: {},
@@ -114,6 +113,10 @@ function logOutDash() {
 }
 
 function optionsDash() {
+	let state = JSON.parse(localStorage.getItem("pongAppState"));
+	state.currentStep = 1;
+	localStorage.setItem("pongAppState", JSON.stringify(state));
+	window.history.pushState({ step: 1 }, "", "/");
 	window.location.href = "/";
 }
 

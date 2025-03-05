@@ -8,14 +8,8 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
-    environment:
-      - DEBUG=1
-      - PYTHONDONTWRITEBYTECODE=1
-      - PYTHONUNBUFFERED=1
-      - POSTGRES_DB=django_db
-      - POSTGRES_USER=django_user
-      - POSTGRES_PASSWORD=django_password
-      - DATABASE_URL=postgresql://django_user:django_password@db:5432/django_db
+    env_file:
+      - .env
     depends_on:
       - db
     stdin_open: true
@@ -26,10 +20,26 @@ services:
     image: postgres:13
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: django_db
-      POSTGRES_USER: django_user
-      POSTGRES_PASSWORD: django_password
+    env_file:
+      - .env
+
+  blockchain:
+    container_name: blockchain
+    build:
+      context: .
+      dockerfile: blockchain/Dockerfile
+    ports:
+      - "8545:8545"
+    volumes:
+      - ./blockchain:/app/blockchain
+      - ./pong/static:/app/pong/static
+    networks:
+      - app-network
 
 volumes:
   postgres_data:
+
+
+networks:
+  app-network:
+    driver: bridge

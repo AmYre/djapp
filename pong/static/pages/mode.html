@@ -56,14 +56,14 @@
 						</div>
 						<div style="display:flex; justify-content: space-between; align-items: center;">
 							<div class="righteous options" style="color: white">SPACEWARS</div>
-							<label class="switch">
-								<input type="checkbox" name="spacewars">
+							<label class="switch" for="spacewars-bot">
+								<input type="checkbox" name="spacewars" id="spacewars-bot">
 								<span class="slider"></span>
 							</label>
 						</div>
 						<div class="wrap-inputs-text">
 							<div class="wrap-label-input">
-								<label for="a" class="righteous options">Player 1</label>
+								<label class="righteous options">Player 1</label>
 								<p class="pix pulsar" id="p1bot"></p>
 							</div>
 							<input type="text" name="p2" value="" hidden>
@@ -114,19 +114,21 @@
 						</div>
 						<div style="display:flex; justify-content: space-between; align-items: center;">
 							<div class="righteous options" style="color: white">SPACEWARS</div>
-							<label class="switch">
-								<input type="checkbox" name="spacewars">
+							<label class="switch" for="spacewars-human">
+								<input type="checkbox" name="spacewars" id="spacewars-human">
 								<span class="slider"></span>
 							</label>
 						</div>
 						<div class="wrap-inputs-text">
 							<div class="wrap-label-input">
-								<label for="a" class="righteous options">Player 1</label>
+								<label class="righteous options">Player 1</label>
 								<p class="pix pulsar" id="p1human"></p>
 							</div>
 							<div class="wrap-label-input">
-								<label for="b" class="righteous options">Player 2</label>
-								<input type="text" class="form-control" name="p2" placeholder="enter name" required>
+								<label class="righteous options" for="p2-h">Player 2</label>
+								<input type="text" class="form-control" name="p2" id="p2-h" placeholder="enter name"
+									required maxlength="10" pattern="[A-Za-z0-9_ ]+"
+									title="Lettres, chiffres, espaces et tirets uniquement">
 							</div>
 							<input type="text" name="p3" value="" hidden>
 						</div>
@@ -174,23 +176,27 @@
 						</div>
 						<div style="display:flex; justify-content: space-between; align-items: center;">
 							<div class="righteous options" style="color: white">SPACEWARS</div>
-							<label class="switch">
-								<input type="checkbox" name="spacewars">
+							<label class="switch" for="spacewars-tourn">
+								<input type="checkbox" name="spacewars" id="spacewars-tourn">
 								<span class="slider"></span>
 							</label>
 						</div>
 						<div class="wrap-inputs-text">
 							<div class="wrap-label-input">
-								<label for="a" class="righteous options">Player 1</label>
+								<label class="righteous options">Player 1</label>
 								<p class="pix pulsar" id="p1tourn"></p>
 							</div>
 							<div class="wrap-label-input">
-								<label for="b" class="righteous options">Player 2</label>
-								<input type="text" class="form-control" name="p2" placeholder="enter name" required>
+								<label class="righteous options" for="p2">Player 2</label>
+								<input type="text" class="form-control" name="p2" id="p2" placeholder="enter name"
+									required maxlength="10" pattern="[A-Za-z0-9_ ]+"
+									title="Lettres, chiffres, espaces et tirets uniquement">
 							</div>
 							<div class="wrap-label-input">
-								<label for="b" class="righteous options">Player 3</label>
-								<input type="text" class="form-control" name="p3" placeholder="enter name" required>
+								<label class="righteous options" for="p3">Player 3</label>
+								<input type="text" class="form-control" name="p3" id="p3" placeholder="enter name"
+									required maxlength="10" pattern="[A-Za-z0-9_ ]+"
+									title="Lettres, chiffres, espaces et tirets uniquement">
 							</div>
 						</div>
 						<input type="text" hidden name="mode" value="tourn">

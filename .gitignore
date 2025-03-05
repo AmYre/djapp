@@ -50,11 +50,11 @@ node_modules/
 /static/
 /staticfiles/
 node_modules
-.env
 
 # Hardhat files
 /cache
 /artifacts
+*.pid
 
 # TypeChain files
 /typechain
@@ -66,3 +66,7 @@ node_modules
 
 # Hardhat Ignition default folder for deployments against a local node
 ignition/deployments/chain-31337
+
+/blockchain/contractAddress.json
+/pong/static/contractAddress.json
+

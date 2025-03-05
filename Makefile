@@ -1,28 +1,12 @@
 DC=docker-compose
 APP=pong
-BLOCKCHAIN_DIR=blockchain
 
 all: up
 
 build:
 	$(DC) build
 
-hardhat-clean:
-	@echo "Please close the Hardhat node terminal window manually"
-	cd $(BLOCKCHAIN_DIR) && rm -rf cache artifacts
-
-hardhat-compile:
-	cd $(BLOCKCHAIN_DIR) && npx hardhat compile
-
-hardhat-node:
-	@gnome-terminal -- bash -c "cd $(BLOCKCHAIN_DIR) && npx hardhat node; exec bash"
-	@echo "Creating local test ETH with hardhat..."
-	@sleep 5 # Wait for node to start
-
-deploy-contract: hardhat-clean hardhat-compile hardhat-node
-	cd $(BLOCKCHAIN_DIR) && npx hardhat run scripts/deploy.js --network localhost
-	
-up: deploy-contract
+up:
 	$(DC) up --build
 
 stop:
@@ -31,7 +15,7 @@ stop:
 start:
 	$(DC) start
 
-down: hardhat-clean
+down:
 	$(DC) down --remove-orphans
 
 admin:
@@ -43,9 +27,8 @@ logs:
 migrate:
 	$(DC) exec $(APP) python manage.py makemigrations $(APP)
 	$(DC) exec $(APP) python manage.py migrate
-	
 
-clean: hardhat-clean
+clean:
 	$(DC) down -v
 	find . -type d -name "__pycache__" -exec rm -r {} +
 	find . -type f -name "*.pyc" -delete
@@ -53,7 +36,9 @@ clean: hardhat-clean
 fclean: clean
 	docker system prune -a -f --volumes
 
-.PHONY: build up down logs shell migrate test clean ardhat-clean hardhat-compile hardhat-node deploy-contract
+re: fclean all
+
+.PHONY: build up down logs migrate clean fclean
 
 # Makefile error 130 is normal - exit code for quitting with ctrl+c signal
 # added -d to up rule so containers run in detached mode - background - less verbose/ less error messages (take away -d for developing and debugging)
