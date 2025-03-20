@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				.then((response) => response.json())
 				.then((data) => {
 					localStorage.setItem("token", data.access_token);
-					console.log("Token data:", data.access_token);
 					url = "https://api.intra.42.fr/v2/me";
 					(headers = {
 						Authorization: `Bearer ${data.access_token}`,
@@ -49,9 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
 						})
 							.then((response) => response.json())
 							.then((data) => {
-								console.log("User data:", data);
 								localStorage.setItem("user", JSON.stringify(data));
-								updateState({ currentStep: 1, user: data, gameOptions: null });
+								updateState({ currentStep: 1, user: data});
 							})
 							.catch((error) => {
 								console.error("Error:", error);
