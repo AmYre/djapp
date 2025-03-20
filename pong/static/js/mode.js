@@ -72,7 +72,6 @@ function handleModeForm(form) {
 					});
 				}, 1800);
 			} else {
-				// Afficher les erreurs
 				alert("Erreur de validation: " + data.errors.join(", "));
 			}
 		})

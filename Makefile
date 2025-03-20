@@ -6,6 +6,7 @@ all: up
 build:
 	$(DC) build
 
+# add -d before set as finished
 up:
 	$(DC) up --build
 
