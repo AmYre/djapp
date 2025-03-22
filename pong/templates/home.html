@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="/static/css/game.css">
 	<link rel="stylesheet" href="/static/css/stars.css">
 	<link rel="stylesheet" href="/static/css/carousel.css">
+	<link rel="stylesheet" href="/static/css/translate.css">
 	<script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
 	<script src="/static/js/blockchain.js"></script>
 	<script src="/static/locales/lang.js" defer></script>
@@ -32,16 +33,17 @@
 		<div class="heading-container">
 			<h1 class="monoton heading" id="homeTitle" data-lang="homeTitle">world of pong</h1>
 			<h2 class="pix pulsar subheading" data-lang="subTitle">TRANSCENDENCE EDITION</h2>
+			<select id="langSelector" class="selector">
+				<option value="en" selected>&nbsp;🇬🇧</option>
+				<option value="fr">&nbsp;🇫🇷</option>
+				<option value="es">&nbsp;🇪🇸</option>
+			  </select> 
 			<div class="old-button">
 				<a class="pix" href="{{ auth_url }}">
 					<img src="/static/img/42.png" />login</a>
 			</div>
 		</div>
-		<select id="langSelector" class="">
-			<option value="fr">french</option>
-			<option value="en">english</option>
-			<option value="es">español</option>
-		</select>
+
 		<div class="carousel">
 			<div class="carousel-control-button left"><input type="radio" name="carousel-control-input"></div>
 			<div class="carousel-control-button right"><input type="radio" name="carousel-control-input" checked></div>
