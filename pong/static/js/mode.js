@@ -106,58 +106,58 @@ function displayOptions() {
 			if (e.target.value == 0) { 
 				e.target.nextElementSibling.textContent = lang[currentLang].pspeed_lvl1;
 			} else if (e.target.value == 25) {
-				e.target.nextElementSibling.textContent = "Slow";
+				e.target.nextElementSibling.textContent = lang[currentLang].pspeed_lvl2;
 			} else if (e.target.value == 50) {
-				e.target.nextElementSibling.textContent = "Normal";
+				e.target.nextElementSibling.textContent = lang[currentLang].pspeed_lvl3;
 			} else if (e.target.value == 75) {
-				e.target.nextElementSibling.textContent = "Quick";
+				e.target.nextElementSibling.textContent = lang[currentLang].pspeed_lvl4;
 			} else if (e.target.value == 100) {
-				e.target.nextElementSibling.textContent = "Flash";
+				e.target.nextElementSibling.textContent = lang[currentLang].pspeed_lvl5;
 			}
 		});
 	});
 	document.querySelectorAll("#pheight").forEach((r) => {
 		r.addEventListener("input", (e) => {
 			if (e.target.value == 0) {
-				e.target.nextElementSibling.textContent = "Crazy";
+				e.target.nextElementSibling.textContent = lang[currentLang].pheight_lvl1;
 			} else if (e.target.value == 25) {
-				e.target.nextElementSibling.textContent = "Small";
+				e.target.nextElementSibling.textContent = lang[currentLang].pheight_lvl2;
 			} else if (e.target.value == 50) {
-				e.target.nextElementSibling.textContent = "Normal";
+				e.target.nextElementSibling.textContent = lang[currentLang].pheight_lvl3;
 			} else if (e.target.value == 75) {
-				e.target.nextElementSibling.textContent = "Big";
+				e.target.nextElementSibling.textContent = lang[currentLang].pheight_lvl4;
 			} else if (e.target.value == 100) {
-				e.target.nextElementSibling.textContent = "Why?";
+				e.target.nextElementSibling.textContent = lang[currentLang].pheight_lvl5;
 			}
 		});
 	});
 	document.querySelectorAll("#ballspeed").forEach((r) => {
 		r.addEventListener("input", (e) => {
 			if (e.target.value == 0) {
-				e.target.nextElementSibling.textContent = "Boring";
+				e.target.nextElementSibling.textContent = lang[currentLang].ballspeed_lvl1;
 			} else if (e.target.value == 25) {
-				e.target.nextElementSibling.textContent = "Slow";
+				e.target.nextElementSibling.textContent = lang[currentLang].ballspeed_lvl2;
 			} else if (e.target.value == 50) {
-				e.target.nextElementSibling.textContent = "Normal";
+				e.target.nextElementSibling.textContent = lang[currentLang].ballspeed_lvl3;
 			} else if (e.target.value == 75) {
-				e.target.nextElementSibling.textContent = "Quick";
+				e.target.nextElementSibling.textContent = lang[currentLang].ballspeed_lvl4;
 			} else if (e.target.value == 100) {
-				e.target.nextElementSibling.textContent = "Lightning";
+				e.target.nextElementSibling.textContent = lang[currentLang].ballspeed_lvl5;
 			}
 		});
 	});
 	document.querySelectorAll("#ballsize").forEach((r) => {
 		r.addEventListener("input", (e) => {
 			if (e.target.value == 0) {
-				e.target.nextElementSibling.textContent = "Quantic";
+				e.target.nextElementSibling.textContent = lang[currentLang].ballsize_lvl1;
 			} else if (e.target.value == 25) {
-				e.target.nextElementSibling.textContent = "Small";
+				e.target.nextElementSibling.textContent = lang[currentLang].ballsize_lvl2;
 			} else if (e.target.value == 50) {
-				e.target.nextElementSibling.textContent = "Normal";
+				e.target.nextElementSibling.textContent = lang[currentLang].ballsize_lvl3;
 			} else if (e.target.value == 75) {
-				e.target.nextElementSibling.textContent = "Big";
+				e.target.nextElementSibling.textContent = lang[currentLang].ballsize_lvl4;
 			} else if (e.target.value == 100) {
-				e.target.nextElementSibling.textContent = "Cosmic";
+				e.target.nextElementSibling.textContent = lang[currentLang].ballsize_lvl5;
 			}
 		});
 	});
