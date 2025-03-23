@@ -99,10 +99,12 @@ function displayUser() {
 }
 
 function displayOptions() {
+	const currentLang = localStorage.getItem("lang") || "en";
+	console.log("Current lang:", currentLang);
 	document.querySelectorAll("#pspeed").forEach((r) => {
 		r.addEventListener("input", (e) => {
 			if (e.target.value == 0) { 
-				e.target.nextElementSibling.textContent = "Painful";
+				e.target.nextElementSibling.textContent = lang[currentLang].pspeed_lvl1;
 			} else if (e.target.value == 25) {
 				e.target.nextElementSibling.textContent = "Slow";
 			} else if (e.target.value == 50) {
