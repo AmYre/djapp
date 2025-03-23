@@ -34,7 +34,7 @@ window.lang = {
 		ballsize_lvl5: "Cosmic",
 		player1: "Player 1",
 		player2: "Player 2",
-		player2: "Player 3",
+		player3: "Player 3",
 		
 		card1 :"WELCOME TO PONG'S VIRTUAL MUSEUM...",
 		card2 :"ATARI'S PONG MACHINE WAS RELEASED IN 1972",
@@ -87,7 +87,7 @@ window.lang = {
 		ballsize_lvl5: "Cosmique",
 		player1: "Joueur 1",
 		player2: "Joueur 2",
-		player2: "Joueur 3",
+		player3: "Joueur 3",
 
 		card1 : "BIENVENUE DANS LE MUSÉE VIRTUEL DE PONG...",
 		card2 : "LA MACHINE PONG D’ATARI EST SORTIE EN 1972",
