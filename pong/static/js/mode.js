@@ -101,7 +101,7 @@ function displayUser() {
 function displayOptions() {
 	document.querySelectorAll("#pspeed").forEach((r) => {
 		r.addEventListener("input", (e) => {
-			if (e.target.value == 0) {
+			if (e.target.value == 0) { 
 				e.target.nextElementSibling.textContent = "Painful";
 			} else if (e.target.value == 25) {
 				e.target.nextElementSibling.textContent = "Slow";
